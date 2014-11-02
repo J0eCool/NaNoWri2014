@@ -1,14 +1,13 @@
 #include <SDL.h>
 #include <string>
 
+#include "Managers/InputManager.h"
+#include "Util/Constants.h"
 #include "Util/Logger.h"
 #include "Util/Math.h"
-#include "Managers/InputManager.h"
 
 #include "Vec2.h"
-
-const int kScreenWidth = 800;
-const int kScreenHeight = 600;
+#include "Player.h"
 
 int main(int argc, char** argv)
 {
@@ -43,62 +42,28 @@ int main(int argc, char** argv)
 	rect.w = kScreenWidth;
 	rect.h = 50;
 
-	SDL_Rect player;
-	player.w = 50;
-	player.h = 70;
-
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
 
+	Player player(Vec2(50.0f, 70.0f), Vec2(200.0f, 360.0f));
+
 	auto lastFrameTime = SDL_GetTicks();
-	float t = 0.0f;
-	Vec2 pos(200.0f, 120.0f);
-	Vec2 vel;
-	float speed = 225.0f;
-	float gravity = 1000.0f;
-	bool onGround = false;
 	InputManager *input = InputManager::GetInstance();
 	while (!input->IsDown(IT_Quit))
 	{
-		float dT = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
+		float dt = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
 		lastFrameTime = SDL_GetTicks();
-		t += dT;
 
 		input->Update();
 
 		// Logic
-		vel.x = 0.0f;
-		if (input->IsHeld(IT_Left)) {
-			vel.x -= speed;
-		}
-		if (input->IsHeld(IT_Right)) {
-			vel.x += speed;
-		}
-		if (!onGround) {
-			vel.y += gravity * dT;
-			if (pos.y + vel.y * dT + player.h > kScreenHeight - 100) {
-				pos.y = kScreenHeight - 100 - (float)player.h;
-				vel.y = 0.0f;
-				onGround = true;
-			}
-		}
-		else {
-			if (input->IsDown(IT_Jump)) {
-				vel.y = -0.5f * gravity;
-				onGround = false;
-			}
-		}
-		pos += vel * dT;
-		pos.x = clamp(pos.x, 0, (float)(kScreenWidth - player.w));
-		player.x = (int)pos.x;
-		player.y = (int)pos.y;
+		player.Update(dt);
 
 		// Rendering
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderClear(renderer);
 
-		SDL_SetRenderDrawColor(renderer, 0xff, 0x80, 0x80, 0xff);
-		SDL_RenderFillRect(renderer, &player);
+		player.Draw(renderer);
 
 		SDL_SetRenderDrawColor(renderer, 0x80, 0x80, 0x80, 0xff);
 		SDL_RenderFillRect(renderer, &rect);
@@ -113,8 +78,6 @@ int main(int argc, char** argv)
 			//SDL_Delay(delayTime);
 		}
 	}
-
-	Log("Well that went okay.", "I guess", "gosh");
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

@@ -82,6 +82,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Util\Constants.h" />
     <ClInclude Include="Util\Logger.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\Singleton.h" />
