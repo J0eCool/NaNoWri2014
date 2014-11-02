@@ -1,7 +1,8 @@
 #include <SDL.h>
 #include <string>
 
-#include "Logger.h"
+#include "Util/Logger.h"
+#include "Util/Math.h"
 #include "Managers/InputManager.h"
 
 const int kScreenWidth = 800;
@@ -35,37 +36,72 @@ int main(int argc, char** argv)
 
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
 	SDL_Rect rect;
-	rect.x = 190;
-	rect.y = 75;
-	rect.w = 50;
-	rect.h = 69;
+	rect.x = 0;
+	rect.y = kScreenHeight - 100;
+	rect.w = kScreenWidth;
+	rect.h = 50;
 
-	bool quit = false;
+	SDL_Rect player;
+	player.w = 50;
+	player.h = 70;
 
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
 
 	auto lastFrameTime = SDL_GetTicks();
 	float t = 0.0f;
+	float xPos = 200.0f;
 	float yPos = 120.0f;
-	while (!quit)
+	float xVel = 0.0f;
+	float yVel = 0.0f;
+	float speed = 225.0f;
+	float gravity = 1000.0f;
+	bool onGround = false;
+	InputManager *input = InputManager::GetInstance();
+	while (!input->IsDown(IT_Quit))
 	{
 		float dT = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
 		lastFrameTime = SDL_GetTicks();
 		t += dT;
 
-		InputManager::getInstance()->Update();
-		quit = InputManager::getInstance()->IsDown(IN_Quit);
+		input->Update();
 
 		// Logic
-		yPos = 180.0f + sin(2.5f * t) * 300.0f;
-		rect.y = (int)yPos;
+		xVel = 0.0f;
+		if (input->IsHeld(IT_Left)) {
+			xVel -= speed;
+		}
+		if (input->IsHeld(IT_Right)) {
+			xVel += speed;
+		}
+		if (!onGround) {
+			yVel += gravity * dT;
+			if (yPos + yVel * dT + player.h > kScreenHeight - 100) {
+				yPos = kScreenHeight - 100 - (float)player.h;
+				yVel = 0.0f;
+				onGround = true;
+			}
+		}
+		else {
+			if (input->IsDown(IT_Jump)) {
+				yVel = -0.5f * gravity;
+				onGround = false;
+			}
+		}
+		xPos += xVel * dT;
+		xPos = clamp(xPos, 0, (float)(kScreenWidth - player.w));
+		yPos += yVel * dT;
+		player.x = (int)xPos;
+		player.y = (int)yPos;
 
 		// Rendering
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderClear(renderer);
 
-		SDL_SetRenderDrawColor(renderer, 0xff, 0x30, 0x30, 0x8f);
+		SDL_SetRenderDrawColor(renderer, 0xff, 0x80, 0x80, 0xff);
+		SDL_RenderFillRect(renderer, &player);
+
+		SDL_SetRenderDrawColor(renderer, 0x80, 0x80, 0x80, 0xff);
 		SDL_RenderFillRect(renderer, &rect);
 
 		SDL_RenderPresent(renderer);

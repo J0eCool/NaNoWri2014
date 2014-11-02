@@ -9,7 +9,7 @@ protected:
 	Singleton() { }
 
 public:
-	static T* getInstance() {
+	static T* GetInstance() {
 		return &_instance;
 	}
 };

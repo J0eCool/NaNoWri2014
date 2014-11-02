@@ -3,20 +3,29 @@
 #include "Singleton.h"
 
 enum InputType {
-	IN_Quit,
+	IT_None,
+	IT_Quit,
+	IT_Left,
+	IT_Right,
+	IT_Jump,
 
-	IN_NumTypes // must be last
+	IT_NumTypes // must be last
 };
 
 class InputManager : public Singleton<InputManager> {
-//class InputManager {
 private:
-	bool _downInputs[IN_NumTypes];
+	enum InputState {
+		IS_Up,
+		IS_Held,
+		IS_Down,
+	};
 
-	//static InputManager _ins;
+	InputState _inputStates[IT_NumTypes];
+	
+	void setInputState(InputType type, InputState state);
 
 public:
-	//static InputManager *getInstance() { return &_ins; }
 	void Update();
+	bool IsHeld(InputType input);
 	bool IsDown(InputType input);
 };
