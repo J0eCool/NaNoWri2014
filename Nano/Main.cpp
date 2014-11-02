@@ -2,6 +2,7 @@
 #include <string>
 
 #include "Logger.h"
+#include "Managers/InputManager.h"
 
 const int kScreenWidth = 800;
 const int kScreenHeight = 600;
@@ -40,7 +41,6 @@ int main(int argc, char** argv)
 	rect.h = 69;
 
 	bool quit = false;
-	SDL_Event event;
 
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
@@ -54,28 +54,14 @@ int main(int argc, char** argv)
 		lastFrameTime = SDL_GetTicks();
 		t += dT;
 
-		// handle events
-		while (SDL_PollEvent(&event))
-		{
-			switch (event.type)
-			{
-			case SDL_QUIT:
-				quit = true;
-				break;
-			case SDL_KEYDOWN:
-				if (event.key.keysym.sym == SDLK_ESCAPE)
-				{
-					quit = true;
-				}
-				break;
-			}
-		}
+		InputManager::getInstance()->Update();
+		quit = InputManager::getInstance()->IsDown(IN_Quit);
 
-		// logic
+		// Logic
 		yPos = 180.0f + sin(2.5f * t) * 300.0f;
 		rect.y = (int)yPos;
 
-		// rendering
+		// Rendering
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderClear(renderer);
 
@@ -84,12 +70,12 @@ int main(int argc, char** argv)
 
 		SDL_RenderPresent(renderer);
 
-		// sleep until next frame
+		// Sleep until next frame
 		auto elapsed = SDL_GetTicks() - lastFrameTime;
 		auto delayTime = kMaxFrameDelay - elapsed;
-		if (delayTime > 0)
-		{
-			SDL_Delay(delayTime);
+		if (delayTime > 0) {
+			// WTF: this causes the game to crashhang sometimes?
+			//SDL_Delay(delayTime);
 		}
 	}
 
