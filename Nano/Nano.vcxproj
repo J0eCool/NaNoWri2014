@@ -81,15 +81,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Util\Logger.h" />
     <ClInclude Include="Managers\InputManager.h" />
     <ClInclude Include="Managers\Singleton.h" />
     <ClInclude Include="Util\Math.h" />
+    <ClInclude Include="Vec2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Util\Math.cpp" />
+    <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

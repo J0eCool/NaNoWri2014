@@ -5,6 +5,8 @@
 #include "Util/Math.h"
 #include "Managers/InputManager.h"
 
+#include "Vec2.h"
+
 const int kScreenWidth = 800;
 const int kScreenHeight = 600;
 
@@ -50,10 +52,8 @@ int main(int argc, char** argv)
 
 	auto lastFrameTime = SDL_GetTicks();
 	float t = 0.0f;
-	float xPos = 200.0f;
-	float yPos = 120.0f;
-	float xVel = 0.0f;
-	float yVel = 0.0f;
+	Vec2 pos(200.0f, 120.0f);
+	Vec2 vel;
 	float speed = 225.0f;
 	float gravity = 1000.0f;
 	bool onGround = false;
@@ -67,32 +67,31 @@ int main(int argc, char** argv)
 		input->Update();
 
 		// Logic
-		xVel = 0.0f;
+		vel.x = 0.0f;
 		if (input->IsHeld(IT_Left)) {
-			xVel -= speed;
+			vel.x -= speed;
 		}
 		if (input->IsHeld(IT_Right)) {
-			xVel += speed;
+			vel.x += speed;
 		}
 		if (!onGround) {
-			yVel += gravity * dT;
-			if (yPos + yVel * dT + player.h > kScreenHeight - 100) {
-				yPos = kScreenHeight - 100 - (float)player.h;
-				yVel = 0.0f;
+			vel.y += gravity * dT;
+			if (pos.y + vel.y * dT + player.h > kScreenHeight - 100) {
+				pos.y = kScreenHeight - 100 - (float)player.h;
+				vel.y = 0.0f;
 				onGround = true;
 			}
 		}
 		else {
 			if (input->IsDown(IT_Jump)) {
-				yVel = -0.5f * gravity;
+				vel.y = -0.5f * gravity;
 				onGround = false;
 			}
 		}
-		xPos += xVel * dT;
-		xPos = clamp(xPos, 0, (float)(kScreenWidth - player.w));
-		yPos += yVel * dT;
-		player.x = (int)xPos;
-		player.y = (int)yPos;
+		pos += vel * dT;
+		pos.x = clamp(pos.x, 0, (float)(kScreenWidth - player.w));
+		player.x = (int)pos.x;
+		player.y = (int)pos.y;
 
 		// Rendering
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
