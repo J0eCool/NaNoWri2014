@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-#include "Vec2.h"
+#include "Util/Vec2.h"
 
 class Player {
 private:
@@ -11,8 +11,9 @@ private:
 	Vec2 _vel;
 	bool onGround = false;
 
-	float _speed = 350.0f;
-	const float kGravity = 1000.0f;
+	float _speed;
+	float _jumpHeight;
+	const float kGravity = 2500.0f;
 
 public:
 	Player(Vec2 size, Vec2 pos);

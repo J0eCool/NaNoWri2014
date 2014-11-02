@@ -4,7 +4,8 @@
 #include "Util/Constants.h"
 #include "Util/Math.h"
 
-Player::Player(Vec2 size, Vec2 pos) : _size(size), _pos(pos) {
+Player::Player(Vec2 size, Vec2 pos) : _size(size), _pos(pos),
+		_speed(350.0f), _jumpHeight(120.0f) {
 }
 
 void Player::Update(float dt) {
@@ -27,7 +28,7 @@ void Player::Update(float dt) {
 	}
 	else {
 		if (input->IsDown(IT_Jump)) {
-			_vel.y = -0.5f * kGravity;
+			_vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
 			onGround = false;
 		}
 	}
