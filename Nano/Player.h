@@ -21,5 +21,7 @@ public:
 
 	void Update(float dt);
 	void Draw(SDL_Renderer *renderer) const;
+
+	Vec2 GetPos() { return _pos; }
 };
 

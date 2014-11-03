@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class Vec2 {
 public:
 	float x;
@@ -25,8 +27,9 @@ public:
 
 	float Dot(Vec2 const& other) const;
 	float Cross(Vec2 const& other) const;
+
+	std::string ToString() const;
 };
 
 Vec2 operator*(float s, Vec2 const& v);
 Vec2 operator/(float s, Vec2 const& v);
-

@@ -1,6 +1,7 @@
 #include "Vec2.h"
 
 #include <math.h>
+#include <sstream>
 
 Vec2::Vec2() : x(0.0f), y(0.0f) { }
 Vec2::Vec2(float _x, float _y) : x(_x), y(_y) { }
@@ -51,6 +52,12 @@ float Vec2::Dot(Vec2 const& other) const {
 }
 float Vec2::Cross(Vec2 const& other) const {
 	return x * other.y - y * other.x;
+}
+
+std::string Vec2::ToString() const {
+	std::stringstream sstr;
+	sstr << "(" << x << ", " << y << ")";
+	return sstr.str();
 }
 
 Vec2 operator*(float s, Vec2 const& v) {

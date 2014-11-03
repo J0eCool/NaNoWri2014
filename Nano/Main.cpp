@@ -116,16 +116,14 @@ int main(int argc, char** argv)
 
 		player.Draw(renderer);
 
-		if (input->GetJoy() != wasJoy || !textTexture) {
 			SDL_DestroyTexture(textTexture);
-			std::string text = input->GetJoy() ? "Joy!" : "No joy...";
+			std::string text = player.GetPos().ToString();
 			SDL_Surface *textSurf = TTF_RenderText_Solid(font, text.c_str(), { 0, 0, 0 });
 			textRect.w = textSurf->w;
 			textRect.h = textSurf->h;
 			textTexture = SDL_CreateTextureFromSurface(renderer, textSurf);
 			SDL_FreeSurface(textSurf);
-			wasJoy = input->GetJoy();
-		}
+
 		SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
 
 		SDL_SetRenderDrawColor(renderer, 0x80, 0x80, 0x80, 0xff);

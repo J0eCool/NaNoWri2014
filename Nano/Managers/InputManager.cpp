@@ -24,6 +24,7 @@ InputType getInputForKey(SDL_Keycode key) {
 		input = IT_Right;
 		break;
 	case SDLK_SPACE:
+	case SDLK_k:
 		input = IT_Jump;
 		break;
 	}
