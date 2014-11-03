@@ -5,15 +5,13 @@
 
 #include <Windows.h>
 
-void Log()
-{
+inline void Log() {
 	std::cout << std::endl;
 	OutputDebugString("\n");
 }
 
 template <typename ... Ts>
-void Log(std::string const& str, Ts ... rest)
-{
+inline void Log(std::string const& str, Ts ... rest) {
 	std::cout << str;
 	OutputDebugString(str.c_str());
 	Log(rest...);

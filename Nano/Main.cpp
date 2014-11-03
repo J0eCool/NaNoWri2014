@@ -3,6 +3,7 @@
 #include <SDL_ttf.h>
 #include <string>
 
+#include "Managers/AssetManager.h"
 #include "Managers/InputManager.h"
 #include "Util/Constants.h"
 #include "Util/Logger.h"
@@ -10,23 +11,6 @@
 #include "Util/Vec2.h"
 
 #include "Player.h"
-
-SDL_Texture *loadImage(std::string filename, SDL_Renderer *renderer) {
-	SDL_Surface *loadedSurface = IMG_Load(filename.c_str());
-	if (!loadedSurface) {
-		Log("Image could not be loaded! Filename: \"", filename, "\" SDL_Error: ", SDL_GetError());
-		return nullptr;
-	}
-
-	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-	SDL_FreeSurface(loadedSurface);
-	if (!texture) {
-		Log("Surface could not be converted! Filename: \"", filename, "\" SDL_Error: ", SDL_GetError());
-		return nullptr;
-	}
-
-	return texture;
-}
 
 int main(int argc, char** argv)
 {
@@ -64,6 +48,11 @@ int main(int argc, char** argv)
 		return 5;
 	}
 
+	InputManager *input = InputManager::GetInstance();
+	input->Init();
+	AssetManager *asset = AssetManager::GetInstance();
+	asset->Init();
+
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
@@ -88,14 +77,11 @@ int main(int argc, char** argv)
 
 	Player player(Vec2(50.0f, 70.0f), Vec2(200.0f, 360.0f));
 
-	SDL_Texture *tex = loadImage("../Assets/Textures/Sigma.png", renderer);
-	TTF_Font *font = TTF_OpenFont("../Assets/Fonts/arial.ttf", 32);
+	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
+	TTF_Font *font = asset->loadFont("arial", 32);
 	
 	SDL_Texture *textTexture = nullptr;
 	bool wasJoy = false;
-
-	InputManager *input = InputManager::GetInstance();
-	input->Init();
 
 	auto lastFrameTime = SDL_GetTicks();
 	float t = 0.0f;
@@ -143,8 +129,8 @@ int main(int argc, char** argv)
 		}
 	}
 
-	TTF_CloseFont(font);
-	SDL_DestroyTexture(tex);
+	asset->Deinit();
+	input->Deinit();
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

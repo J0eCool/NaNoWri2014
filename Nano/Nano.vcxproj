@@ -81,6 +81,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Util\Constants.h" />
     <ClInclude Include="Util\Logger.h" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Util\Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
     <ClCompile Include="Player.cpp" />
