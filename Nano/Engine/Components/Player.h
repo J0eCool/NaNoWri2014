@@ -2,12 +2,11 @@
 
 #include <SDL.h>
 
-#include "Util/Vec2.h"
+#include "../../Util/Vec2.h"
+#include "../Component.h"
 
-class Player {
+class Player : public Component {
 private:
-	Vec2 _size;
-	Vec2 _pos;
 	Vec2 _vel;
 	bool onGround = false;
 
@@ -17,11 +16,8 @@ private:
 	const float kGravity = 2500.0f;
 
 public:
-	Player(Vec2 size, Vec2 pos);
+	Player();
 
 	void Update(float dt);
-	void Draw(SDL_Renderer *renderer) const;
-
-	Vec2 GetPos() { return _pos; }
 };
 

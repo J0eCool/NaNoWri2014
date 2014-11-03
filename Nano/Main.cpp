@@ -10,7 +10,10 @@
 #include "Util/Math.h"
 #include "Util/Vec2.h"
 
-#include "Player.h"
+#include "Engine/Entity.h"
+#include "Engine/Components/Player.h"
+#include "Engine/Components/Renderer.h"
+#include "Engine/Components/Transform.h"
 
 int main(int argc, char** argv)
 {
@@ -75,7 +78,11 @@ int main(int argc, char** argv)
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
 
-	Player player(Vec2(50.0f, 70.0f), Vec2(200.0f, 360.0f));
+	Entity player;
+	player.AddComponent<Player>();
+	player.AddComponent<Transform>()->Init(Vec2(50.0f, 70.0f), Vec2(120.0f, 200.0f));
+	player.AddComponent<Renderer>()->Init(renderer);
+	player.GetComponent<Renderer>()->SetColor({ 0x20, 0xc0, 0xff, 0xff });
 
 	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
 	TTF_Font *font = asset->loadFont("arial", 32);
@@ -100,10 +107,10 @@ int main(int argc, char** argv)
 		SDL_SetRenderDrawColor(renderer, 0xff, 0xff, 0xff, 0xff);
 		SDL_RenderClear(renderer);
 
-		player.Draw(renderer);
+		player.Draw();
 
 			SDL_DestroyTexture(textTexture);
-			std::string text = player.GetPos().ToString();
+			std::string text = player.GetComponent<Transform>()->pos.ToString();
 			SDL_Surface *textSurf = TTF_RenderText_Solid(font, text.c_str(), { 0, 0, 0 });
 			textRect.w = textSurf->w;
 			textRect.h = textSurf->h;

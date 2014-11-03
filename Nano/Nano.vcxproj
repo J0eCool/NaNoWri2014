@@ -81,8 +81,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Component.h" />
+    <ClInclude Include="Engine\Components\Renderer.h" />
+    <ClInclude Include="Engine\Components\Transform.h" />
+    <ClInclude Include="Engine\Entity.h" />
     <ClInclude Include="Managers\AssetManager.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Engine\Components\Player.h" />
     <ClInclude Include="Util\Constants.h" />
     <ClInclude Include="Util\Logger.h" />
     <ClInclude Include="Managers\InputManager.h" />
@@ -91,10 +95,13 @@
     <ClInclude Include="Util\Vec2.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Components\Renderer.cpp" />
+    <ClCompile Include="Engine\Components\Transform.cpp" />
+    <ClCompile Include="Engine\Entity.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Engine\Components\Player.cpp" />
     <ClCompile Include="Util\Math.cpp" />
     <ClCompile Include="Util\Vec2.cpp" />
   </ItemGroup>
