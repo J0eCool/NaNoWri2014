@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SDL.h>
+
 #include "Singleton.h"
 
 enum InputType {
@@ -9,7 +11,14 @@ enum InputType {
 	IT_Right,
 	IT_Jump,
 
-	IT_NumTypes // must be last
+	IT_COUNT // must be last
+};
+
+enum InputAxis {
+	IA_None,
+	IA_Horizontal,
+
+	IA_COUNT // must be last
 };
 
 class InputManager : public Singleton<InputManager> {
@@ -20,12 +29,18 @@ private:
 		IS_Down,
 	};
 
-	InputState _inputStates[IT_NumTypes];
+	InputState _inputStates[IT_COUNT];
+	float _inputAxes[IA_COUNT];
+	SDL_Joystick *_joystick;
 	
-	void setInputState(InputType type, InputState state);
+	void handleInput(InputType input, bool isDown);
 
 public:
+	void Init();
+	void Deinit();
 	void Update();
+
 	bool IsHeld(InputType input);
 	bool IsDown(InputType input);
+	float GetAxis(InputAxis axis);
 };

@@ -11,12 +11,7 @@ Player::Player(Vec2 size, Vec2 pos) : _size(size), _pos(pos),
 void Player::Update(float dt) {
 	InputManager *input = InputManager::GetInstance();
 	_vel.x = 0.0f;
-	if (input->IsHeld(IT_Left)) {
-		_vel.x -= _speed;
-	}
-	if (input->IsHeld(IT_Right)) {
-		_vel.x += _speed;
-	}
+	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 	if (!onGround) {
 		_vel.y += kGravity * dt;
 		float groundHeight = kScreenHeight - 100;

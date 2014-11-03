@@ -29,7 +29,7 @@ SDL_Texture *loadImage(std::string filename, SDL_Renderer *renderer) {
 
 int main(int argc, char** argv)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
 	{
 		Log("SDL could not initialize! SDL_Error: ", SDL_GetError());
 		return 1;
@@ -77,13 +77,11 @@ int main(int argc, char** argv)
 	Player player(Vec2(50.0f, 70.0f), Vec2(200.0f, 360.0f));
 
 	SDL_Texture *tex = loadImage("../Assets/Textures/Sigma.png", renderer);
-	if (!tex) {
-		Log("SHEIT: ", SDL_GetError());
-		return 89;
-	}
+
+	InputManager *input = InputManager::GetInstance();
+	input->Init();
 
 	auto lastFrameTime = SDL_GetTicks();
-	InputManager *input = InputManager::GetInstance();
 	float t = 0.0f;
 	while (!input->IsDown(IT_Quit))
 	{
