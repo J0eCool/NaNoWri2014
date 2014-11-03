@@ -13,6 +13,7 @@ private:
 
 	float _speed;
 	float _jumpHeight;
+	float _groundHeight;
 	const float kGravity = 2500.0f;
 
 public:

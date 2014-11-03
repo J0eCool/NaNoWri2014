@@ -31,6 +31,7 @@ private:
 
 	InputState _inputStates[IT_COUNT];
 	float _inputAxes[IA_COUNT];
+	bool _lastWasJoystick;
 	SDL_Joystick *_joystick;
 	
 	void handleInput(InputType input, bool isDown);
@@ -43,4 +44,6 @@ public:
 	bool IsHeld(InputType input);
 	bool IsDown(InputType input);
 	float GetAxis(InputAxis axis);
+
+	bool GetJoy() { return _lastWasJoystick; }
 };

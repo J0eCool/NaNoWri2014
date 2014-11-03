@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_ttf.h>
 #include <string>
 
 #include "Managers/InputManager.h"
@@ -52,8 +53,15 @@ int main(int argc, char** argv)
 
 	int imgFlags = IMG_INIT_PNG;
 	if (!(IMG_Init(imgFlags) & imgFlags)) {
-		Log("Image loading could not be initialized! SDL_Error: ", SDL_GetError());
+		Log("SDL_image could not be initialized! SDL_Error: ", SDL_GetError(),
+			" , IMG_Error: ", IMG_GetError());
 		return 4;
+	}
+
+	if (TTF_Init() == -1) {
+		Log("SDL_ttf could not be initialized! SDL_Error: ", SDL_GetError(),
+			" , TTF_Error: ", TTF_GetError());
+		return 5;
 	}
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -71,12 +79,20 @@ int main(int argc, char** argv)
 	sig.w = 50;
 	sig.h = 50;
 
+	SDL_Rect textRect;
+	textRect.x = 50;
+	textRect.y = 50;
+
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
 
 	Player player(Vec2(50.0f, 70.0f), Vec2(200.0f, 360.0f));
 
 	SDL_Texture *tex = loadImage("../Assets/Textures/Sigma.png", renderer);
+	TTF_Font *font = TTF_OpenFont("../Assets/Fonts/arial.ttf", 32);
+	
+	SDL_Texture *textTexture = nullptr;
+	bool wasJoy = false;
 
 	InputManager *input = InputManager::GetInstance();
 	input->Init();
@@ -100,6 +116,18 @@ int main(int argc, char** argv)
 
 		player.Draw(renderer);
 
+		if (input->GetJoy() != wasJoy || !textTexture) {
+			SDL_DestroyTexture(textTexture);
+			std::string text = input->GetJoy() ? "Joy!" : "No joy...";
+			SDL_Surface *textSurf = TTF_RenderText_Solid(font, text.c_str(), { 0, 0, 0 });
+			textRect.w = textSurf->w;
+			textRect.h = textSurf->h;
+			textTexture = SDL_CreateTextureFromSurface(renderer, textSurf);
+			SDL_FreeSurface(textSurf);
+			wasJoy = input->GetJoy();
+		}
+		SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
+
 		SDL_SetRenderDrawColor(renderer, 0x80, 0x80, 0x80, 0xff);
 		SDL_RenderFillRect(renderer, &rect);
 
@@ -117,8 +145,14 @@ int main(int argc, char** argv)
 		}
 	}
 
+	TTF_CloseFont(font);
+	SDL_DestroyTexture(tex);
+
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
+
+	TTF_Quit();
+	IMG_Quit();
 	SDL_Quit();
 
 	return 0;

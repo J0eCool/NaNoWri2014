@@ -5,7 +5,7 @@
 #include "Util/Math.h"
 
 Player::Player(Vec2 size, Vec2 pos) : _size(size), _pos(pos),
-		_speed(350.0f), _jumpHeight(120.0f) {
+		_speed(350.0f), _jumpHeight(120.0f), _groundHeight(kScreenHeight - 100) {
 }
 
 void Player::Update(float dt) {
@@ -14,9 +14,8 @@ void Player::Update(float dt) {
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 	if (!onGround) {
 		_vel.y += kGravity * dt;
-		float groundHeight = kScreenHeight - 100;
-		if (_pos.y + _vel.y * dt + _size.y > groundHeight) {
-			_pos.y = groundHeight - _size.y;
+		if (_pos.y + _vel.y * dt + _size.y > _groundHeight) {
+			_pos.y = _groundHeight - _size.y;
 			_vel.y = 0.0f;
 			onGround = true;
 		}

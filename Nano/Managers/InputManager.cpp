@@ -128,6 +128,7 @@ void InputManager::Update() {
 		case SDL_KEYDOWN:
 			type = getInputForKey(event.key.keysym.sym);
 			handleInput(type, true);
+			_lastWasJoystick = false;
 			break;
 		case SDL_KEYUP:
 			type = getInputForKey(event.key.keysym.sym);
@@ -136,12 +137,25 @@ void InputManager::Update() {
 		case SDL_JOYAXISMOTION:
 			if (_joystick && event.jaxis.which == 0) {
 				axis.value = event.jaxis.value / 32767.0f;
-				if (axis.value * axis.value < 0.1f) {
-					axis.value = 0.0f;
+				float threshold = 0.5f;
+				if (_lastWasJoystick) {
+					threshold = 0.15f;
 				}
 				if (event.jaxis.axis == 0) {
 					axis.axis = IA_Horizontal;
-					_inputAxes[axis.axis] = axis.value;
+					bool overThreshold = axis.value * axis.value > threshold * threshold;
+					if (_lastWasJoystick) {
+						if (overThreshold) {
+							_inputAxes[axis.axis] = axis.value;
+						}
+						else {
+							_inputAxes[axis.axis] = 0.0f;
+						}
+					}
+					else if (overThreshold) {
+						_lastWasJoystick = true;
+						_inputAxes[axis.axis] = axis.value;
+					}
 				}
 			}
 			break;
@@ -149,6 +163,7 @@ void InputManager::Update() {
 			if (_joystick && event.jbutton.which == 0) {
 				type = getInputForButton(event.jbutton.button);
 				handleInput(type, true);
+				_lastWasJoystick = true;
 			}
 			break;
 		case SDL_JOYBUTTONUP:
