@@ -6,6 +6,10 @@
 Renderer::Renderer() : _color({ 0xff, 0xff, 0xff, 0xff }) {
 }
 
+Renderer::Renderer(SDL_Renderer *renderer) : Renderer() {
+	Init(renderer);
+}
+
 void Renderer::Init(SDL_Renderer *renderer) {
 	_renderer = renderer;
 }
@@ -17,6 +21,7 @@ void Renderer::Draw() {
 	SDL_RenderFillRect(_renderer, &rect);
 }
 
-void Renderer::SetColor(SDL_Color color) {
+Renderer* Renderer::SetColor(SDL_Color color) {
 	_color = color;
+	return this;
 }

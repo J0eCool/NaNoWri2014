@@ -85,6 +85,7 @@
     <ClInclude Include="Engine\Components\Renderer.h" />
     <ClInclude Include="Engine\Components\Transform.h" />
     <ClInclude Include="Engine\Entity.h" />
+    <ClInclude Include="Engine\EntitySystem.h" />
     <ClInclude Include="Managers\AssetManager.h" />
     <ClInclude Include="Engine\Components\Player.h" />
     <ClInclude Include="Util\Constants.h" />
@@ -98,6 +99,7 @@
     <ClCompile Include="Engine\Components\Renderer.cpp" />
     <ClCompile Include="Engine\Components\Transform.cpp" />
     <ClCompile Include="Engine\Entity.cpp" />
+    <ClCompile Include="Engine\EntitySystem.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />

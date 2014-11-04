@@ -1,5 +1,12 @@
 #include "Transform.h"
 
+Transform::Transform() {
+}
+
+Transform::Transform(Vec2 _pos, Vec2 _size) {
+	Init(_pos, _size);
+}
+
 void Transform::Init(Vec2 _pos, Vec2 _size) {
 	pos = _pos;
 	size = _size;
