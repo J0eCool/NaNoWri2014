@@ -1,6 +1,7 @@
 #pragma once
 
 #include <map>
+#include <initializer_list>
 #include <typeinfo>
 
 class Component;
@@ -10,6 +11,8 @@ private:
 	std::map<const std::type_info *, Component *> _components;
 
 public:
+	Entity();
+	Entity(std::initializer_list<Component *> components);
 	~Entity();
 
 	template <typename T>

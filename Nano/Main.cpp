@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	SDL_Window *window = SDL_CreateWindow("NaNo", 
+	SDL_Window *window = SDL_CreateWindow("NaNo",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		kScreenWidth, kScreenHeight, SDL_WINDOW_SHOWN);
 	if (!window)
@@ -80,9 +80,14 @@ int main(int argc, char** argv)
 
 	Entity player;
 	player.AddComponent<Player>();
-	player.AddComponent<Transform>()->Init(Vec2(50.0f, 70.0f), Vec2(120.0f, 200.0f));
+	player.AddComponent<Transform>()->Init({ 120.0f, 200.0f }, { 50.0f, 70.0f });
 	player.AddComponent<Renderer>()->Init(renderer);
 	player.GetComponent<Renderer>()->SetColor({ 0x20, 0xc0, 0xff, 0xff });
+
+	Entity doop{ new Renderer, new Transform };
+	doop.GetComponent<Transform>()->Init({ 400, 160 }, { 100, 24 });
+	doop.GetComponent<Renderer>()->Init(renderer);
+	doop.GetComponent<Renderer>()->SetColor({ 0xd0, 0xc0, 0x20, 0xff });
 
 	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
 	TTF_Font *font = asset->loadFont("arial", 32);
@@ -108,6 +113,7 @@ int main(int argc, char** argv)
 		SDL_RenderClear(renderer);
 
 		player.Draw();
+		doop.Draw();
 
 			SDL_DestroyTexture(textTexture);
 			std::string text = player.GetComponent<Transform>()->pos.ToString();

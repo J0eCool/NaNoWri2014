@@ -1,8 +1,8 @@
 #include "Transform.h"
 
-void Transform::Init(Vec2 _size, Vec2 _pos) {
-	size = _size;
+void Transform::Init(Vec2 _pos, Vec2 _size) {
 	pos = _pos;
+	size = _size;
 }
 
 SDL_Rect Transform::GetRect() const {

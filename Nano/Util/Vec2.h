@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <initializer_list>
 
 class Vec2 {
 public:
@@ -9,6 +10,7 @@ public:
 
 	Vec2();
 	Vec2(float _x, float _y);
+	Vec2(std::initializer_list<float> dims);
 
 	static Vec2 Unit(float radians);
 

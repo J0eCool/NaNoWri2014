@@ -2,9 +2,17 @@
 
 #include <math.h>
 #include <sstream>
+#include <assert.h>
 
 Vec2::Vec2() : x(0.0f), y(0.0f) { }
 Vec2::Vec2(float _x, float _y) : x(_x), y(_y) { }
+Vec2::Vec2(std::initializer_list<float> dims) {
+	assert(dims.size() == 2);
+	auto it = dims.begin();
+	x = *it;
+	it++;
+	y = *it;
+}
 
 Vec2 Vec2::Unit(float radians) {
 	return Vec2(cos(radians), sin(radians));
