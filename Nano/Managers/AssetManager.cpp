@@ -2,7 +2,7 @@
 
 #include <SDL_image.h>
 
-#include "../Util/Logger.h"
+#include "../Engine/Engine.h"
 
 std::string AssetManager::getFullImageFilename(std::string imageName) {
 	return "../Assets/Textures/" + imageName + ".png";

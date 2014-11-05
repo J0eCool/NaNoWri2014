@@ -5,16 +5,13 @@
 
 #include "Managers/AssetManager.h"
 #include "Managers/InputManager.h"
-#include "Util/Constants.h"
-#include "Util/Logger.h"
-#include "Util/Math.h"
-#include "Util/Vec2.h"
+#include "Constants.h"
 
-#include "Engine/Entity.h"
-#include "Engine/EntitySystem.h"
-#include "Engine/Components/Player.h"
-#include "Engine/Components/Renderer.h"
-#include "Engine/Components/Transform.h"
+#include "Engine/Engine.h"
+
+#include "Components/Player.h"
+#include "Components/Renderer.h"
+#include "Components/Transform.h"
 
 int main(int argc, char** argv)
 {

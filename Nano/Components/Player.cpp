@@ -1,10 +1,8 @@
 #include "Player.h"
 
 #include "Transform.h"
-#include "../Entity.h"
-#include "../../Managers/InputManager.h"
-#include "../../Util/Constants.h"
-#include "../../Util/Math.h"
+#include "../Managers/InputManager.h"
+#include "../Constants.h"
 
 Player::Player() : _speed(350.0f), _jumpHeight(120.0f),
 		_groundHeight(kScreenHeight - 100) {

@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-#include "../Component.h"
+#include "../Engine/Engine.h"
 
 class Renderer : public Component {
 private:

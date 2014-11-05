@@ -2,8 +2,7 @@
 
 #include <SDL.h>
 
-#include "../../Util/Vec2.h"
-#include "../Component.h"
+#include "../Engine/Engine.h"
 
 class Player : public Component {
 private:

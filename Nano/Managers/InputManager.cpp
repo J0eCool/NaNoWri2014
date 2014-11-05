@@ -1,7 +1,8 @@
 #include "InputManager.h"
 
 #include <SDL.h>
-#include "../Util/Math.h"
+
+#include "../Engine/Engine.h"
 
 struct InputAxisInfo {
 	InputAxis axis;

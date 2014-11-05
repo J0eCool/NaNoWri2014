@@ -1,6 +1,5 @@
 #include "Renderer.h"
 
-#include "../Entity.h"
 #include "Transform.h"
 
 Renderer::Renderer() : _color({ 0xff, 0xff, 0xff, 0xff }) {
