@@ -28,6 +28,9 @@ InputType getInputForKey(SDL_Keycode key) {
 	case SDLK_k:
 		input = IT_Jump;
 		break;
+	case SDLK_RETURN:
+		Log("Breaking for debug");
+		break;
 	}
 
 	return input;

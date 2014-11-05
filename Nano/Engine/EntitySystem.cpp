@@ -12,6 +12,7 @@ EntitySystem::~EntitySystem() {
 
 void EntitySystem::AddEntity(Entity *entity) {
 	_entities.push_back(entity);
+	entity->_entitySystem = this;
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
@@ -22,6 +23,10 @@ void EntitySystem::RemoveEntity(Entity *entity) {
 			return;
 		}
 	}
+}
+
+std::vector<Entity *> const& EntitySystem::GetEntities() const {
+	return _entities;
 }
 
 void EntitySystem::Update(float dt) {

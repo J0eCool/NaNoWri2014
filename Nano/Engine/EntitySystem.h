@@ -13,6 +13,7 @@ public:
 
 	void AddEntity(Entity *entity);
 	void RemoveEntity(Entity *entity);
+	std::vector<Entity *> const& GetEntities() const;
 
 	void Update(float dt);
 	void Draw();

@@ -4,6 +4,9 @@
 #include "../Managers/InputManager.h"
 #include "../Constants.h"
 
+#include "Collider.h"
+#include "Renderer.h"
+
 Player::Player() : _speed(350.0f), _jumpHeight(120.0f),
 		_groundHeight(kScreenHeight - 100) {
 }
@@ -29,4 +32,11 @@ void Player::Update(float dt) {
 	}
 	transform->pos += _vel * dt;
 	transform->pos.x = clamp(transform->pos.x, 0, (float)kScreenWidth - transform->size.x);
+
+	if (_entity->GetComponent<Collider>()->GetCollidedEntities().size() > 0) {
+		_entity->GetComponent<Renderer>()->SetColor({ 0xff, 0x35, 0x38, 0xff });
+	}
+	else {
+		_entity->GetComponent<Renderer>()->SetColor({ 0x20, 0xc0, 0xff, 0xff });
+	}
 }

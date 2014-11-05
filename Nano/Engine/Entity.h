@@ -5,10 +5,12 @@
 #include <typeinfo>
 
 class Component;
+class EntitySystem;
 
 class Entity {
 private:
 	std::map<const std::type_info *, Component *> _components;
+	EntitySystem *_entitySystem;
 
 public:
 	Entity();
@@ -36,9 +38,19 @@ public:
 	template <typename T>
 	T* GetComponent() {
 		auto t = &typeid(T);
-		return static_cast<T*>(_components[t]);
+		auto it = _components.find(t);
+		if (it != _components.end()) {
+			return static_cast<T*>(it->second);
+		}
+		return nullptr;
+	}
+
+	inline EntitySystem* GetEntitySystem() const {
+		return _entitySystem;
 	}
 
 	void Update(float dt);
 	void Draw();
+
+	friend EntitySystem;
 };

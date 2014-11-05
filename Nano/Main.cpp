@@ -9,9 +9,7 @@
 
 #include "Engine/Engine.h"
 
-#include "Components/Player.h"
-#include "Components/Renderer.h"
-#include "Components/Transform.h"
+#include "Components/Components.h"
 
 int main(int argc, char** argv)
 {
@@ -68,13 +66,18 @@ int main(int argc, char** argv)
 	Entity *player = new Entity{
 		new Player,
 		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
-		(new Renderer(renderer))->SetColor({ 0x20, 0xc0, 0xff, 0xff })
+		new Collider,
+		new Renderer(renderer),
+		//(new Renderer(renderer))->SetColor({ 0x20, 0xc0, 0xff, 0xff })
 	};
 	entitySystem.AddEntity(player);
 
+	player->GetComponent<Collider>();
+
 	entitySystem.AddEntity(new Entity{
 		(new Renderer(renderer))->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
-		new Transform({ 400, 160 }, { 100, 24 })
+		new Collider,
+		new Transform({ 400, 360 }, { 160, 48 })
 	});
 
 	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
