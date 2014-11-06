@@ -60,25 +60,38 @@ int main(int argc, char** argv)
 	// ground
 	entitySystem.AddEntity(new Entity{
 		new Transform({ 0, (float)kScreenHeight - 100 }, { (float)kScreenWidth, 50 }),
-		(new Renderer(renderer))->SetColor({ 0x80, 0xa0, 0x80, 0xff })
-	});
-	
-	Entity *player = new Entity{
-		new Player,
-		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
+		(new Renderer(renderer))->SetColor({ 0x80, 0xa0, 0x80, 0xff }),
 		new Collider,
-		new Renderer(renderer),
-		//(new Renderer(renderer))->SetColor({ 0x20, 0xc0, 0xff, 0xff })
-	};
-	entitySystem.AddEntity(player);
+	});
 
-	player->GetComponent<Collider>();
-
+	// lower platform
 	entitySystem.AddEntity(new Entity{
 		(new Renderer(renderer))->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
 		new Collider,
 		new Transform({ 400, 360 }, { 160, 48 })
 	});
+
+	// middle platform
+	entitySystem.AddEntity(new Entity{
+		(new Renderer(renderer))->SetColor({ 0xc0, 0xd0, 0x20, 0xff }),
+		new Collider,
+		new Transform({ 150, 240 }, { 160, 48 })
+	});
+
+	// higher platform
+	entitySystem.AddEntity(new Entity{
+		(new Renderer(renderer))->SetColor({ 0xb0, 0xf0, 0x20, 0xff }),
+		new Collider,
+		new Transform({ 540, 140 }, { 160, 48 })
+	});
+
+	Entity *player = new Entity{
+		new Player,
+		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
+		new Collider,
+		(new Renderer(renderer))->SetColor({ 0x20, 0xc0, 0xff, 0xff })
+	};
+	entitySystem.AddEntity(player);
 
 	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
 	TTF_Font *font = asset->loadFont("arial", 32);

@@ -7,8 +7,7 @@
 #include "Collider.h"
 #include "Renderer.h"
 
-Player::Player() : _speed(350.0f), _jumpHeight(120.0f),
-		_groundHeight(kScreenHeight - 100) {
+Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
 }
 
 void Player::Update(float dt) {
@@ -16,15 +15,16 @@ void Player::Update(float dt) {
 	Transform *transform = _entity->GetComponent<Transform>();
 	_vel.x = 0.0f;
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
+
+	auto collidedEntities = _entity->GetComponent<Collider>()->GetCollidedEntities();
+	onGround = collidedEntities.size() > 0 && _vel.y >= 0.0f;
 	if (!onGround) {
 		_vel.y += kGravity * dt;
-		if (transform->pos.y + _vel.y * dt + transform->size.y > _groundHeight) {
-			transform->pos.y = _groundHeight - transform->size.y;
-			_vel.y = 0.0f;
-			onGround = true;
-		}
 	}
 	else {
+		transform->pos.y = collidedEntities[0]->GetComponent<Transform>()->pos.y
+			- transform->size.y;
+		_vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
 			_vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
 			onGround = false;
@@ -32,11 +32,4 @@ void Player::Update(float dt) {
 	}
 	transform->pos += _vel * dt;
 	transform->pos.x = clamp(transform->pos.x, 0, (float)kScreenWidth - transform->size.x);
-
-	if (_entity->GetComponent<Collider>()->GetCollidedEntities().size() > 0) {
-		_entity->GetComponent<Renderer>()->SetColor({ 0xff, 0x35, 0x38, 0xff });
-	}
-	else {
-		_entity->GetComponent<Renderer>()->SetColor({ 0x20, 0xc0, 0xff, 0xff });
-	}
 }
