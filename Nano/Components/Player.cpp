@@ -17,8 +17,8 @@ void Player::Update(float dt) {
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 
 	auto collidedEntities = _entity->GetComponent<Collider>()->GetCollidedEntities();
-	onGround = collidedEntities.size() > 0 && _vel.y >= 0.0f;
-	if (!onGround) {
+	_onGround = collidedEntities.size() > 0 && _vel.y >= 0.0f;
+	if (!_onGround) {
 		_vel.y += kGravity * dt;
 	}
 	else {
@@ -27,7 +27,14 @@ void Player::Update(float dt) {
 		_vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
 			_vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
-			onGround = false;
+			_onGround = false;
+			_isHoldingJump = true;
+		}
+	}
+	if (_isHoldingJump && !input->IsHeld(IT_Jump)) {
+		_isHoldingJump = false;
+		if (_vel.y < 0.0f) {
+			_vel.y *= 0.35f;
 		}
 	}
 	transform->pos += _vel * dt;
