@@ -52,6 +52,7 @@ public:
 		return _entitySystem;
 	}
 
+	void Init();
 	void Update(float dt);
 	void Draw();
 

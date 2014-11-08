@@ -16,29 +16,58 @@ std::string AssetManager::getFullFontFilename(std::string fontName) {
 void AssetManager::Init() {
 }
 
-void AssetManager::Deinit() {
-	for (auto it = _loadedTextures.begin(); it != _loadedTextures.end(); ++it) {
-		SDL_DestroyTexture(it->second);
-	}
-
-	for (auto it = _loadedFonts.begin(); it != _loadedFonts.end(); ++it) {
-		TTF_CloseFont(it->second);
+template <typename C, typename F>
+void unloadContainer(C container, F clearFunction) {
+	for (auto it = container.begin(); it != container.end(); ++it) {
+		clearFunction(it->second);
 	}
 }
 
-SDL_Texture *AssetManager::loadTexture(std::string imageName, SDL_Renderer *renderer) {
-	if (!_loadedTextures[imageName]) {
+void AssetManager::Deinit() {
+	unloadContainer(_loadedSurfaces, SDL_FreeSurface);
+	unloadContainer(_loadedTextures, SDL_DestroyTexture);
+	unloadContainer(_loadedFonts, TTF_CloseFont);
+
+	for (auto kv : _loadedSprites) {
+		delete kv.second;
+	}
+}
+
+SDL_Surface* AssetManager::LoadSurface(std::string imageName) {
+	if (!_loadedSurfaces[imageName]) {
 		std::string filename = getFullImageFilename(imageName);
 		SDL_Surface *loadedSurface = IMG_Load(filename.c_str());
 		if (!loadedSurface) {
 			Log("Image could not be loaded! Filename: \"", filename, "\" SDL_Error: ", SDL_GetError());
 			return nullptr;
 		}
+		_loadedSurfaces[imageName] = loadedSurface;
+	}
+	return _loadedSurfaces[imageName];
+}
 
-		SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-		SDL_FreeSurface(loadedSurface);
+SDL_Texture* AssetManager::ConvertSurface(SDL_Surface *surface, SDL_Renderer *renderer) {
+	SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
+	if (!texture) {
+		Log("Surface could not be converted! SDL_Error: ", SDL_GetError());
+		return nullptr;
+	}
+	return texture;
+}
+
+SDL_Texture* AssetManager::LoadTexture(std::string imageName, SDL_Renderer *renderer) {
+	if (!_loadedTextures[imageName]) {
+		bool shouldUnload = _loadedSurfaces[imageName] == nullptr;
+		SDL_Surface *surface = LoadSurface(imageName);
+		if (!surface) {
+			return nullptr;
+		}
+
+		SDL_Texture *texture = ConvertSurface(surface, renderer);
+		if (shouldUnload) {
+			UnloadSurface(surface);
+		}
 		if (!texture) {
-			Log("Surface could not be converted! Filename: \"", filename, "\" SDL_Error: ", SDL_GetError());
 			return nullptr;
 		}
 
@@ -47,11 +76,55 @@ SDL_Texture *AssetManager::loadTexture(std::string imageName, SDL_Renderer *rend
 	return _loadedTextures[imageName];
 }
 
-TTF_Font *AssetManager::loadFont(std::string fontName, int fontSize) {
+TTF_Font* AssetManager::LoadFont(std::string fontName, int fontSize) {
 	auto key = std::make_pair(fontName, fontSize);
 	if (!_loadedFonts[key]) {
 		std::string filename = getFullFontFilename(fontName);
 		_loadedFonts[key] = TTF_OpenFont(filename.c_str(), fontSize);
 	}
 	return _loadedFonts[key];
+}
+
+Sprite AssetManager::LoadSprite(std::string spriteName, SDL_Renderer *renderer) {
+	if (!_loadedSprites[spriteName]) {
+		bool shouldUnload = _loadedSurfaces[spriteName] == nullptr;
+		SDL_Surface *surface = LoadSurface(spriteName);
+		SDL_Texture *texture = LoadTexture(spriteName, renderer);
+
+		Sprite *sprite = new Sprite;
+		sprite->_texture = texture;
+		sprite->_renderer = renderer;
+		sprite->_width = surface->w;
+		sprite->_height = surface->h;
+
+		if (shouldUnload) {
+			UnloadSurface(surface);
+		}
+
+		_loadedSprites[spriteName] = sprite;
+	}
+	return *_loadedSprites[spriteName];
+}
+
+template <typename T, typename C, typename F>
+void unloadItem(T item, C container, F freeCall) {
+	for (auto it = container.begin(); it != container.end(); ++it) {
+		if (it->second == item) {
+			container.erase(it);
+			break;
+		}
+	}
+	freeCall(item);
+}
+
+void AssetManager::UnloadSurface(SDL_Surface *surface) {
+	unloadItem(surface, _loadedSurfaces, SDL_FreeSurface);
+}
+
+void AssetManager::UnloadTexture(SDL_Texture *texture) {
+	unloadItem(texture, _loadedTextures, SDL_DestroyTexture);
+}
+
+void AssetManager::UnloadFont(TTF_Font *font) {
+	unloadItem(font, _loadedFonts, TTF_CloseFont);
 }

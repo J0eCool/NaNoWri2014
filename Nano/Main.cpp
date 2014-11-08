@@ -11,6 +11,8 @@
 
 #include "Components/Components.h"
 
+#include "Components/SpinningSigma.h"
+
 int main(int argc, char** argv)
 {
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
@@ -48,10 +50,8 @@ int main(int argc, char** argv)
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
 
-	InputManager *input = InputManager::GetInstance();
-	input->Init();
-	AssetManager *asset = AssetManager::GetInstance();
-	asset->Init();
+	InputManager::GetInstance()->Init();
+	AssetManager::GetInstance()->Init();
 
 	EntitySystem entitySystem;
 
@@ -92,22 +92,16 @@ int main(int argc, char** argv)
 	entitySystem.AddEntity(player);
 
 	Entity *playerPosText = new Entity{
-		new TextRenderer(asset->loadFont("arial", 32), renderer),
+		new TextRenderer(AssetManager::GetInstance()->LoadFont("arial", 32), renderer),
 		new Transform({ 50, 50 }, { 0, 0 }),
 	};
 	entitySystem.AddEntity(playerPosText);
 
-	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
-	
-	SDL_Rect sig;
-	sig.x = kScreenWidth - 80;
-	sig.y = 30;
-	sig.w = 50;
-	sig.h = 50;
-
-	SDL_Rect textRect;
-	textRect.x = 50;
-	textRect.y = 50;
+	entitySystem.AddEntity(new Entity{
+		new SpriteRenderer("Sigma", renderer),
+		new Transform({ kScreenWidth - 80, 30 }, { 50, 50 }),
+		new SpinningSigma(130.0f, 6.0f),
+	});
 
 	static const float kMaxFramerate = 60.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
@@ -115,10 +109,9 @@ int main(int argc, char** argv)
 	SDL_Texture *textTexture = nullptr;
 
 	auto lastFrameTime = SDL_GetTicks();
-	float t = 0.0f;
+	InputManager *input = InputManager::GetInstance();
 	while (!input->IsDown(IT_Quit)) {
 		float dt = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
-		t += dt;
 		lastFrameTime = SDL_GetTicks();
 
 		input->Update();
@@ -134,9 +127,6 @@ int main(int argc, char** argv)
 
 		entitySystem.Draw();
 
-		SDL_SetTextureColorMod(tex, lerp(sin(t) / 2 + 0.5f, 0x00, 0xff), 0xff, 0xff);
-		SDL_RenderCopyEx(renderer, tex, nullptr, &sig, 80 * t, nullptr, SDL_FLIP_NONE);
-
 		SDL_RenderPresent(renderer);
 
 		// Sleep until next frame
@@ -148,8 +138,8 @@ int main(int argc, char** argv)
 		}
 	}
 
-	asset->Deinit();
-	input->Deinit();
+	AssetManager::GetInstance()->Deinit();
+	InputManager::GetInstance()->Deinit();
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

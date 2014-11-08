@@ -84,8 +84,11 @@
   <ItemGroup>
     <ClInclude Include="Components\Collider.h" />
     <ClInclude Include="Components\Components.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Components\Rendering\SpriteRenderer.h" />
+    <ClInclude Include="Components\SpinningSigma.h" />
     <ClInclude Include="Engine\Component.h" />
-    <ClInclude Include="Components\Renderer.h" />
+    <ClInclude Include="Components\Rendering\Renderer.h" />
     <ClInclude Include="Engine\Transform.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Entity.h" />
@@ -99,11 +102,13 @@
     <ClInclude Include="Managers\Singleton.h" />
     <ClInclude Include="Engine\Util\Math.h" />
     <ClInclude Include="Engine\Util\Vec2.h" />
-    <ClInclude Include="Components\TextRenderer.h" />
+    <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Collider.cpp" />
-    <ClCompile Include="Components\Renderer.cpp" />
+    <ClCompile Include="Components\Rendering\Renderer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="Components\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />
     <ClCompile Include="Engine\Entity.cpp" />
     <ClCompile Include="Engine\EntitySystem.cpp" />
@@ -113,7 +118,7 @@
     <ClCompile Include="Components\Player.cpp" />
     <ClCompile Include="Engine\Util\Math.cpp" />
     <ClCompile Include="Engine\Util\Vec2.cpp" />
-    <ClCompile Include="Components\TextRenderer.cpp" />
+    <ClCompile Include="Components\Rendering\TextRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

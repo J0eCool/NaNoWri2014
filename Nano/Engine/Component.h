@@ -11,7 +11,13 @@ protected:
 	virtual float priority() { return 0.0f; }
 
 public:
+	// Called when Entity is added to EntitySystem
+	virtual void Init() { };
+
+	// Called every frame; logic is done here
 	virtual void Update(float dt) { };
+
+	// Called every frame; rendering is done here
 	virtual void Draw() { };
 
 	friend Entity;

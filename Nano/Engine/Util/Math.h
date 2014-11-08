@@ -10,3 +10,5 @@ T lerp(float t, T lo, T hi) {
 	float t_ = clamp01(t);
 	return (T)(lo + t_ * hi);
 }
+
+bool approxEq(float a, float b);

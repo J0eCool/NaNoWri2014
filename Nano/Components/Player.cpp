@@ -4,7 +4,7 @@
 #include <Nano/Constants.h>
 
 #include "Collider.h"
-#include "Renderer.h"
+#include "Rendering/Renderer.h"
 
 Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
 }

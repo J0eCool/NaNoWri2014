@@ -13,6 +13,7 @@ EntitySystem::~EntitySystem() {
 void EntitySystem::AddEntity(Entity *entity) {
 	_entities.push_back(entity);
 	entity->_entitySystem = this;
+	entity->Init();
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {

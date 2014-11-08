@@ -2,5 +2,6 @@
 
 #include "Collider.h"
 #include "Player.h"
-#include "Renderer.h"
-#include "TextRenderer.h"
+#include "Rendering/Renderer.h"
+#include "Rendering/SpriteRenderer.h"
+#include "Rendering/TextRenderer.h"

@@ -24,6 +24,12 @@ Transform* Entity::GetTransform() const {
 	return GetComponent<Transform>();
 }
 
+void Entity::Init() {
+	for (auto kv : _components) {
+		kv.second->Init();
+	}
+}
+
 void Entity::Update(float dt) {
 	for (auto it = _components.begin(); it != _components.end(); ++it) {
 		it->second->Update(dt);
