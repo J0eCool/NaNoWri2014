@@ -1,8 +1,7 @@
 #include "Player.h"
 
-#include "Transform.h"
-#include "../Managers/InputManager.h"
-#include "../Constants.h"
+#include <Nano/Managers/InputManager.h>
+#include <Nano/Constants.h>
 
 #include "Collider.h"
 #include "Renderer.h"
@@ -12,7 +11,7 @@ Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
 
 void Player::Update(float dt) {
 	InputManager *input = InputManager::GetInstance();
-	Transform *transform = _entity->GetComponent<Transform>();
+	Transform *transform = _entity->GetTransform();
 	_vel.x = 0.0f;
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 
@@ -22,7 +21,7 @@ void Player::Update(float dt) {
 		_vel.y += kGravity * dt;
 	}
 	else {
-		transform->pos.y = collidedEntities[0]->GetComponent<Transform>()->pos.y
+		transform->pos.y = collidedEntities[0]->GetTransform()->pos.y
 			- transform->size.y;
 		_vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {

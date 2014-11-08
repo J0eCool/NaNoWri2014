@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Engine/Engine.h"
+#include <Nano/Engine/Engine.h>
 
 #include <SDL.h>
 #include <SDL_ttf.h>

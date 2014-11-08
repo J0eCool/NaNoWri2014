@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-#include "Transform.h"
+#include <Nano/Engine/Engine.h>
 
 Renderer::Renderer() : _color({ 0xff, 0xff, 0xff, 0xff }) {
 }
@@ -14,7 +14,7 @@ void Renderer::Init(SDL_Renderer *renderer) {
 }
 
 void Renderer::Draw() {
-	Transform *transform = _entity->GetComponent<Transform>();
+	Transform *transform = _entity->GetTransform();
 	SDL_Rect rect = transform->GetRect();
 	SDL_SetRenderDrawColor(_renderer, _color.r, _color.g, _color.b, _color.a);
 	SDL_RenderFillRect(_renderer, &rect);

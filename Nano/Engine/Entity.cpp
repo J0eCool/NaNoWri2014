@@ -1,6 +1,7 @@
 #include "Entity.h"
 
 #include "Component.h"
+#include "Transform.h"
 
 Entity::Entity() {
 }
@@ -17,6 +18,10 @@ Entity::~Entity() {
 	for (auto it = _components.begin(); it != _components.end(); ++it) {
 		delete it->second;
 	}
+}
+
+Transform* Entity::GetTransform() const {
+	return GetComponent<Transform>();
 }
 
 void Entity::Update(float dt) {

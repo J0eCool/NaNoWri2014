@@ -2,7 +2,8 @@
 
 #include <SDL.h>
 
-#include "../Engine/Engine.h"
+#include "Util/Util.h"
+#include "Component.h"
 
 class Transform : public Component {
 public:

@@ -1,10 +1,8 @@
 #include "Collider.h"
 
-#include "Transform.h"
-
 bool Collider::collides(Collider *other) {
-	Transform *a = _entity->GetComponent<Transform>();
-	Transform *b = other->_entity->GetComponent<Transform>();
+	Transform *a = _entity->GetTransform();
+	Transform *b = other->_entity->GetTransform();
 
 	float xA = a->pos.x;
 	float xB = a->pos.x + a->size.x;

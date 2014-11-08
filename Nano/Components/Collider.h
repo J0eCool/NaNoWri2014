@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "../Engine/Engine.h"
+#include <Nano/Engine/Engine.h>
 
 class Collider : public Component {
 private:

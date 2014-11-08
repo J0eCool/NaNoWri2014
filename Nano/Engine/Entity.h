@@ -6,6 +6,7 @@
 
 class Component;
 class EntitySystem;
+class Transform;
 
 class Entity {
 private:
@@ -36,7 +37,7 @@ public:
 	}
 
 	template <typename T>
-	T* GetComponent() {
+	T* GetComponent() const {
 		auto t = &typeid(T);
 		auto it = _components.find(t);
 		if (it != _components.end()) {
@@ -44,6 +45,8 @@ public:
 		}
 		return nullptr;
 	}
+
+	Transform* GetTransform() const;
 
 	inline EntitySystem* GetEntitySystem() const {
 		return _entitySystem;

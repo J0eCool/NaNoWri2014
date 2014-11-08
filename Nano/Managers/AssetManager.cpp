@@ -2,8 +2,9 @@
 
 #include <SDL_image.h>
 
-#include "../Engine/Engine.h"
+#include <Nano/Engine/Engine.h>
 
+// TODO: asset build step to copy assets into a sensible location
 std::string AssetManager::getFullImageFilename(std::string imageName) {
 	return "../Assets/Textures/" + imageName + ".png";
 }

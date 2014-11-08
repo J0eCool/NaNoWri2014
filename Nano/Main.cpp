@@ -124,7 +124,7 @@ int main(int argc, char** argv)
 		input->Update();
 
 		// Logic
-		std::string posText = player->GetComponent<Transform>()->pos.ToString();
+		std::string posText = player->GetTransform()->pos.ToString();
 		playerPosText->GetComponent<TextRenderer>()->SetText(posText);
 		entitySystem.Update(dt);
 

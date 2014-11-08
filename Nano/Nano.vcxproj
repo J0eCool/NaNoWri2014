@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\SDL2-2.0.3\include;C:\SDL2-2.0.3\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\SDL2_ttf-2.0.12\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);C:\SDL2-2.0.3\include;C:\SDL2-2.0.3\SDL2_image-2.0.0\include;C:\SDL2-2.0.3\SDL2_ttf-2.0.12\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\SDL2-2.0.3\lib\x86;C:\SDL2-2.0.3\SDL2_image-2.0.0\lib\x86;C:\SDL2-2.0.3\SDL2_ttf-2.0.12\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,6 +71,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>
       </AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,7 +86,7 @@
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Engine\Component.h" />
     <ClInclude Include="Components\Renderer.h" />
-    <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Engine\Transform.h" />
     <ClInclude Include="Engine\Engine.h" />
     <ClInclude Include="Engine\Entity.h" />
     <ClInclude Include="Engine\EntitySystem.h" />
@@ -103,7 +104,7 @@
   <ItemGroup>
     <ClCompile Include="Components\Collider.cpp" />
     <ClCompile Include="Components\Renderer.cpp" />
-    <ClCompile Include="Components\Transform.cpp" />
+    <ClCompile Include="Engine\Transform.cpp" />
     <ClCompile Include="Engine\Entity.cpp" />
     <ClCompile Include="Engine\EntitySystem.cpp" />
     <ClCompile Include="Managers\AssetManager.cpp" />

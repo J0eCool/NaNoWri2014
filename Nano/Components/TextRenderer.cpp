@@ -1,7 +1,6 @@
 #include "TextRenderer.h"
 
-#include "Transform.h"
-#include "../Managers/AssetManager.h"
+#include <Nano/Managers/AssetManager.h>
 
 TextRenderer::TextRenderer(TTF_Font *font, SDL_Renderer *renderer) :
 		_text(""), _isDirty(true), _texture(nullptr),
@@ -12,8 +11,8 @@ TextRenderer::TextRenderer(TTF_Font *font, SDL_Renderer *renderer) :
 void TextRenderer::renderText() {
 	SDL_DestroyTexture(_texture);
 	SDL_Surface *surface = TTF_RenderText_Solid(_font, _text.c_str(), { 0, 0, 0 });
-	Transform *transform = _entity->GetComponent<Transform>();
-	transform->size.x = (float)surface->w/2;
+	Transform *transform = _entity->GetTransform();
+	transform->size.x = (float)surface->w;
 	transform->size.y = (float)surface->h;
 	_texture = SDL_CreateTextureFromSurface(_renderer, surface);
 	SDL_FreeSurface(surface);
@@ -21,7 +20,7 @@ void TextRenderer::renderText() {
 }
 
 void TextRenderer::Draw() {
-	Transform *transform = _entity->GetComponent<Transform>();
+	Transform *transform = _entity->GetTransform();
 
 	if (_isDirty) {
 		renderText();

@@ -2,7 +2,7 @@
 
 #include <SDL.h>
 
-#include "../Engine/Engine.h"
+#include <Nano/Engine/Engine.h>
 
 class Player : public Component {
 private:
