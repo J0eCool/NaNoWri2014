@@ -13,8 +13,7 @@
 
 int main(int argc, char** argv)
 {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0)
-	{
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
 		Log("SDL could not initialize! SDL_Error: ", SDL_GetError());
 		return 1;
 	}
@@ -22,8 +21,7 @@ int main(int argc, char** argv)
 	SDL_Window *window = SDL_CreateWindow("NaNo",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
 		kScreenWidth, kScreenHeight, SDL_WINDOW_SHOWN);
-	if (!window)
-	{
+	if (!window) {
 		Log("Window could not be created! SDL_Error: ", SDL_GetError());
 		return 2;
 	}
@@ -93,8 +91,13 @@ int main(int argc, char** argv)
 	};
 	entitySystem.AddEntity(player);
 
+	Entity *playerPosText = new Entity{
+		new TextRenderer(asset->loadFont("arial", 32), renderer),
+		new Transform({ 50, 50 }, { 0, 0 }),
+	};
+	entitySystem.AddEntity(playerPosText);
+
 	SDL_Texture *tex = asset->loadTexture("Sigma", renderer);
-	TTF_Font *font = asset->loadFont("arial", 32);
 	
 	SDL_Rect sig;
 	sig.x = kScreenWidth - 80;
@@ -113,8 +116,7 @@ int main(int argc, char** argv)
 
 	auto lastFrameTime = SDL_GetTicks();
 	float t = 0.0f;
-	while (!input->IsDown(IT_Quit))
-	{
+	while (!input->IsDown(IT_Quit)) {
 		float dt = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
 		t += dt;
 		lastFrameTime = SDL_GetTicks();
@@ -122,6 +124,8 @@ int main(int argc, char** argv)
 		input->Update();
 
 		// Logic
+		std::string posText = player->GetComponent<Transform>()->pos.ToString();
+		playerPosText->GetComponent<TextRenderer>()->SetText(posText);
 		entitySystem.Update(dt);
 
 		// Rendering
@@ -129,16 +133,6 @@ int main(int argc, char** argv)
 		SDL_RenderClear(renderer);
 
 		entitySystem.Draw();
-
-			SDL_DestroyTexture(textTexture);
-			std::string text = player->GetComponent<Transform>()->pos.ToString();
-			SDL_Surface *textSurf = TTF_RenderText_Solid(font, text.c_str(), { 0, 0, 0 });
-			textRect.w = textSurf->w;
-			textRect.h = textSurf->h;
-			textTexture = SDL_CreateTextureFromSurface(renderer, textSurf);
-			SDL_FreeSurface(textSurf);
-
-		SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
 
 		SDL_SetTextureColorMod(tex, lerp(sin(t) / 2 + 0.5f, 0x00, 0xff), 0xff, 0xff);
 		SDL_RenderCopyEx(renderer, tex, nullptr, &sig, 80 * t, nullptr, SDL_FLIP_NONE);

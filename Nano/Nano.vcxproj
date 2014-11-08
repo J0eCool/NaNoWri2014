@@ -98,6 +98,7 @@
     <ClInclude Include="Managers\Singleton.h" />
     <ClInclude Include="Engine\Util\Math.h" />
     <ClInclude Include="Engine\Util\Vec2.h" />
+    <ClInclude Include="Components\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Collider.cpp" />
@@ -111,6 +112,7 @@
     <ClCompile Include="Components\Player.cpp" />
     <ClCompile Include="Engine\Util\Math.cpp" />
     <ClCompile Include="Engine\Util\Vec2.cpp" />
+    <ClCompile Include="Components\TextRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
