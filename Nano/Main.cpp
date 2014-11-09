@@ -12,6 +12,7 @@
 #include "Components/Components.h"
 
 #include "Generated/ComponentEnums.h"
+#include "NanoEntityConfig.h"
 
 int main(int argc, char** argv)
 {
@@ -53,32 +54,34 @@ int main(int argc, char** argv)
 	InputManager::GetInstance()->Init();
 	AssetManager::GetInstance()->Init();
 
-	EntitySystem entitySystem;
+	NanoEntityConfig config;
+	config.renderer = renderer;
+	EntitySystem entitySystem(&config);
 
 	// ground
 	entitySystem.AddEntity(new Entity{
 		new Transform({ 0, (float)kScreenHeight - 100 }, { (float)kScreenWidth, 50 }),
-		(new Renderer(renderer))->SetColor({ 0x80, 0xa0, 0x80, 0xff }),
+		(new Renderer)->SetColor({ 0x80, 0xa0, 0x80, 0xff }),
 		new Collider,
 	});
 
 	// lower platform
 	entitySystem.AddEntity(new Entity{
-		(new Renderer(renderer))->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
+		(new Renderer)->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
 		new Collider,
 		new Transform({ 400, 360 }, { 160, 48 })
 	});
 
 	// middle platform
 	entitySystem.AddEntity(new Entity{
-		(new Renderer(renderer))->SetColor({ 0xc0, 0xd0, 0x20, 0xff }),
+		(new Renderer)->SetColor({ 0xc0, 0xd0, 0x20, 0xff }),
 		new Collider,
 		new Transform({ 150, 240 }, { 160, 48 })
 	});
 
 	// higher platform
 	entitySystem.AddEntity(new Entity{
-		(new Renderer(renderer))->SetColor({ 0xb0, 0xf0, 0x20, 0xff }),
+		(new Renderer)->SetColor({ 0xb0, 0xf0, 0x20, 0xff }),
 		new Collider,
 		new Transform({ 540, 140 }, { 160, 48 })
 	});
@@ -87,18 +90,18 @@ int main(int argc, char** argv)
 		new Player,
 		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
 		new Collider,
-		(new Renderer(renderer))->SetColor({ 0x20, 0xc0, 0xff, 0xff })
+		(new Renderer)->SetColor({ 0x20, 0xc0, 0xff, 0xff })
 	};
 	entitySystem.AddEntity(player);
 
 	Entity *playerPosText = new Entity{
-		new TextRenderer(AssetManager::GetInstance()->LoadFont("arial", 32), renderer),
+		new TextRenderer("arial", 32),
 		new Transform({ 50, 50 }, { 0, 0 }),
 	};
 	entitySystem.AddEntity(playerPosText);
 
 	entitySystem.AddEntity(new Entity{
-		new SpriteRenderer("Sigma", renderer),
+		new SpriteRenderer("Sigma"),
 		new Transform({ kScreenWidth - 80, 30 }, { 50, 50 }),
 		new SpinningSigma(130.0f, 6.0f),
 	});

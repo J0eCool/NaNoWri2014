@@ -18,9 +18,10 @@ private:
 
 public:
 	TextRenderer();
-	TextRenderer(TTF_Font *font, SDL_Renderer *renderer);
-	void Init(TTF_Font *font, SDL_Renderer *renderer);
+	TextRenderer(std::string fontName, int fontSize);
+	void Init(std::string fontName, int fontSize);
 
+	void Start();
 	void Draw();
 
 	void SetText(std::string text);

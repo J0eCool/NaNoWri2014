@@ -1,16 +1,14 @@
 #include "Renderer.h"
 
 #include <Nano/Engine/Engine.h>
+#include <Nano/NanoEntityConfig.h>
 
 Renderer::Renderer() : _color({ 0xff, 0xff, 0xff, 0xff }) {
 }
 
-Renderer::Renderer(SDL_Renderer *renderer) : Renderer() {
-	Init(renderer);
-}
-
-void Renderer::Init(SDL_Renderer *renderer) {
-	_renderer = renderer;
+void Renderer::Start() {
+	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
+	_renderer = config->renderer;
 }
 
 void Renderer::Draw() {

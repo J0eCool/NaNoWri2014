@@ -1,17 +1,17 @@
 #include "TextRenderer.h"
 
 #include <Nano/Managers/AssetManager.h>
+#include <Nano/NanoEntityConfig.h>
 
 TextRenderer::TextRenderer() :
 		_text(""), _isDirty(true), _texture(nullptr) {
 }
-TextRenderer::TextRenderer(TTF_Font *font, SDL_Renderer *renderer) : TextRenderer() {
-	Init(font, renderer);
+TextRenderer::TextRenderer(std::string fontName, int fontSize) : TextRenderer() {
+	Init(fontName, fontSize);
 }
 
-void TextRenderer::Init(TTF_Font *font, SDL_Renderer *renderer) {
-	_font = font;
-	_renderer = renderer;
+void TextRenderer::Init(std::string fontName, int fontSize) {
+	_font = AssetManager::GetInstance()->LoadFont(fontName, fontSize);
 }
 
 void TextRenderer::renderText() {
@@ -23,6 +23,11 @@ void TextRenderer::renderText() {
 	_texture = SDL_CreateTextureFromSurface(_renderer, surface);
 	SDL_FreeSurface(surface);
 	_isDirty = false;
+}
+
+void TextRenderer::Start() {
+	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
+	_renderer = config->renderer;
 }
 
 void TextRenderer::Draw() {

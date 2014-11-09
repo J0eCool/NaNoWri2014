@@ -11,9 +11,8 @@ private:
 
 public:
 	Renderer();
-	Renderer(SDL_Renderer *renderer);
 
-	void Init(SDL_Renderer *renderer);
+	void Start();
 	void Draw();
 
 	Renderer* SetColor(SDL_Color color);

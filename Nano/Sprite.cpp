@@ -2,18 +2,12 @@
 
 #include <Nano/Managers/AssetManager.h>
 
-//Sprite::Sprite(std::string imageName, SDL_Renderer *renderer) {
-//	AssetManager *assets = AssetManager::GetInstance();
-//	SDL_Surface *surface = assets->LoadSurface(imageName);
-//	_width = surface->w;
-//	_height = surface->h;
-//	
-//	_texture = assets->ConvertSurface(surface, renderer);
-//
-//	// XXX: This is wrong! If SDL_Surfaces get used through AssetManager things break.
-//	// TODO: move Sprite into a higher-level collection, add LoadSprite method to AssetManager
-//	assets->UnloadSurface(surface);
-//}
+Sprite::Sprite() : angle(0.0f), color({ 0xff, 0xff, 0xff, 0xff }) {
+}
+
+SDL_Renderer* Sprite::GetRenderer() const {
+	return _renderer;
+}
 
 SDL_Texture* Sprite::GetTexture() const {
 	return _texture;
@@ -21,6 +15,8 @@ SDL_Texture* Sprite::GetTexture() const {
 
 SDL_Rect Sprite::GetRect() const {
 	SDL_Rect rect;
+	rect.x = 0;
+	rect.y = 0;
 	rect.w = _width;
 	rect.h = _height;
 	return rect;

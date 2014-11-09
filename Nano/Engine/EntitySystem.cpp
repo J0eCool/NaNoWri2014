@@ -2,11 +2,12 @@
 
 #include "Entity.h"
 
+EntitySystem::EntitySystem(EntityConfig *config) : _config(config) {
+}
+
 EntitySystem::~EntitySystem() {
 	for (auto it = _entities.begin(); it != _entities.end(); ++it) {
 		delete *it;
-	//for (auto entity : _entities) {
-	//	delete entity;
 	}
 }
 
@@ -28,6 +29,10 @@ void EntitySystem::RemoveEntity(Entity *entity) {
 
 std::vector<Entity *> const& EntitySystem::GetEntities() const {
 	return _entities;
+}
+
+EntityConfig* EntitySystem::GetConfig() const {
+	return _config;
 }
 
 void EntitySystem::Update(float dt) {

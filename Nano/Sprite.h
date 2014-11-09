@@ -12,13 +12,14 @@ private:
 	int _width;
 	int _height;
 
-	//Sprite() { }
-
 public:
+	Sprite();
+
 	SDL_Color color;
 	float angle = 0.0f;
 
 	SDL_Texture* GetTexture() const;
+	SDL_Renderer* GetRenderer() const;
 	SDL_Rect GetRect() const;
 
 	friend AssetManager;
