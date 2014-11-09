@@ -12,7 +12,7 @@ protected:
 
 public:
 	// Called when Entity is added to EntitySystem
-	virtual void Init() { };
+	virtual void Start() { };
 
 	// Called every frame; logic is done here
 	virtual void Update(float dt) { };

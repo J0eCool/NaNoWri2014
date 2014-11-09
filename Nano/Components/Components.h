@@ -5,3 +5,4 @@
 #include "Rendering/Renderer.h"
 #include "Rendering/SpriteRenderer.h"
 #include "Rendering/TextRenderer.h"
+#include "SpinningSigma.h"

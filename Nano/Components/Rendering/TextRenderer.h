@@ -17,7 +17,9 @@ private:
 	void renderText();
 
 public:
+	TextRenderer();
 	TextRenderer(TTF_Font *font, SDL_Renderer *renderer);
+	void Init(TTF_Font *font, SDL_Renderer *renderer);
 
 	void Draw();
 

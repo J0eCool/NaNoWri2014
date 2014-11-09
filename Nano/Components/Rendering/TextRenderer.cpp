@@ -2,10 +2,16 @@
 
 #include <Nano/Managers/AssetManager.h>
 
-TextRenderer::TextRenderer(TTF_Font *font, SDL_Renderer *renderer) :
-		_text(""), _isDirty(true), _texture(nullptr),
-		_renderer(renderer),
-		_font(font) {
+TextRenderer::TextRenderer() :
+		_text(""), _isDirty(true), _texture(nullptr) {
+}
+TextRenderer::TextRenderer(TTF_Font *font, SDL_Renderer *renderer) : TextRenderer() {
+	Init(font, renderer);
+}
+
+void TextRenderer::Init(TTF_Font *font, SDL_Renderer *renderer) {
+	_font = font;
+	_renderer = renderer;
 }
 
 void TextRenderer::renderText() {

@@ -11,7 +11,7 @@
 
 #include "Components/Components.h"
 
-#include "Components/SpinningSigma.h"
+#include "Generated/ComponentEnums.h"
 
 int main(int argc, char** argv)
 {

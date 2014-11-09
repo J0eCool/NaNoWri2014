@@ -13,9 +13,11 @@ private:
 	SDL_Renderer *_renderer;
 
 public:
+	SpriteRenderer();
 	SpriteRenderer(std::string spriteName, SDL_Renderer *renderer);
+	void Init(std::string spriteName, SDL_Renderer *renderer);
 
-	void Init();
+	void Start();
 	void Draw();
 
 	Sprite* GetSprite();

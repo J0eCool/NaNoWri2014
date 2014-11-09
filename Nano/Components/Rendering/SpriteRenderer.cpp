@@ -2,12 +2,16 @@
 
 #include <Nano/Managers/AssetManager.h>
 
-SpriteRenderer::SpriteRenderer(std::string spriteName, SDL_Renderer *renderer) :
-		_sprite(AssetManager::GetInstance()->LoadSprite(spriteName, renderer)),
-		_renderer(renderer) {
+SpriteRenderer::SpriteRenderer() { }
+SpriteRenderer::SpriteRenderer(std::string spriteName, SDL_Renderer *renderer) {
+	Init(spriteName, renderer);
+}
+void SpriteRenderer::Init(std::string spriteName, SDL_Renderer *renderer) {
+	_sprite = AssetManager::GetInstance()->LoadSprite(spriteName, renderer);
+	_renderer = renderer;
 }
 
-void SpriteRenderer::Init() {
+void SpriteRenderer::Start() {
 	Transform *transform = _entity->GetTransform();
 	SDL_Rect spriteRect = _sprite.GetRect();
 	if (approxEq(transform->size.x, 0.0f) ||

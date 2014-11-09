@@ -11,7 +11,12 @@ private:
 	float _t = 0.0f;
 
 public:
-	SpinningSigma(float speed, float color) : _speed(speed), _color(color) { }
+	SpinningSigma() {}
+	SpinningSigma(float speed, float color) { Init(speed, color); }
+	void Init(float speed, float color) {
+		_speed = speed;
+		_color = color;
+	}
 
 	void Update(float dt) override {
 		SpriteRenderer *renderer = _entity->GetComponent<SpriteRenderer>();

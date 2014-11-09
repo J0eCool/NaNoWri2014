@@ -12,11 +12,11 @@ private:
 	int _width;
 	int _height;
 
-	Sprite() { }
+	//Sprite() { }
 
 public:
 	SDL_Color color;
-	float angle;
+	float angle = 0.0f;
 
 	SDL_Texture* GetTexture() const;
 	SDL_Rect GetRect() const;
