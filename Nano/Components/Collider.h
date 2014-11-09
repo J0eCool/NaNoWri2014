@@ -14,6 +14,7 @@ protected:
 
 public:
 	Collider() {};
+
 	void Update(float dt);
 
 	std::vector<Entity *> const& GetCollidedEntities() const;

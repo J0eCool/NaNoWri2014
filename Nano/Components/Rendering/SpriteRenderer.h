@@ -15,6 +15,7 @@ private:
 public:
 	SpriteRenderer();
 	SpriteRenderer(std::string spriteName);
+	void Load(std::vector<std::string> const& args);
 	void Init(std::string spriteName);
 
 	void Start();

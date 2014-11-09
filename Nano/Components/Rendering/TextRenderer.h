@@ -19,6 +19,7 @@ private:
 public:
 	TextRenderer();
 	TextRenderer(std::string fontName, int fontSize);
+	void Load(std::vector<std::string> const& args);
 	void Init(std::string fontName, int fontSize);
 
 	void Start();

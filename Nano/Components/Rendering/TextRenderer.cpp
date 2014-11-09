@@ -10,6 +10,12 @@ TextRenderer::TextRenderer(std::string fontName, int fontSize) : TextRenderer() 
 	Init(fontName, fontSize);
 }
 
+void TextRenderer::Load(std::vector<std::string> const& args) {
+	std::string fontName = args[0];
+	int fontSize = atoi(args[1].c_str());
+	Init(fontName, fontSize);
+}
+
 void TextRenderer::Init(std::string fontName, int fontSize) {
 	_font = AssetManager::GetInstance()->LoadFont(fontName, fontSize);
 }

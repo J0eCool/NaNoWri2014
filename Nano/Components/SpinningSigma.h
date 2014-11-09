@@ -13,6 +13,11 @@ private:
 public:
 	SpinningSigma() {}
 	SpinningSigma(float speed, float color) { Init(speed, color); }
+	void Load(std::vector<std::string> const& args) {
+		float speed = (float)atof(args[0].c_str());
+		float color = (float)atof(args[1].c_str());
+		Init(speed, color);
+	}
 	void Init(float speed, float color) {
 		_speed = speed;
 		_color = color;

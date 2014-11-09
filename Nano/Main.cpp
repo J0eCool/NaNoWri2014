@@ -11,7 +11,7 @@
 
 #include "Components/Components.h"
 
-#include "Generated/ComponentEnums.h"
+#include "Engine/ComponentFactory.h"
 #include "NanoEntityConfig.h"
 
 int main(int argc, char** argv)
@@ -62,48 +62,48 @@ int main(int argc, char** argv)
 	entitySystem.AddEntity(new Entity{
 		new Transform({ 0, (float)kScreenHeight - 100 }, { (float)kScreenWidth, 50 }),
 		(new Renderer)->SetColor({ 0x80, 0xa0, 0x80, 0xff }),
-		new Collider,
+		CreateComponentFromString("Collider"),
 	});
 
 	// lower platform
 	entitySystem.AddEntity(new Entity{
 		(new Renderer)->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
-		new Collider,
+		CreateComponentFromString("Collider"),
 		new Transform({ 400, 360 }, { 160, 48 })
 	});
 
 	// middle platform
 	entitySystem.AddEntity(new Entity{
 		(new Renderer)->SetColor({ 0xc0, 0xd0, 0x20, 0xff }),
-		new Collider,
+		CreateComponentFromString("Collider"),
 		new Transform({ 150, 240 }, { 160, 48 })
 	});
 
 	// higher platform
 	entitySystem.AddEntity(new Entity{
 		(new Renderer)->SetColor({ 0xb0, 0xf0, 0x20, 0xff }),
-		new Collider,
+		CreateComponentFromString("Collider"),
 		new Transform({ 540, 140 }, { 160, 48 })
 	});
 
 	Entity *player = new Entity{
-		new Player,
+		CreateComponentFromString("Player"),
 		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
-		new Collider,
+		CreateComponentFromString("Collider"),
 		(new Renderer)->SetColor({ 0x20, 0xc0, 0xff, 0xff })
 	};
 	entitySystem.AddEntity(player);
 
 	Entity *playerPosText = new Entity{
-		new TextRenderer("arial", 32),
+		CreateComponentFromString("TextRenderer arial 24"),
 		new Transform({ 50, 50 }, { 0, 0 }),
 	};
 	entitySystem.AddEntity(playerPosText);
 
 	entitySystem.AddEntity(new Entity{
-		new SpriteRenderer("Sigma"),
+		CreateComponentFromString("SpriteRenderer Sigma"),
 		new Transform({ kScreenWidth - 80, 30 }, { 50, 50 }),
-		new SpinningSigma(130.0f, 6.0f),
+		CreateComponentFromString("SpinningSigma 150.0f 6.0f"),
 	});
 
 	static const float kMaxFramerate = 60.0f;

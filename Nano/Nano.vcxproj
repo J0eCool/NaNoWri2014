@@ -84,6 +84,7 @@
   <ItemGroup>
     <ClInclude Include="Components\Collider.h" />
     <ClInclude Include="Components\Components.h" />
+    <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="NanoEntityConfig.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Components\Rendering\SpriteRenderer.h" />

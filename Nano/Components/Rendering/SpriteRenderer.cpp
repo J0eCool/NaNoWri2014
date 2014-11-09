@@ -7,6 +7,10 @@ SpriteRenderer::SpriteRenderer() { }
 SpriteRenderer::SpriteRenderer(std::string spriteName) {
 	Init(spriteName);
 }
+void SpriteRenderer::Load(std::vector<std::string> const& args) {
+	_spriteName = args[0];
+}
+
 void SpriteRenderer::Init(std::string spriteName) {
 	_spriteName = spriteName;
 }
