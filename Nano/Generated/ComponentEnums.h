@@ -1,16 +1,21 @@
 #pragma once
 
 #include <string>
-#include <map>
-#include <Nano/Components/Components.h>
+#include <typeinfo>
 
-Component* CreateComponentWithName(std::string name) {
-	if (name == "Collider") { return new Collider; }
-	if (name == "Player") { return new Player; }
-	if (name == "Renderer") { return new Renderer; }
-	if (name == "SpriteRenderer") { return new SpriteRenderer; }
-	if (name == "TextRenderer") { return new TextRenderer; }
-	if (name == "SpinningSigma") { return new SpinningSigma; }
-	return nullptr;
-}
+enum ComponentType {
+	CT_INVALID,
+	CT_Collider,
+	CT_Player,
+	CT_Renderer,
+	CT_SpriteRenderer,
+	CT_TextRenderer,
+	CT_SpinningSigma,
+	CT_Transform,
+};
 
+class Component;
+
+ComponentType GetComponentType(const std::type_info *type);
+ComponentType GetComponentType(std::string name);
+Component* CreateComponentWithName(std::string name);

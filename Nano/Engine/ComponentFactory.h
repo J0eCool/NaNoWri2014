@@ -1,33 +1,40 @@
 #pragma once
 
 #include <Nano/Generated/ComponentEnums.h>
+#include <Nano/Engine/Engine.h>
+#include "Util/StringHandling.h"
+
+#include "Util/Util.h"
 
 #include <string>
-#include <vector>
 
-std::vector<std::string> SplitString(std::string string, char delim = ' ') {
-	std::vector<std::string> list;
-	std::string str = "";
-	for (unsigned i = 0; i < string.length(); ++i) {
-		char c = string[i];
-		if (c == delim) {
-			list.push_back(str);
-			str = "";
-		}
-		else {
-			str += c;
-		}
+Component* CreateComponentFromStringArray(std::vector<std::string> parts) {
+	Component* cmp = CreateComponentWithName(parts[0]);
+	if (!cmp) {
+		Log("Component of type ", parts[0], " does not exist!");
+		return nullptr;
 	}
-	if (str.length() > 0) {
-		list.push_back(str);
-	}
-	return list;
+	parts.erase(parts.begin());
+	cmp->Load(parts);
+	return cmp;
 }
 
 Component* CreateComponentFromString(std::string string) {
 	auto parts = SplitString(string);
-	Component* cmp = CreateComponentWithName(parts[0]);
-	parts.erase(parts.begin());
-	cmp->Load(parts);
-	return cmp;
+	return CreateComponentFromStringArray(parts);
+}
+
+void AddStringComponentToEntity(Entity *entity, std::string str) {
+	auto parts = SplitString(str);
+	Component *cmp = CreateComponentFromStringArray(parts);
+	entity->AddComponent(GetComponentType(parts[0]), cmp);
+}
+
+Entity* CreateEntityFromString(std::string string) {
+	auto parts = SplitString(string, '\n');
+	Entity *entity = new Entity;
+	for (auto str : parts) {
+		AddStringComponentToEntity(entity, str);
+	}
+	return entity;
 }

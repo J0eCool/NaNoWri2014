@@ -59,54 +59,54 @@ int main(int argc, char** argv)
 	EntitySystem entitySystem(&config);
 
 	// ground
-	entitySystem.AddEntity(new Entity{
-		new Transform({ 0, (float)kScreenHeight - 100 }, { (float)kScreenWidth, 50 }),
-		(new Renderer)->SetColor({ 0x80, 0xa0, 0x80, 0xff }),
-		CreateComponentFromString("Collider"),
-	});
+	entitySystem.AddEntity(CreateEntityFromString(
+		"Transform 0 500 800 50\n"
+		"Renderer 0x80 0xa0 0x80 0xff\n"
+		"Collider\n"
+	));
 
 	// lower platform
-	entitySystem.AddEntity(new Entity{
-		(new Renderer)->SetColor({ 0xd0, 0xc0, 0x20, 0xff }),
-		CreateComponentFromString("Collider"),
-		new Transform({ 400, 360 }, { 160, 48 })
-	});
+	entitySystem.AddEntity(CreateEntityFromString(
+		"Renderer 0xd0 0xc0 0x20 0xff\n"
+		"Collider\n"
+		"Transform 400 360 160 48\n"
+	));
 
 	// middle platform
-	entitySystem.AddEntity(new Entity{
-		(new Renderer)->SetColor({ 0xc0, 0xd0, 0x20, 0xff }),
-		CreateComponentFromString("Collider"),
-		new Transform({ 150, 240 }, { 160, 48 })
-	});
+	entitySystem.AddEntity(CreateEntityFromString(
+		"Renderer 0xc0 0xd0 0x20 0xff\n"
+		"Collider\n"
+		"Transform 150 240 160 48\n"
+	));
 
 	// higher platform
-	entitySystem.AddEntity(new Entity{
-		(new Renderer)->SetColor({ 0xb0, 0xf0, 0x20, 0xff }),
-		CreateComponentFromString("Collider"),
-		new Transform({ 540, 140 }, { 160, 48 })
-	});
+	entitySystem.AddEntity(CreateEntityFromString(
+		"Renderer 0xb0 0xf0 0x20 0xff\n"
+		"Collider\n"
+		"Transform 540 140 160 48\n"
+	));
 
-	Entity *player = new Entity{
-		CreateComponentFromString("Player"),
-		new Transform({ 120.0f, 200.0f }, { 50.0f, 70.0f }),
-		CreateComponentFromString("Collider"),
-		(new Renderer)->SetColor({ 0x20, 0xc0, 0xff, 0xff })
-	};
+	Entity *player = CreateEntityFromString(
+		"Player\n"
+		"Transform 120.0f 200.0f 50.0f 70.0f\n"
+		"Collider\n"
+		"Renderer 0x20 0xc0 0xff 0xff\n"
+	);
 	entitySystem.AddEntity(player);
 
-	Entity *playerPosText = new Entity{
-		CreateComponentFromString("TextRenderer arial 24"),
-		new Transform({ 50, 50 }, { 0, 0 }),
-	};
+	Entity *playerPosText = CreateEntityFromString(
+		"TextRenderer arial 24\n"
+		"Transform 50 50 0 0\n"
+	);
 	entitySystem.AddEntity(playerPosText);
 
-	entitySystem.AddEntity(new Entity{
-		CreateComponentFromString("SpriteRenderer Sigma"),
-		new Transform({ kScreenWidth - 80, 30 }, { 50, 50 }),
-		CreateComponentFromString("SpinningSigma 150.0f 6.0f"),
-	});
+	entitySystem.AddEntity(CreateEntityFromString(
+		"SpriteRenderer Sigma\n"
+		"Transform 720 30 50 50\n"
+		"SpinningSigma 150.0f 6.0f\n"
+	));
 
-	static const float kMaxFramerate = 60.0f;
+	static const float kMaxFramerate = 120.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);
 
 	SDL_Texture *textTexture = nullptr;
@@ -133,11 +133,10 @@ int main(int argc, char** argv)
 		SDL_RenderPresent(renderer);
 
 		// Sleep until next frame
-		auto elapsed = SDL_GetTicks() - lastFrameTime;
-		auto delayTime = kMaxFrameDelay - elapsed;
+		int elapsed = SDL_GetTicks() - lastFrameTime;
+		int delayTime = kMaxFrameDelay - elapsed;
 		if (delayTime > 0) {
-			// WTF: this causes the game to crashhang sometimes?
-			//SDL_Delay(delayTime);
+			SDL_Delay(delayTime);
 		}
 	}
 

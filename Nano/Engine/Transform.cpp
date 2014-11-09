@@ -1,10 +1,19 @@
 #include "Transform.h"
 
+#include "Util/Util.h"
+
 Transform::Transform() {
 }
 
 Transform::Transform(Vec2 _pos, Vec2 _size) {
 	Init(_pos, _size);
+}
+
+void Transform::Load(std::vector<std::string> const& args) {
+	pos.x = ParseFloat(args[0]);
+	pos.y = ParseFloat(args[1]);
+	size.x = ParseFloat(args[2]);
+	size.y = ParseFloat(args[3]);
 }
 
 void Transform::Init(Vec2 _pos, Vec2 _size) {

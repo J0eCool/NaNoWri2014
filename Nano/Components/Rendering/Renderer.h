@@ -11,6 +11,7 @@ private:
 
 public:
 	Renderer();
+	void Load(std::vector<std::string> const& args);
 
 	void Start();
 	void Draw();
