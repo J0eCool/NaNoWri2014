@@ -11,14 +11,9 @@ private:
 	float _t = 0.0f;
 
 public:
-	SpinningSigma() {}
-	SpinningSigma(float speed, float color) { Init(speed, color); }
-	void Load(std::vector<std::string> const& args) {
+	void Load(std::vector<std::string> const& args) override {
 		float speed = ParseFloat(args[0]);
 		float color = ParseFloat(args[1]);
-		Init(speed, color);
-	}
-	void Init(float speed, float color) {
 		_speed = speed;
 		_color = color;
 	}

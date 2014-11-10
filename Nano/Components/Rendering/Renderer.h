@@ -11,10 +11,10 @@ private:
 
 public:
 	Renderer();
-	void Load(std::vector<std::string> const& args);
+	void Load(std::vector<std::string> const& args) override;
 
-	void Start();
-	void Draw();
+	void Start() override;
+	void Draw() override;
 
 	Renderer* SetColor(SDL_Color color);
 };

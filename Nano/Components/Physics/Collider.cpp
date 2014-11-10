@@ -27,7 +27,7 @@ bool Collider::collides(Collider *other) {
 		yB >= yC && yB <= yD ||
 		yC >= yA && yC <= yB ||
 		yD >= yA && yD <= yB)
-		;
+	;
 }
 
 void Collider::Update(float dt) {

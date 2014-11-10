@@ -6,23 +6,16 @@
 TextRenderer::TextRenderer() :
 		_text(""), _isDirty(true), _texture(nullptr) {
 }
-TextRenderer::TextRenderer(std::string fontName, int fontSize) : TextRenderer() {
-	Init(fontName, fontSize);
-}
 
 void TextRenderer::Load(std::vector<std::string> const& args) {
 	std::string fontName = args[0];
 	int fontSize = ParseInt(args[1]);
-	Init(fontName, fontSize);
-}
-
-void TextRenderer::Init(std::string fontName, int fontSize) {
 	_font = AssetManager::GetInstance()->LoadFont(fontName, fontSize);
 }
 
 void TextRenderer::renderText() {
 	if (_text == "") {
-		return;
+		_text = " ";
 	}
 
 	SDL_DestroyTexture(_texture);

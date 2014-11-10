@@ -13,9 +13,7 @@ protected:
 	bool collides(Collider *other);
 
 public:
-	Collider() {};
-
-	void Update(float dt);
+	void Update(float dt) override;
 
 	std::vector<Entity *> const& GetCollidedEntities() const;
 };

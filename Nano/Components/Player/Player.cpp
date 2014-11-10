@@ -3,9 +3,7 @@
 #include <Nano/Managers/InputManager.h>
 #include <Nano/Constants.h>
 
-#include "Collider.h"
-#include "Rendering/Renderer.h"
-#include "Rendering/TextRenderer.h"
+#include <Nano/Components/Components.h>
 
 Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
 }

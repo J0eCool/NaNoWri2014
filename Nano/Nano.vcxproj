@@ -83,7 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Components\Collider.h" />
+    <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
@@ -101,7 +101,7 @@
     <ClInclude Include="Engine\EntitySystem.h" />
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="Managers\AssetManager.h" />
-    <ClInclude Include="Components\Player.h" />
+    <ClInclude Include="Components\Player\Player.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Engine\Util\Logger.h" />
     <ClInclude Include="Managers\InputManager.h" />
@@ -111,7 +111,7 @@
     <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Components\Collider.cpp" />
+    <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />
@@ -124,7 +124,7 @@
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
-    <ClCompile Include="Components\Player.cpp" />
+    <ClCompile Include="Components\Player\Player.cpp" />
     <ClCompile Include="Engine\Util\Math.cpp" />
     <ClCompile Include="Engine\Util\Vec2.cpp" />
     <ClCompile Include="Components\Rendering\TextRenderer.cpp" />

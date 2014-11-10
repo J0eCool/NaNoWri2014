@@ -18,6 +18,6 @@ private:
 public:
 	Player();
 
-	void Update(float dt);
+	void Update(float dt) override;
 };
 

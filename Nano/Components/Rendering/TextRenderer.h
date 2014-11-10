@@ -18,12 +18,10 @@ private:
 
 public:
 	TextRenderer();
-	TextRenderer(std::string fontName, int fontSize);
-	void Load(std::vector<std::string> const& args);
-	void Init(std::string fontName, int fontSize);
+	void Load(std::vector<std::string> const& args) override;
 
-	void Start();
-	void Draw();
+	void Start() override;
+	void Draw() override;
 
 	void SetText(std::string text);
 };
