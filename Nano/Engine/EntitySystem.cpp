@@ -27,12 +27,21 @@ void EntitySystem::RemoveEntity(Entity *entity) {
 	}
 }
 
+EntityConfig* EntitySystem::GetConfig() const {
+	return _config;
+}
+
 std::vector<Entity *> const& EntitySystem::GetEntities() const {
 	return _entities;
 }
 
-EntityConfig* EntitySystem::GetConfig() const {
-	return _config;
+Entity* EntitySystem::FindEntity(std::string name) const {
+	for (auto entity : _entities) {
+		if (entity->_name == name) {
+			return entity;
+		}
+	}
+	return nullptr;
 }
 
 void EntitySystem::Update(float dt) {

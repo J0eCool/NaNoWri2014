@@ -14,10 +14,10 @@ class Entity {
 private:
 	std::map<ComponentType, Component *> _components;
 	EntitySystem *_entitySystem;
+	std::string _name;
 
 public:
-	Entity();
-	//Entity(std::initializer_list<Component *> components);
+	Entity(std::string name);
 	~Entity();
 
 	Component* AddComponent(ComponentType type, Component* component);

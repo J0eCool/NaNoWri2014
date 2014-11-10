@@ -5,6 +5,7 @@
 
 #include "Collider.h"
 #include "Rendering/Renderer.h"
+#include "Rendering/TextRenderer.h"
 
 Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
 }
@@ -38,4 +39,9 @@ void Player::Update(float dt) {
 	}
 	transform->pos += _vel * dt;
 	transform->pos.x = clamp(transform->pos.x, 0, (float)kScreenWidth - transform->size.x);
+
+	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
+	if (text) {
+		text->GetComponent<TextRenderer>()->SetText(transform->pos.ToString());
+	}
 }

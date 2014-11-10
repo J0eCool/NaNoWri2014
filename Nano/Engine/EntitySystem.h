@@ -1,5 +1,6 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 class Entity;
@@ -17,8 +18,10 @@ public:
 
 	void AddEntity(Entity *entity);
 	void RemoveEntity(Entity *entity);
-	std::vector<Entity *> const& GetEntities() const;
+
 	EntityConfig* GetConfig() const;
+	std::vector<Entity *> const& GetEntities() const;
+	Entity* FindEntity(std::string name) const;
 
 	void Update(float dt);
 	void Draw();

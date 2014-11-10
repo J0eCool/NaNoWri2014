@@ -32,7 +32,8 @@ void AddStringComponentToEntity(Entity *entity, std::string str) {
 
 Entity* CreateEntityFromString(std::string string) {
 	auto parts = SplitString(string, '\n');
-	Entity *entity = new Entity;
+	Entity *entity = new Entity(parts[0]);
+	parts.erase(parts.begin());
 	for (auto str : parts) {
 		AddStringComponentToEntity(entity, str);
 	}
