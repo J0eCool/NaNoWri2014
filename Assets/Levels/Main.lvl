@@ -20,7 +20,7 @@ PlatHi
 
 Player
 	Player
-	Transform 120.0f 200.0f 50.0f 70.0f
+	Transform 120.0 200.0 50.0 70.0
 	Collider
 	Renderer 0x20 0xc0 0xff 0xff
 
@@ -31,14 +31,14 @@ PlayerPosText
 Sigma
 	SpriteRenderer Sigma
 	Transform 720 30 50 50
-	SpinningSigma 150.0f 6.0f
+	SpinningSigma 150.0 6.0
 
 Sigma
 	SpriteRenderer Sigma
 	Transform 520 30 50 50
-	SpinningSigma 50.0f 6.0f
+	SpinningSigma 50.0 6.0
 
 Sigma
 	SpriteRenderer Sigma_alpha
 	Transform 620 80 70 30
-	SpinningSigma -50.0f 6.0f
+	SpinningSigma -50.0 6.0

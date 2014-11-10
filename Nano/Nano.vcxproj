@@ -88,6 +88,7 @@
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
     <ClInclude Include="Generated\ComponentEnums.h" />
+    <ClInclude Include="Managers\ManagerManager.h" />
     <ClInclude Include="NanoEntityConfig.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Components\Rendering\SpriteRenderer.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />
+    <ClCompile Include="Managers\ManagerManager.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Components\Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Transform.cpp" />

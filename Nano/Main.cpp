@@ -3,7 +3,7 @@
 #include <SDL_ttf.h>
 #include <string>
 
-#include "Managers/AssetManager.h"
+#include "Managers/ManagerManager.h"
 #include "Managers/InputManager.h"
 #include "Constants.h"
 
@@ -51,8 +51,7 @@ int main(int argc, char** argv)
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_Surface *screen = SDL_GetWindowSurface(window);
 
-	InputManager::GetInstance()->Init();
-	AssetManager::GetInstance()->Init();
+	ManagerManager::GetInstance()->Init();
 
 	NanoEntityConfig config;
 	config.renderer = renderer;
@@ -67,14 +66,12 @@ int main(int argc, char** argv)
 	SDL_Texture *textTexture = nullptr;
 
 	auto lastFrameTime = SDL_GetTicks();
-	InputManager *input = InputManager::GetInstance();
-	while (!input->IsDown(IT_Quit)) {
+	while (!InputManager::GetInstance()->IsDown(IT_Quit)) {
 		float dt = (SDL_GetTicks() - lastFrameTime) / 1000.0f;
 		lastFrameTime = SDL_GetTicks();
 
-		input->Update();
-
 		// Logic
+		ManagerManager::GetInstance()->Update(dt);
 		entitySystem.Update(dt);
 
 		// Rendering
@@ -93,8 +90,7 @@ int main(int argc, char** argv)
 		}
 	}
 
-	AssetManager::GetInstance()->Deinit();
-	InputManager::GetInstance()->Deinit();
+	ManagerManager::GetInstance()->Deinit();
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);

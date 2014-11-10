@@ -45,19 +45,17 @@ void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
 	std::ifstream file(filename.c_str());
 	std::string line;
 	Entity *entity = nullptr;
+	if (std::getline(file, line)) {
+		entity = new Entity(line);
+	}
 	while (std::getline(file, line)) {
-		if (!entity) {
-			entity = new Entity(line);
+		if (line[0] == '\t') {
+			line.erase(line.begin());
+			AddStringComponentToEntity(entity, line);
 		}
 		else {
-			if (line[0] == '\t') {
-				line.erase(line.begin());
-				AddStringComponentToEntity(entity, line);
-			}
-			else {
-				system.AddEntity(entity);
-				entity = new Entity(line);
-			}
+			system.AddEntity(entity);
+			entity = new Entity(line);
 		}
 	}
 	if (entity) {
