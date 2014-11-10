@@ -7,6 +7,7 @@
 #include "Util/Util.h"
 
 #include <string>
+#include <fstream>
 
 Component* CreateComponentFromStringArray(std::vector<std::string> parts) {
 	Component* cmp = CreateComponentWithName(parts[0]);
@@ -38,4 +39,28 @@ Entity* CreateEntityFromString(std::string string) {
 		AddStringComponentToEntity(entity, str);
 	}
 	return entity;
+}
+
+void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
+	std::ifstream file(filename.c_str());
+	std::string line;
+	Entity *entity = nullptr;
+	while (std::getline(file, line)) {
+		if (!entity) {
+			entity = new Entity(line);
+		}
+		else {
+			if (line[0] == '\t') {
+				line.erase(line.begin());
+				AddStringComponentToEntity(entity, line);
+			}
+			else {
+				system.AddEntity(entity);
+				entity = new Entity(line);
+			}
+		}
+	}
+	if (entity) {
+		system.AddEntity(entity);
+	}
 }

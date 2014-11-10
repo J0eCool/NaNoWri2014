@@ -5,9 +5,11 @@ std::vector<std::string> SplitString(std::string string, char delim) {
 	std::string str = "";
 	for (unsigned i = 0; i < string.length(); ++i) {
 		char c = string[i];
-		if (c == delim && str.length() > 0) {
-			list.push_back(str);
-			str = "";
+		if (c == delim) {
+			if (str.length() > 0) {
+				list.push_back(str);
+				str = "";
+			}
 		}
 		else {
 			str += c;

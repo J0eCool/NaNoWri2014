@@ -59,57 +59,7 @@ int main(int argc, char** argv)
 	EntitySystem entitySystem(&config);
 
 	// ground
-	entitySystem.AddEntity(CreateEntityFromString(
-		"Ground\n"
-		"Transform 0 500 800 50\n"
-		"Renderer 0x80 0xa0 0x80 0xff\n"
-		"Collider\n"
-	));
-
-	// lower platform
-	entitySystem.AddEntity(CreateEntityFromString(
-		"PlatLo\n"
-		"Renderer 0xd0 0xc0 0x20 0xff\n"
-		"Collider\n"
-		"Transform 400 360 160 48\n"
-	));
-
-	// middle platform
-	entitySystem.AddEntity(CreateEntityFromString(
-		"PlatMid\n"
-		"Renderer 0xc0 0xd0 0x20 0xff\n"
-		"Collider\n"
-		"Transform 150 240 160 48\n"
-	));
-
-	// higher platform
-	entitySystem.AddEntity(CreateEntityFromString(
-		"PlatHi\n"
-		"Renderer 0xb0 0xf0 0x20 0xff\n"
-		"Collider\n"
-		"Transform 540 140 160 48\n"
-	));
-
-	entitySystem.AddEntity(CreateEntityFromString(
-		"Player\n"
-		"Player\n"
-		"Transform 120.0f 200.0f 50.0f 70.0f\n"
-		"Collider\n"
-		"Renderer 0x20 0xc0 0xff 0xff\n"
-	));
-
-	entitySystem.AddEntity(CreateEntityFromString(
-		"PlayerPosText\n"
-		"TextRenderer arial 24\n"
-		"Transform 50 50 0 0\n"
-	));
-
-	entitySystem.AddEntity(CreateEntityFromString(
-		"Sigma\n"
-		"SpriteRenderer Sigma\n"
-		"Transform 720 30 50 50\n"
-		"SpinningSigma 150.0f 6.0f\n"
-	));
+	AddEntitiesFromFile(entitySystem, "../Assets/Levels/Main.lvl");
 
 	static const float kMaxFramerate = 120.0f;
 	static const Uint32 kMaxFrameDelay = (Uint32)(1000.0f / kMaxFramerate);

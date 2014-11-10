@@ -1,0 +1,44 @@
+Ground
+	Transform 0 500 800 50
+	Renderer 0x80 0xa0 0x80 0xff
+	Collider
+
+PlatLo
+	Renderer 0xd0 0xc0 0x20 0xff
+	Collider
+	Transform 400 360 160 48
+
+PlatMid
+	Renderer 0xc0 0xd0 0x20 0xff
+	Collider
+	Transform 150 240 160 48
+
+PlatHi
+	Renderer 0xb0 0xf0 0x20 0xff
+	Collider
+	Transform 540 140 160 48
+
+Player
+	Player
+	Transform 120.0f 200.0f 50.0f 70.0f
+	Collider
+	Renderer 0x20 0xc0 0xff 0xff
+
+PlayerPosText
+	TextRenderer arial 24
+	Transform 50 50 0 0
+
+Sigma
+	SpriteRenderer Sigma
+	Transform 720 30 50 50
+	SpinningSigma 150.0f 6.0f
+
+Sigma
+	SpriteRenderer Sigma
+	Transform 520 30 50 50
+	SpinningSigma 50.0f 6.0f
+
+Sigma
+	SpriteRenderer Sigma_alpha
+	Transform 620 80 70 30
+	SpinningSigma -50.0f 6.0f
