@@ -14,15 +14,23 @@ Vec2::Vec2(std::initializer_list<float> dims) {
 	y = *it;
 }
 
-Vec2 Vec2::Unit(float radians) {
+Vec2 Vec2::MakeUnit(float radians) {
 	return Vec2(cos(radians), sin(radians));
 }
 
-float Vec2::lengthSquared() const {
+float Vec2::LengthSquared() const {
 	return x * x + y * y;
 }
-float Vec2::length() const {
-	return sqrt(lengthSquared());
+float Vec2::Length() const {
+	return sqrt(LengthSquared());
+}
+
+Vec2 Vec2::Unit() const {
+	float l = Length();
+	if (l == 0) {
+		return Vec2();
+	}
+	return Vec2(x / l, y / l);
 }
 
 Vec2 Vec2::operator+(Vec2 const& other) const {

@@ -16,4 +16,6 @@ public:
 	void Update(float dt) override;
 
 	std::vector<Entity *> const& GetCollidedEntities() const;
+	bool Raycast(Vec2 const& start, Vec2 const& end, float *outDist) const;
+	bool IsPointInside(Vec2 point) const;
 };

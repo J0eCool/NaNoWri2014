@@ -22,6 +22,7 @@ Player
 	Player
 	Transform 120.0 200.0 50.0 70.0
 	Collider
+	Rigidbody
 	Renderer 0x20 0xc0 0xff 0xff
 
 PlayerPosText

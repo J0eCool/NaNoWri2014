@@ -6,6 +6,7 @@
 enum ComponentType {
 	CT_INVALID,
 	CT_Collider,
+	CT_Rigidbody,
 	CT_Player,
 	CT_Renderer,
 	CT_SpriteRenderer,

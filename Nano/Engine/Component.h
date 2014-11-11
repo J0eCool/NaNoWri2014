@@ -26,5 +26,10 @@ public:
 	// Called every frame; rendering is done here
 	virtual void Draw() { }
 
+	template <typename T>
+	T* GetComponent() {
+		return _entity->GetComponent<T>();
+	}
+
 	friend Entity;
 };

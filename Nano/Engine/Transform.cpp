@@ -2,13 +2,6 @@
 
 #include "Util/Util.h"
 
-Transform::Transform() {
-}
-
-Transform::Transform(Vec2 _pos, Vec2 _size) {
-	Init(_pos, _size);
-}
-
 void Transform::Load(std::vector<std::string> const& args) {
 	pos.x = ParseFloat(args[0]);
 	pos.y = ParseFloat(args[1]);
@@ -16,9 +9,8 @@ void Transform::Load(std::vector<std::string> const& args) {
 	size.y = ParseFloat(args[3]);
 }
 
-void Transform::Init(Vec2 _pos, Vec2 _size) {
-	pos = _pos;
-	size = _size;
+Vec2 Transform::GetCenter() const {
+	return Vec2(pos.x + size.x / 2.0f, pos.y + size.y / 2.0f);
 }
 
 SDL_Rect Transform::GetRect() const {

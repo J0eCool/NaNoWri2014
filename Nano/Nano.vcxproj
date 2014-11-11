@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
+    <ClInclude Include="Components\Physics\Rigidbody.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
     <ClInclude Include="Generated\ComponentEnums.h" />
@@ -112,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Physics\Collider.cpp" />
+    <ClCompile Include="Components\Physics\Rigidbody.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />

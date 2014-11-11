@@ -19,7 +19,7 @@ public:
 	}
 
 	void Update(float dt) override {
-		SpriteRenderer *renderer = _entity->GetComponent<SpriteRenderer>();
+		SpriteRenderer *renderer = GetComponent<SpriteRenderer>();
 		Sprite *sprite = renderer->GetSprite();
 		sprite->angle += dt * _speed;
 		_t += dt * _color;

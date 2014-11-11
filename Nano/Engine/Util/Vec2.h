@@ -12,10 +12,11 @@ public:
 	Vec2(float _x, float _y);
 	Vec2(std::initializer_list<float> dims);
 
-	static Vec2 Unit(float radians);
+	static Vec2 MakeUnit(float radians);
 
-	float length() const;
-	float lengthSquared() const;
+	float Length() const;
+	float LengthSquared() const;
+	Vec2 Unit() const;
 
 	Vec2 operator+(Vec2 const& other) const;
 	Vec2 operator-(Vec2 const& other) const;

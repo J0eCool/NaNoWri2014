@@ -14,14 +14,14 @@ void Player::Update(float dt) {
 	_vel.x = 0.0f;
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 
-	auto collidedEntities = _entity->GetComponent<Collider>()->GetCollidedEntities();
+	auto collidedEntities = GetComponent<Collider>()->GetCollidedEntities();
 	_onGround = collidedEntities.size() > 0 && _vel.y >= 0.0f;
 	if (!_onGround) {
 		_vel.y += kGravity * dt;
 	}
 	else {
-		transform->pos.y = collidedEntities[0]->GetTransform()->pos.y
-			- transform->size.y;
+		//transform->pos.y = collidedEntities[0]->GetTransform()->pos.y
+		//	- transform->size.y;
 		_vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
 			_vel.y = -sqrt(2.0f * _jumpHeight * kGravity);

@@ -10,12 +10,8 @@ public:
 	Vec2 pos;
 	Vec2 size;
 
-	Transform();
-	void Load(std::vector<std::string> const& args);
+	void Load(std::vector<std::string> const& args) override;
 
-	Transform(Vec2 _pos, Vec2 _size);
-
-	void Init(Vec2 _pos, Vec2 _size);
-
+	Vec2 GetCenter() const;
 	SDL_Rect GetRect() const;
 };

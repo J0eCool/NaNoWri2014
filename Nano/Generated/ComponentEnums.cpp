@@ -6,6 +6,7 @@
 
 ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(Collider)) { return CT_Collider; }
+	if (type == &typeid(Rigidbody)) { return CT_Rigidbody; }
 	if (type == &typeid(Player)) { return CT_Player; }
 	if (type == &typeid(Renderer)) { return CT_Renderer; }
 	if (type == &typeid(SpriteRenderer)) { return CT_SpriteRenderer; }
@@ -17,6 +18,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 
 ComponentType GetComponentType(std::string name) {
 	if (name == "Collider") { return CT_Collider; }
+	if (name == "Rigidbody") { return CT_Rigidbody; }
 	if (name == "Player") { return CT_Player; }
 	if (name == "Renderer") { return CT_Renderer; }
 	if (name == "SpriteRenderer") { return CT_SpriteRenderer; }
@@ -28,6 +30,7 @@ ComponentType GetComponentType(std::string name) {
 
 Component* CreateComponentWithName(std::string name) {
 	if (name == "Collider") { return new Collider; }
+	if (name == "Rigidbody") { return new Rigidbody; }
 	if (name == "Player") { return new Player; }
 	if (name == "Renderer") { return new Renderer; }
 	if (name == "SpriteRenderer") { return new SpriteRenderer; }
