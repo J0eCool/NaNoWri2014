@@ -9,6 +9,7 @@ private:
 	int _yPoints;
 
 public:
+	Vec2 vel;
 	Rigidbody();
 
 	void Update(float dt) override;

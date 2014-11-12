@@ -35,7 +35,7 @@ void Player::Update(float dt) {
 			_vel.y *= 0.35f;
 		}
 	}
-	transform->pos += _vel * dt;
+	GetComponent<Rigidbody>()->vel = _vel;
 	transform->pos.x = clamp(transform->pos.x, 0, (float)kScreenWidth - transform->size.x);
 
 	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
