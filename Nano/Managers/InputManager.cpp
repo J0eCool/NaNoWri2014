@@ -28,6 +28,10 @@ InputType getInputForKey(SDL_Keycode key) {
 	case SDLK_k:
 		input = IT_Jump;
 		break;
+	case SDLK_LCTRL:
+	case SDLK_j:
+		input = IT_Shoot;
+		break;
 	case SDLK_RETURN:
 		Log("Breaking for debug");
 		break;
@@ -67,6 +71,9 @@ InputType getInputForButton(Uint8 buttonCode) {
 		break;
 	case 10:
 		input = IT_Jump;
+		break;
+	case 12:
+		input = IT_Shoot;
 		break;
 	case 14:
 		input = IT_Quit;
