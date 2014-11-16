@@ -4,10 +4,13 @@
 
 #include <Nano/Engine/Engine.h>
 
+class Camera;
+
 class Renderer : public Component {
 private:
 	SDL_Renderer *_renderer;
 	SDL_Color _color;
+	Camera *_camera;
 
 public:
 	Renderer();

@@ -3,6 +3,8 @@
 #include <Nano/Managers/AssetManager.h>
 #include <Nano/NanoEntityConfig.h>
 
+#include "Camera.h"
+
 void SpriteRenderer::Load(std::vector<std::string> const& args) {
 	_spriteName = args[0];
 }
@@ -18,11 +20,13 @@ void SpriteRenderer::Start() {
 		transform->size.x = (float)spriteRect.w;
 		transform->size.y = (float)spriteRect.h;
 	}
+
+	_camera = _entity->GetEntitySystem()->FindEntity("Camera")->GetComponent<Camera>();
 }
 
 void SpriteRenderer::Draw() {
 	Transform *transform = _entity->GetTransform();
-	SDL_Rect rect = transform->GetRect();
+	SDL_Rect rect = transform->GetRectWithOffset(_camera->GetOffset());
 	SDL_Texture *texture = _sprite.GetTexture();
 	SDL_SetTextureColorMod(texture, _sprite.color.r, _sprite.color.g, _sprite.color.b);
 	SDL_RenderCopyEx(_sprite.GetRenderer(), texture, nullptr, &rect,

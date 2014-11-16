@@ -9,8 +9,6 @@
 
 #include "Engine/Engine.h"
 
-#include "Components/Components.h"
-
 #include "Engine/ComponentFactory.h"
 #include "NanoEntityConfig.h"
 
@@ -56,8 +54,6 @@ int main(int argc, char** argv)
 	NanoEntityConfig config;
 	config.renderer = renderer;
 	EntitySystem entitySystem(&config);
-
-	// ground
 	AddEntitiesFromFile(entitySystem, "../Assets/Levels/Main.lvl");
 
 	static const float kMaxFramerate = 120.0f;

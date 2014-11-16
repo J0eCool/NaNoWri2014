@@ -4,6 +4,8 @@
 #include <string>
 
 class Entity;
+class EntitySystem;
+class Transform;
 
 class Component {
 protected:
@@ -17,7 +19,10 @@ public:
 	// Called when Entity is loaded
 	virtual void Load(std::vector<std::string> const& args) { }
 
-	// Called when Entity is added to EntitySystem
+	// Called when Entity is added to EntitySystem; all components are loaded, other entities not necessarily
+	virtual void Init() { }
+
+	// Called before first Update call; can access other entites safely
 	virtual void Start() { }
 
 	// Called every frame; logic is done here
@@ -27,9 +32,12 @@ public:
 	virtual void Draw() { }
 
 	template <typename T>
-	T* GetComponent() {
+	T* GetComponent() const {
 		return _entity->GetComponent<T>();
 	}
+
+	Transform* GetTransform();
+	EntitySystem* GetEntitySystem();
 
 	friend Entity;
 };

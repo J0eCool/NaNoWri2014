@@ -14,7 +14,7 @@ EntitySystem::~EntitySystem() {
 void EntitySystem::AddEntity(Entity *entity) {
 	_entities.push_back(entity);
 	entity->_entitySystem = this;
-	entity->Start();
+	entity->Init();
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
@@ -46,6 +46,10 @@ Entity* EntitySystem::FindEntity(std::string name) const {
 
 void EntitySystem::Update(float dt) {
 	for (auto entity : _entities) {
+		if (!entity->_hasStarted) {
+			entity->Start();
+			entity->_hasStarted = true;
+		}
 		entity->Update(dt);
 	}
 }

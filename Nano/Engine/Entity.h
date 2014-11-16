@@ -15,6 +15,7 @@ private:
 	std::map<ComponentType, Component *> _components;
 	EntitySystem *_entitySystem;
 	std::string _name;
+	bool _hasStarted = false;
 
 public:
 	Entity(std::string name);
@@ -38,6 +39,7 @@ public:
 		return _entitySystem;
 	}
 
+	void Init();
 	void Start();
 	void Update(float dt);
 	void Draw();

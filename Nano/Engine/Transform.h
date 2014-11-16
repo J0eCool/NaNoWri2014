@@ -14,4 +14,5 @@ public:
 
 	Vec2 GetCenter() const;
 	SDL_Rect GetRect() const;
+	SDL_Rect GetRectWithOffset(Vec2 const& offset) const;
 };

@@ -68,6 +68,9 @@ InputType getInputForButton(Uint8 buttonCode) {
 	case 10:
 		input = IT_Jump;
 		break;
+	case 14:
+		input = IT_Quit;
+		break;
 	}
 
 	return input;

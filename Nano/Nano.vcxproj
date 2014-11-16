@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Player\CameraFollow.h" />
     <ClInclude Include="Components\Rendering\Camera.h" />
     <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
@@ -114,10 +115,12 @@
     <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Player\CameraFollow.cpp" />
     <ClCompile Include="Components\Rendering\Camera.cpp" />
     <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Physics\Rigidbody.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
+    <ClCompile Include="Engine\Component.cpp" />
     <ClCompile Include="Engine\ComponentFactory.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />

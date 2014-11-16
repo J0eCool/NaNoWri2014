@@ -27,6 +27,12 @@ Transform* Entity::GetTransform() {
 	return GetComponent<Transform>();
 }
 
+void Entity::Init() {
+	for (auto kv : _components) {
+		kv.second->Init();
+	}
+}
+
 void Entity::Start() {
 	for (auto kv : _components) {
 		kv.second->Start();

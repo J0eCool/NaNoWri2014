@@ -11,32 +11,31 @@ PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f) {
 void PlayerController::Update(float dt) {
 	InputManager *input = InputManager::GetInstance();
 	Transform *transform = _entity->GetTransform();
-	_vel.x = 0.0f;
-	_vel.x = _speed * input->GetAxis(IA_Horizontal);
+	Rigidbody *rigidbody = GetComponent<Rigidbody>();
+	Vec2 vel = rigidbody->vel;
+	vel.x = 0.0f;
+	vel.x = _speed * input->GetAxis(IA_Horizontal);
 
 	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
-	_onGround = (collided & CD_Down) != 0; //collidedEntities.size() > 0 && _vel.y >= 0.0f;
-	if (!_onGround) {
-		_vel.y += kGravity * dt;
+	bool onGround = (collided & CD_Down) != 0;
+	if (!onGround) {
+		vel.y += kGravity * dt;
 	}
 	else {
-		//transform->pos.y = collidedEntities[0]->GetTransform()->pos.y
-		//	- transform->size.y;
-		_vel.y = 0.0f;
+		vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
-			_vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
-			_onGround = false;
+			vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
+			onGround = false;
 			_isHoldingJump = true;
 		}
 	}
 	if (_isHoldingJump && !input->IsHeld(IT_Jump)) {
 		_isHoldingJump = false;
-		if (_vel.y < 0.0f) {
-			_vel.y *= 0.35f;
+		if (vel.y < 0.0f) {
+			vel.y *= 0.35f;
 		}
 	}
-	GetComponent<Rigidbody>()->vel = _vel;
-	transform->pos.x = clamp(transform->pos.x, 0, (float)kScreenWidth - transform->size.x);
+	rigidbody->vel = vel;
 
 	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
 	if (text) {

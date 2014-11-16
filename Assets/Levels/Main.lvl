@@ -1,5 +1,20 @@
+Camera
+	Camera
+	Transform 0 0 0 0
+	CameraFollow Player
+
 Ground
-	Transform 0 500 800 50
+	Transform -1000 500 2800 50
+	Renderer 0x80 0xa0 0x80 0xff
+	Collider
+
+WallLeft
+	Transform -1000 0 50 500
+	Renderer 0x80 0xa0 0x80 0xff
+	Collider
+
+WallRight
+	Transform 1750 0 50 500
 	Renderer 0x80 0xa0 0x80 0xff
 	Collider
 

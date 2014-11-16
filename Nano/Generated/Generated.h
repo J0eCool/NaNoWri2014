@@ -2,3 +2,4 @@
 
 
 #include "ComponentEnums.h"
+#include "Generated.h"

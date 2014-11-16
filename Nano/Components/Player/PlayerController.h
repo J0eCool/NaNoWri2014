@@ -6,8 +6,6 @@
 
 class PlayerController : public Component {
 private:
-	Vec2 _vel;
-	bool _onGround = false;
 	bool _isHoldingJump = false;
 
 	float _speed;

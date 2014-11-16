@@ -7,10 +7,13 @@
 
 #include <Nano/Sprite.h>
 
+class Camera;
+
 class SpriteRenderer : public Component {
 private:
 	Sprite _sprite;
 	std::string _spriteName;
+	Camera *_camera;
 
 public:
 	void Load(std::vector<std::string> const& args) override;
