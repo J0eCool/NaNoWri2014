@@ -83,9 +83,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Rendering\Camera.h" />
     <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Components\Physics\Rigidbody.h" />
+    <ClInclude Include="Components\Rendering\Rendering.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
     <ClInclude Include="Generated\ComponentEnums.h" />
@@ -102,7 +104,7 @@
     <ClInclude Include="Engine\EntitySystem.h" />
     <ClInclude Include="Engine\Util\Util.h" />
     <ClInclude Include="Managers\AssetManager.h" />
-    <ClInclude Include="Components\Player\Player.h" />
+    <ClInclude Include="Components\Player\PlayerController.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="Engine\Util\Logger.h" />
     <ClInclude Include="Managers\InputManager.h" />
@@ -112,9 +114,11 @@
     <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Rendering\Camera.cpp" />
     <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Physics\Rigidbody.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
+    <ClCompile Include="Engine\ComponentFactory.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />
     <ClCompile Include="Managers\ManagerManager.cpp" />
@@ -126,7 +130,7 @@
     <ClCompile Include="Managers\AssetManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Managers\InputManager.cpp" />
-    <ClCompile Include="Components\Player\Player.cpp" />
+    <ClCompile Include="Components\Player\PlayerController.cpp" />
     <ClCompile Include="Engine\Util\Math.cpp" />
     <ClCompile Include="Engine\Util\Vec2.cpp" />
     <ClCompile Include="Components\Rendering\TextRenderer.cpp" />

@@ -19,7 +19,7 @@ PlatHi
 	Transform 540 140 160 48
 
 Player
-	Player
+	PlayerController
 	Transform 120.0 100.0 50.0 70.0
 	Collider
 	Rigidbody

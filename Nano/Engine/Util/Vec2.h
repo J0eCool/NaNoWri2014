@@ -18,6 +18,7 @@ public:
 	float LengthSquared() const;
 	Vec2 Unit() const;
 
+	Vec2 operator-() const;
 	Vec2 operator+(Vec2 const& other) const;
 	Vec2 operator-(Vec2 const& other) const;
 	Vec2 operator*(float s) const;

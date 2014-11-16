@@ -7,7 +7,8 @@
 ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(Collider)) { return CT_Collider; }
 	if (type == &typeid(Rigidbody)) { return CT_Rigidbody; }
-	if (type == &typeid(Player)) { return CT_Player; }
+	if (type == &typeid(PlayerController)) { return CT_PlayerController; }
+	if (type == &typeid(Camera)) { return CT_Camera; }
 	if (type == &typeid(Renderer)) { return CT_Renderer; }
 	if (type == &typeid(SpriteRenderer)) { return CT_SpriteRenderer; }
 	if (type == &typeid(TextRenderer)) { return CT_TextRenderer; }
@@ -19,7 +20,8 @@ ComponentType GetComponentType(const std::type_info *type) {
 ComponentType GetComponentType(std::string name) {
 	if (name == "Collider") { return CT_Collider; }
 	if (name == "Rigidbody") { return CT_Rigidbody; }
-	if (name == "Player") { return CT_Player; }
+	if (name == "PlayerController") { return CT_PlayerController; }
+	if (name == "Camera") { return CT_Camera; }
 	if (name == "Renderer") { return CT_Renderer; }
 	if (name == "SpriteRenderer") { return CT_SpriteRenderer; }
 	if (name == "TextRenderer") { return CT_TextRenderer; }
@@ -31,7 +33,8 @@ ComponentType GetComponentType(std::string name) {
 Component* CreateComponentWithName(std::string name) {
 	if (name == "Collider") { return new Collider; }
 	if (name == "Rigidbody") { return new Rigidbody; }
-	if (name == "Player") { return new Player; }
+	if (name == "PlayerController") { return new PlayerController; }
+	if (name == "Camera") { return new Camera; }
 	if (name == "Renderer") { return new Renderer; }
 	if (name == "SpriteRenderer") { return new SpriteRenderer; }
 	if (name == "TextRenderer") { return new TextRenderer; }

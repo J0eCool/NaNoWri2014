@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Physics/Collider.h"
-#include "Physics/Rigidbody.h"
+#include "Physics/Physics.h"
 #include "Player/Player.h"
-#include "Rendering/Renderer.h"
-#include "Rendering/SpriteRenderer.h"
-#include "Rendering/TextRenderer.h"
+#include "Rendering/Rendering.h"
+
+#include "Components.h"
 #include "SpinningSigma.h"

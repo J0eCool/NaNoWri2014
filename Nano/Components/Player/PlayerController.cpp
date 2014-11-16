@@ -1,14 +1,14 @@
-#include "Player.h"
+#include "PlayerController.h"
 
 #include <Nano/Managers/InputManager.h>
 #include <Nano/Constants.h>
 
 #include <Nano/Components/Components.h>
 
-Player::Player() : _speed(350.0f), _jumpHeight(180.0f) {
+PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f) {
 }
 
-void Player::Update(float dt) {
+void PlayerController::Update(float dt) {
 	InputManager *input = InputManager::GetInstance();
 	Transform *transform = _entity->GetTransform();
 	_vel.x = 0.0f;

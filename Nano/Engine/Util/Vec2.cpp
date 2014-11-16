@@ -33,6 +33,10 @@ Vec2 Vec2::Unit() const {
 	return Vec2(x / l, y / l);
 }
 
+Vec2 Vec2::operator-() const {
+	return Vec2(-x, -y);
+}
+
 Vec2 Vec2::operator+(Vec2 const& other) const {
 	return Vec2(x + other.x, y + other.y);
 }
