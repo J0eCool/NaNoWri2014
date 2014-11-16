@@ -1,37 +1,37 @@
 Camera
 	Camera
 	Transform 0 0 0 0
-	CameraFollow Player
+	CameraFollow Player -1000 1800 0 600
 
 Ground
-	Transform -1000 500 2800 50
+	Transform -1000 550 2800 50
 	Renderer 0x80 0xa0 0x80 0xff
 	Collider
 
 WallLeft
-	Transform -1000 0 50 500
+	Transform -1000 0 50 550
 	Renderer 0x80 0xa0 0x80 0xff
 	Collider
 
 WallRight
-	Transform 1750 0 50 500
+	Transform 1750 0 50 550
 	Renderer 0x80 0xa0 0x80 0xff
 	Collider
 
 PlatLo
 	Renderer 0xd0 0xc0 0x20 0xff
 	Collider
-	Transform 400 360 160 48
+	Transform 400 410 160 48
 
 PlatMid
 	Renderer 0xc0 0xd0 0x20 0xff
 	Collider
-	Transform 150 240 160 48
+	Transform 150 290 160 48
 
 PlatHi
 	Renderer 0xb0 0xf0 0x20 0xff
 	Collider
-	Transform 540 140 160 48
+	Transform 540 190 160 48
 
 Player
 	PlayerController

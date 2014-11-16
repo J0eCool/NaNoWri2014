@@ -1,7 +1,7 @@
 #include "Math.h"
 
 float clamp(float val, float lo, float hi) {
-	if (val < lo) {
+	if (val < lo || lo > hi) {
 		return lo;
 	}
 	if (val > hi) {
