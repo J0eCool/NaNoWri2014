@@ -48,14 +48,26 @@ void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
 	if (std::getline(file, line)) {
 		entity = new Entity(line);
 	}
-	while (std::getline(file, line)) {
-		if (line[0] == '\t') {
-			line.erase(line.begin());
-			AddStringComponentToEntity(entity, line);
+	bool readNext = true;
+	while (!(readNext && !std::getline(file, line))) {
+		line = TrimRight(line);
+		readNext = true;
+
+		if (!entity) {
+			if (line != "") {
+				entity = new Entity(line);
+			}
 		}
 		else {
-			system.AddEntity(entity);
-			entity = new Entity(line);
+			if (line[0] == '\t') {
+				line.erase(line.begin());
+				AddStringComponentToEntity(entity, line);
+			}
+			else {
+				system.AddEntity(entity);
+				entity = nullptr;
+				readNext = false;
+			}
 		}
 	}
 	if (entity) {

@@ -41,14 +41,14 @@ void Rigidbody::Update(float dt) {
 	static int frame = 0;
 	frame++;
 	for (auto r : rays) {
-		float dist = 0.0f;
+		float dist = FLT_MAX;
 		if (collider->Raycast(r.pos, r.pos + r.dir, &dist)) {
 			_collidedDirs = (CollisionDirection)(_collidedDirs | r.colDir);
 			if (r.colDir & CD_Horizontal) {
-				v.x = absMin(v.x, dist);
+				v.x = absMin(v.x, dist * sign1(v.x));
 			}
 			else {
-				v.y = absMin(v.y, dist);
+				v.y = absMin(v.y, dist * sign1(v.y));
 			}
 		}
 	}

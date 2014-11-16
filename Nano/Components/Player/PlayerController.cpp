@@ -9,29 +9,31 @@ PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f) {
 }
 
 void PlayerController::Update(float dt) {
+	static bool gravityDown = true;
 	InputManager *input = InputManager::GetInstance();
 	Transform *transform = _entity->GetTransform();
 	Rigidbody *rigidbody = GetComponent<Rigidbody>();
 	Vec2 vel = rigidbody->vel;
-	vel.x = 0.0f;
 	vel.x = _speed * input->GetAxis(IA_Horizontal);
 
 	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
-	bool onGround = (collided & CD_Down) != 0;
-	if (!onGround) {
-		vel.y += kGravity * dt;
+	float gDir = 1.0f;
+	if (collided & CD_Up) {
+		vel.y = 0.0f;
 	}
-	else {
+	if (collided & CD_Down) {
 		vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
-			vel.y = -sqrt(2.0f * _jumpHeight * kGravity);
-			onGround = false;
+			vel.y = -gDir * sqrt(2.0f * _jumpHeight * kGravity);
 			_isHoldingJump = true;
 		}
 	}
+	else {
+		vel.y += gDir * kGravity * dt;
+	}
 	if (_isHoldingJump && !input->IsHeld(IT_Jump)) {
 		_isHoldingJump = false;
-		if (vel.y < 0.0f) {
+		if (vel.y * gDir < 0.0f) {
 			vel.y *= 0.35f;
 		}
 	}

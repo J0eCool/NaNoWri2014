@@ -28,3 +28,23 @@ T absMin(T a, T b) {
 	}
 	return b;
 }
+
+template <typename T>
+int sign(T n) {
+	if (n < 0) {
+		return -1;
+	}
+	if (n > 0) {
+		return 1;
+	}
+	return 0;
+}
+
+template <typename T>
+int sign1(T n) {
+	if (n < 0) {
+		return -1;
+	}
+	return 1;
+}
+

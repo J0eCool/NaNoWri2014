@@ -21,6 +21,14 @@ std::vector<std::string> SplitString(std::string string, char delim) {
 	return list;
 }
 
+std::string TrimRight(std::string str, std::string trimChars) {
+	auto end = str.find_last_not_of(trimChars.c_str());
+	if (end != std::string::npos) {
+		return str.substr(0, end + 1);
+	}
+	return str;
+}
+
 int ParseInt(std::string const& str) {
 	// Parse int as hex if string starts with "0x"
 	if (str.length() > 2 && str[0] == '0' && str[1] == 'x') {
