@@ -14,8 +14,8 @@ void Player::Update(float dt) {
 	_vel.x = 0.0f;
 	_vel.x = _speed * input->GetAxis(IA_Horizontal);
 
-	auto collidedEntities = GetComponent<Collider>()->GetCollidedEntities();
-	_onGround = collidedEntities.size() > 0 && _vel.y >= 0.0f;
+	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
+	_onGround = (collided & CD_Down) != 0; //collidedEntities.size() > 0 && _vel.y >= 0.0f;
 	if (!_onGround) {
 		_vel.y += kGravity * dt;
 	}

@@ -20,3 +20,11 @@ T absMax(T a, T b) {
 	}
 	return b;
 }
+
+template <typename T>
+T absMin(T a, T b) {
+	if (abs(a) < abs(b)) {
+		return a;
+	}
+	return b;
+}
