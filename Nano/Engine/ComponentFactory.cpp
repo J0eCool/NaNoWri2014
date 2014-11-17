@@ -11,12 +11,12 @@
 
 Component* CreateComponentFromStringArray(std::vector<std::string> parts) {
 	Component* cmp = CreateComponentWithName(parts[0]);
-	if (!cmp) {
-		Log("Component of type ", parts[0], " does not exist!");
-		return nullptr;
-	}
-	parts.erase(parts.begin());
-	cmp->Load(parts);
+	//if (!cmp) {
+	//	Log("Component of type ", parts[0], " does not exist!");
+	//	return nullptr;
+	//}
+	//parts.erase(parts.begin());
+	//cmp->Load(parts);
 	return cmp;
 }
 
@@ -45,12 +45,18 @@ void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
 	std::ifstream file(filename.c_str());
 	std::string line;
 	Entity *entity = nullptr;
+	Component *component = nullptr;
+	ComponentType componentType = CT_INVALID;
 	if (std::getline(file, line)) {
 		entity = new Entity(line);
 	}
 	bool readNext = true;
+	int tabs = 0;
 	while (!(readNext && !std::getline(file, line))) {
-		line = TrimRight(line);
+		if (readNext) {
+			tabs = TabCount(line);
+			line = Trim(line);
+		}
 		readNext = true;
 
 		if (!entity) {
@@ -58,10 +64,10 @@ void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
 				entity = new Entity(line);
 			}
 		}
-		else {
-			if (line[0] == '\t') {
-				line.erase(line.begin());
-				AddStringComponentToEntity(entity, line);
+		else if (!component) {
+			if (tabs == 1) {
+				component = CreateComponentWithName(line);
+				componentType = GetComponentType(line);
 			}
 			else {
 				system.AddEntity(entity);
@@ -69,6 +75,20 @@ void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
 				readNext = false;
 			}
 		}
+		else {
+			if (tabs == 2) {
+				auto kv = SplitString(line, ':');
+				component->LoadArg(Trim(kv[0]), Trim(kv[1]));
+			}
+			else {
+				entity->AddComponent(componentType, component);
+				component = nullptr;
+				readNext = false;
+			}
+		}
+	}
+	if (component) {
+		entity->AddComponent(componentType, component);
 	}
 	if (entity) {
 		system.AddEntity(entity);

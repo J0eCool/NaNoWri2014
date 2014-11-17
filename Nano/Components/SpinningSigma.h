@@ -13,7 +13,7 @@ private:
 
 public:
 	//$$_speed:Float|_color:Float
-	void Load(std::vector<std::string> const& args) override;
+	void LoadArg(std::string const& key, std::string const& val) override;
 
 	void Update(float dt) override {
 		SpriteRenderer *renderer = GetComponent<SpriteRenderer>();

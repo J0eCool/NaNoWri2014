@@ -13,14 +13,19 @@ parseLoadArgs () {
 	line=$(grep '//\$\$' "$1" | grep -o '[^/$]*$')
 	if [ ! -z "$line" ]; then
 		echo ""
-		echo "void $class::Load(std::vector<std::string> const& args) {"
+		echo "void $class::LoadArg(std::string const& key, std::string const& val) {"
 		IFS='|' read -ra args <<< "$line"
-		argn=0
+		startElse=""
 		for i in "${args[@]}"; do
 			IFS=':' read -ra kv <<< "$i"
-			echo "	${kv[0]} = Parse${kv[1]}(args[$argn]);"
-			let "argn += 1"
+			key="${kv[0]}"
+			stripKey=$(echo "$key" | grep -o '[^_]*')
+			line="if (key == \"$stripKey\") { $key = Parse${kv[1]}(val); }"
+			[ ! -z "$startElse" ] && line="else $line"
+			startElse="yeah"
+			echo "	$line"
 		done
+		echo "	else { Log(\"ERROR: $class: Invalid argument: Key=\", key, \", Val=\", val); }"
 		echo "}"
 	fi
 }

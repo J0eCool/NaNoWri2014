@@ -1,6 +1,6 @@
 #include "StringHandling.h"
 
-std::vector<std::string> SplitString(std::string string, char delim) {
+std::vector<std::string> SplitString(std::string const& string, char delim) {
 	std::vector<std::string> list;
 	std::string str = "";
 	for (unsigned i = 0; i < string.length(); ++i) {
@@ -21,12 +21,37 @@ std::vector<std::string> SplitString(std::string string, char delim) {
 	return list;
 }
 
-std::string TrimRight(std::string str, std::string trimChars) {
+int TabCount(std::string const& line) {
+	int count = 0;
+	for (unsigned i = 0; i < line.length(); ++i) {
+		if (line[i] == '\t') {
+			count++;
+		}
+		else {
+			break;
+		}
+	}
+	return count;
+}
+
+std::string TrimRight(std::string const& str, std::string const& trimChars) {
 	auto end = str.find_last_not_of(trimChars.c_str());
 	if (end != std::string::npos) {
 		return str.substr(0, end + 1);
 	}
-	return str;
+	return "";
+}
+
+std::string TrimLeft(std::string const& str, std::string const& trimChars) {
+	auto start = str.find_first_not_of(trimChars.c_str());
+	if (start != std::string::npos) {
+		return str.substr(start, str.length());
+	}
+	return "";
+}
+
+std::string Trim(std::string const& str, std::string const& trimChars) {
+	return TrimLeft(TrimRight(str, trimChars), trimChars);
 }
 
 int ParseInt(std::string const& str) {
