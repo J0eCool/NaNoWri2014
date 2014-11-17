@@ -9,12 +9,14 @@ PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f) {
 }
 
 void PlayerController::Update(float dt) {
-	static bool gravityDown = true;
 	InputManager *input = InputManager::GetInstance();
 	Transform *transform = _entity->GetTransform();
 	Rigidbody *rigidbody = GetComponent<Rigidbody>();
 	Vec2 vel = rigidbody->vel;
 	vel.x = _speed * input->GetAxis(IA_Horizontal);
+	if (sign(vel.x)) {
+		_facingDir = sign(vel.x);
+	}
 
 	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
 	float gDir = 1.0f;
@@ -38,6 +40,17 @@ void PlayerController::Update(float dt) {
 		}
 	}
 	rigidbody->vel = vel;
+
+	if (input->IsDown(IT_Shoot)) {
+		Entity *bullet = new Entity("Bullet");
+		bullet->AddComponent(CT_Collider, (new Collider())->SetArg("layerMask", "0x2"));
+		bullet->AddComponent(CT_Bullet, new Bullet());
+		bullet->AddComponent(CT_Renderer, (new Renderer())->SetArg("color", "0xd0,0xd0,0x20"));
+		bullet->AddComponent(CT_Transform, (new Transform())->SetArg("size", "20,20"));
+		bullet->GetTransform()->pos = transform->pos + transform->size / 2.0f + Vec2(_facingDir * transform->size.x / 2.0f + (_facingDir < 0 ? -20 : 0), -10.0f);
+		bullet->GetComponent<Bullet>()->SetVel({ 600 * (float)_facingDir, 0 });
+		GetEntitySystem()->AddEntity(bullet);
+	}
 
 	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
 	if (text) {

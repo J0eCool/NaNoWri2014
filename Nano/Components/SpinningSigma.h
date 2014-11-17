@@ -22,8 +22,10 @@ public:
 		_t += dt * _color;
 		int c = lerp(sin(_t) / 2 + 0.5f, 0x00, 0xff);
 		sprite->color = { 0xff, c, 0xff, 0xff };
+	}
 
-		if (InputManager::GetInstance()->IsDown(IT_Shoot) && GetEntitySystem()->FindEntity("Sigma") == _entity) {
+	void HandleMessage(std::string const& message, void *data) override {
+		if (message == "BulletHit") {
 			GetEntitySystem()->RemoveEntity(_entity);
 		}
 	}

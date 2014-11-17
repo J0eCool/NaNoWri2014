@@ -6,6 +6,10 @@
 
 #include <Windows.h>
 
+#ifdef SendMessage
+#undef SendMessage
+#endif
+
 inline void Log() {
 	std::cout << std::endl;
 	OutputDebugString("\n");

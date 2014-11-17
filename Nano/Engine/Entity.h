@@ -44,5 +44,7 @@ public:
 	void Update(float dt);
 	void Draw();
 
+	void SendMessage(std::string const& message, void *data = nullptr);
+
 	friend EntitySystem;
 };

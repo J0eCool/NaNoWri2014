@@ -50,3 +50,9 @@ void Entity::Draw() {
 		it->second->Draw();
 	}
 }
+
+void Entity::SendMessage(std::string const& message, void *data) {
+	for (auto kv : _components) {
+		kv.second->HandleMessage(message, data);
+	}
+}

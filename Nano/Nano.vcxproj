@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Player\Bullet.h" />
     <ClInclude Include="Components\Player\CameraFollow.h" />
     <ClInclude Include="Components\Rendering\Camera.h" />
     <ClInclude Include="Components\Physics\Collider.h" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Player\Bullet.cpp" />
     <ClCompile Include="Components\Player\CameraFollow.cpp" />
     <ClCompile Include="Components\Rendering\Camera.cpp" />
     <ClCompile Include="Components\Physics\Collider.cpp" />

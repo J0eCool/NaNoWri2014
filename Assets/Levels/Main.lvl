@@ -88,6 +88,7 @@ Player
 		pos: 120,100
 		size: 50,70
 	Collider
+		layerMask: 0x01
 	Rigidbody
 	Renderer
 		color: 0x20,0xc0,0xff
@@ -110,6 +111,7 @@ Sigma
 		speed: 150.0
 		color: 6.0
 	Collider
+		layerMask: 0x02
 
 Sigma
 	SpriteRenderer
@@ -121,6 +123,7 @@ Sigma
 		speed: 50.0
 		color: 6.0
 	Collider
+		layerMask: 0x02
 
 Sigma
 	SpriteRenderer
@@ -132,3 +135,4 @@ Sigma
 		speed: -50.0
 		color: 6.0
 	Collider
+		layerMask: 0x02

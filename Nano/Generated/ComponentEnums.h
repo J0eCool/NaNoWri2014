@@ -7,6 +7,7 @@ enum ComponentType {
 	CT_INVALID,
 	CT_Collider,
 	CT_Rigidbody,
+	CT_Bullet,
 	CT_CameraFollow,
 	CT_PlayerController,
 	CT_Camera,

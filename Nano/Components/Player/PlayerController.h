@@ -7,6 +7,7 @@
 class PlayerController : public Component {
 private:
 	bool _isHoldingJump = false;
+	int _facingDir = 1;
 
 	float _speed;
 	float _jumpHeight;

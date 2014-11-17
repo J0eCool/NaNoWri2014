@@ -1,6 +1,16 @@
 #include <Nano/Components/Components.h>
 #include <Nano/Engine/Engine.h>
 
+void Collider::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "layerMask") { _layerMask = ParseInt(val); }
+	else { Log("ERROR: Collider: Invalid argument: Key=", key, ", Val=", val); }
+}
+
+void Bullet::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "vel") { _vel = ParseVec2(val); }
+	else { Log("ERROR: Bullet: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void CameraFollow::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "followName") { _followName = ParseString(val); }
 	else if (key == "leftBound") { _leftBound = ParseFloat(val); }

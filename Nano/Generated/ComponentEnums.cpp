@@ -7,6 +7,7 @@
 ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(Collider)) { return CT_Collider; }
 	if (type == &typeid(Rigidbody)) { return CT_Rigidbody; }
+	if (type == &typeid(Bullet)) { return CT_Bullet; }
 	if (type == &typeid(CameraFollow)) { return CT_CameraFollow; }
 	if (type == &typeid(PlayerController)) { return CT_PlayerController; }
 	if (type == &typeid(Camera)) { return CT_Camera; }
@@ -21,6 +22,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 ComponentType GetComponentType(std::string name) {
 	if (name == "Collider") { return CT_Collider; }
 	if (name == "Rigidbody") { return CT_Rigidbody; }
+	if (name == "Bullet") { return CT_Bullet; }
 	if (name == "CameraFollow") { return CT_CameraFollow; }
 	if (name == "PlayerController") { return CT_PlayerController; }
 	if (name == "Camera") { return CT_Camera; }
@@ -35,6 +37,7 @@ ComponentType GetComponentType(std::string name) {
 Component* CreateComponentWithName(std::string name) {
 	if (name == "Collider") { return new Collider; }
 	if (name == "Rigidbody") { return new Rigidbody; }
+	if (name == "Bullet") { return new Bullet; }
 	if (name == "CameraFollow") { return new CameraFollow; }
 	if (name == "PlayerController") { return new PlayerController; }
 	if (name == "Camera") { return new Camera; }

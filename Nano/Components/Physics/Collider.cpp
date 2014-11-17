@@ -1,5 +1,8 @@
 #include "Collider.h"
 
+Collider::Collider() : _layerMask(0xffff) {
+}
+
 bool Collider::collides(Collider *other) {
 	Transform *a = _entity->GetTransform();
 	Transform *b = other->_entity->GetTransform();
@@ -36,7 +39,7 @@ void Collider::Update(float dt) {
 	auto entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
-		if (entity != _entity && col && collides(col)) {
+		if (entity != _entity && col && LayersIntersect(col) && collides(col)) {
 			_collidedThisFrame.push_back(entity);
 		}
 	}
@@ -61,13 +64,17 @@ bool lineIntersects(Vec2 const& a1, Vec2 const& a2,
 	return false;
 }
 
+bool Collider::LayersIntersect(Collider *other) const {
+	return (other->_layerMask & _layerMask) != 0;
+}
+
 bool Collider::Raycast(Vec2 const& start, Vec2 const& end, float *outDist) const {
 	bool collided = false;
 	float dist = FLT_MAX;
 	auto entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
-		if (col && entity != _entity) {
+		if (col && entity != _entity && LayersIntersect(col)) {
 			if (col->IsPointInside(start)) {
 				if (outDist) {
 					*outDist = 0.0f;
