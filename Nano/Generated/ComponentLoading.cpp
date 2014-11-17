@@ -20,6 +20,13 @@ void CameraFollow::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: CameraFollow: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void PlayerController::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "speed") { _speed = ParseFloat(val); }
+	else if (key == "jumpHeight") { _jumpHeight = ParseFloat(val); }
+	else if (key == "shotOffset") { _shotOffset = ParseVec2(val); }
+	else { Log("ERROR: PlayerController: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Renderer::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "color") { _color = ParseColor(val); }
 	else { Log("ERROR: Renderer: Invalid argument: Key=", key, ", Val=", val); }

@@ -84,14 +84,17 @@ PlatHigher
 
 Player
 	PlayerController
+		speed: 350
+		jumpHeight: 180
+		shotOffset: 30,-10
 	Transform
 		pos: 120,100
-		size: 50,70
+		size: 60,60
 	Collider
 		layerMask: 0x01
 	Rigidbody
-	Renderer
-		color: 0x20,0xc0,0xff
+	SpriteRenderer
+		spriteName: Player
 
 PlayerPosText
 	TextRenderer

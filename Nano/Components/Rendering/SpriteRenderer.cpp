@@ -25,8 +25,15 @@ void SpriteRenderer::Draw() {
 	SDL_Rect rect = transform->GetRectWithOffset(_camera->GetOffset());
 	SDL_Texture *texture = _sprite.GetTexture();
 	SDL_SetTextureColorMod(texture, _sprite.color.r, _sprite.color.g, _sprite.color.b);
+	auto flip = SDL_FLIP_NONE;
+	if (_sprite.horizFlip) {
+		flip = (SDL_RendererFlip)(flip | SDL_FLIP_HORIZONTAL);
+	}
+	if (_sprite.vertFlip) {
+		flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+	}
 	SDL_RenderCopyEx(_sprite.GetRenderer(), texture, nullptr, &rect,
-		_sprite.angle, nullptr, SDL_FLIP_NONE);
+		_sprite.angle, nullptr, flip);
 }
 
 Sprite* SpriteRenderer::GetSprite() {

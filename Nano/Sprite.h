@@ -17,6 +17,8 @@ public:
 
 	SDL_Color color;
 	float angle = 0.0f;
+	bool horizFlip = false;
+	bool vertFlip = false;
 
 	SDL_Texture* GetTexture() const;
 	SDL_Renderer* GetRenderer() const;

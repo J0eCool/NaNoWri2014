@@ -6,16 +6,19 @@
 
 class PlayerController : public Component {
 private:
+	float _speed;
+	float _jumpHeight;
+	Vec2 _shotOffset;
+
 	bool _isHoldingJump = false;
 	int _facingDir = 1;
 
-	float _speed;
-	float _jumpHeight;
-	float _groundHeight;
 	const float kGravity = 2500.0f;
 
 public:
 	PlayerController();
+	//$$_speed:Float|_jumpHeight:Float|_shotOffset:Vec2
+	void LoadArg(std::string const& key, std::string const& val) override;
 
 	void Update(float dt) override;
 };
