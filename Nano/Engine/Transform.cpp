@@ -2,13 +2,6 @@
 
 #include "Util/Util.h"
 
-void Transform::Load(std::vector<std::string> const& args) {
-	pos.x = ParseFloat(args[0]);
-	pos.y = ParseFloat(args[1]);
-	size.x = ParseFloat(args[2]);
-	size.y = ParseFloat(args[3]);
-}
-
 Vec2 Transform::GetCenter() const {
 	return Vec2(pos.x + size.x / 2.0f, pos.y + size.y / 2.0f);
 }

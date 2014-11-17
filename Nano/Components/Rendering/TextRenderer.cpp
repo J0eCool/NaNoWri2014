@@ -7,12 +7,6 @@ TextRenderer::TextRenderer() :
 		_text(""), _isDirty(true), _texture(nullptr) {
 }
 
-void TextRenderer::Load(std::vector<std::string> const& args) {
-	std::string fontName = args[0];
-	int fontSize = ParseInt(args[1]);
-	_font = AssetManager::GetInstance()->LoadFont(fontName, fontSize);
-}
-
 void TextRenderer::renderText() {
 	if (_text == "") {
 		_text = " ";
@@ -33,6 +27,8 @@ void TextRenderer::renderText() {
 void TextRenderer::Start() {
 	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
 	_renderer = config->renderer;
+
+	_font = AssetManager::GetInstance()->LoadFont(_fontName, _fontSize);
 }
 
 void TextRenderer::Draw() {

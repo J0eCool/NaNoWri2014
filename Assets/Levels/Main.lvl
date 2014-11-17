@@ -1,75 +1,78 @@
 Camera
 	Camera
-	Transform 0 0 0 0
+	Transform 0,0 0,0
 	CameraFollow Player -1000 1800 0 600
 
 Ground
-	Transform -1000 550 2800 50
-	Renderer 0x80 0xa0 0x80 0xff
+	Transform -1000,550 2800,50
+	Renderer 0x80,0xa0,0x80
 	Collider
 
 Ceiling
-	Transform -1000 0 2800 20
-	Renderer 0x80 0xa0 0x80 0xff
+	Transform -1000,0 2800,20
+	Renderer 0x80,0xa0,0x80
 	Collider
 
 WallLeft
-	Transform -1000 0 50 550
-	Renderer 0x80 0xa0 0x80 0xff
+	Transform -1000,0 50,550
+	Renderer 0x80,0xa0,0x80
 	Collider
 
 WallRight
-	Transform 1750 0 50 550
-	Renderer 0x80 0xa0 0x80 0xff
+	Transform 1750,0 50,550
+	Renderer 0x80,0xa0,0x80
 	Collider
 
 PlatLo
-	Renderer 0x80 0xa0 0x80 0xff
+	Renderer 0x80,0xa0,0x80
 	Collider
-	Transform 400 410 160 48
+	Transform 400,410 160,48
 
 PlatLoColumn
-	Renderer 0x80 0xa0 0x80 0xff
+	Renderer 0x80,0xa0,0x80
 	Collider
-	Transform 456 458 48 92
+	Transform 456,458 48,92
 
 PlatMid
-	Renderer 0x80 0xa0 0x80 0xff
+	Renderer 0x80,0xa0,0x80
 	Collider
-	Transform 150 290 160 48
+	Transform 150,290 160,48
 
 PlatHi
-	Renderer 0x80 0xa0 0x80 0xff
+	Renderer 0x80,0xa0,0x80
 	Collider
-	Transform 540 190 160 48
+	Transform 540,190 160,48
 
 PlatHigher
-	Renderer 0x80 0xa0 0x80 0xff
+	Renderer 0x80,0xa0,0x80
 	Collider
-	Transform 740 110 160 48
+	Transform 740,110 160,48
 
 Player
 	PlayerController
-	Transform 120.0 100.0 50.0 70.0
+	Transform 120,100 50,70
 	Collider
 	Rigidbody
-	Renderer 0x20 0xc0 0xff 0xff
+	Renderer 0x20,0xc0,0xff
 
 PlayerPosText
 	TextRenderer arial 24
-	Transform 50 50 0 0
+	Transform 50,50 0,0
 
 Sigma
 	SpriteRenderer Sigma
-	Transform 720 30 50 50
+	Transform 720,30 50,50
 	SpinningSigma 150.0 6.0
+	Collider
 
 Sigma
 	SpriteRenderer Sigma
-	Transform 520 30 50 50
+	Transform 520,30 50,50
 	SpinningSigma 50.0 6.0
+	Collider
 
 Sigma
 	SpriteRenderer Sigma_alpha
-	Transform 620 80 70 30
+	Transform 620,80 70,30
 	SpinningSigma -50.0 6.0
+	Collider

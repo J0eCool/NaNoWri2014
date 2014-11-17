@@ -5,10 +5,6 @@
 
 #include "Camera.h"
 
-void SpriteRenderer::Load(std::vector<std::string> const& args) {
-	_spriteName = args[0];
-}
-
 void SpriteRenderer::Start() {
 	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
 	_sprite = AssetManager::GetInstance()->LoadSprite(_spriteName, config->renderer);

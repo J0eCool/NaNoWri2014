@@ -14,6 +14,7 @@ private:
 
 public:
 	Renderer();
+	//$$_color:Color
 	void Load(std::vector<std::string> const& args) override;
 
 	void Start() override;

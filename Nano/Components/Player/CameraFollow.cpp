@@ -4,14 +4,6 @@
 
 const static Vec2 kHalfScreen((float)kScreenWidth / 2.0f, (float)kScreenHeight / 2.0f);
 
-void CameraFollow::Load(std::vector<std::string> const& args) {
-	_followName = args[0];
-	_leftBound = ParseFloat(args[1]);
-	_rightBound = ParseFloat(args[2]);
-	_upBound = ParseFloat(args[3]);
-	_downBound = ParseFloat(args[4]);
-}
-
 void CameraFollow::Start() {
 	_followTransform = GetEntitySystem()->FindEntity(_followName)->GetTransform();
 }

@@ -10,6 +10,7 @@ public:
 	Vec2 pos;
 	Vec2 size;
 
+	//$$pos:Vec2|size:Vec2
 	void Load(std::vector<std::string> const& args) override;
 
 	Vec2 GetCenter() const;

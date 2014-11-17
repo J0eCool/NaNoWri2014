@@ -8,6 +8,8 @@
 
 class TextRenderer : public Component {
 private:
+	std::string _fontName;
+	int _fontSize;
 	std::string _text;
 	bool _isDirty;
 	SDL_Texture *_texture;
@@ -18,6 +20,7 @@ private:
 
 public:
 	TextRenderer();
+	//$$_fontName:String|_fontSize:Int
 	void Load(std::vector<std::string> const& args) override;
 
 	void Start() override;

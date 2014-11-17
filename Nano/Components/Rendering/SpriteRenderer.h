@@ -16,6 +16,7 @@ private:
 	Camera *_camera;
 
 public:
+	//$$_spriteName:String
 	void Load(std::vector<std::string> const& args) override;
 
 	void Start() override;

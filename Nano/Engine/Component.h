@@ -18,6 +18,7 @@ protected:
 public:
 	// Called when Entity is loaded
 	virtual void Load(std::vector<std::string> const& args) { }
+	virtual void LoadArg(std::string const& key, std::string const val) { }
 
 	// Called when Entity is added to EntitySystem; all components are loaded, other entities not necessarily
 	virtual void Init() { }

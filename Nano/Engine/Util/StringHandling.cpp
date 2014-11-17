@@ -40,3 +40,23 @@ int ParseInt(std::string const& str) {
 float ParseFloat(std::string const& str) {
 	return (float)atof(str.c_str());
 }
+
+std::string ParseString(std::string const& str) {
+	return str;
+}
+
+Vec2 ParseVec2(std::string const& str) {
+	auto parts = SplitString(str, ',');
+	float x = ParseFloat(parts[0]);
+	float y = ParseFloat(parts[1]);
+	return Vec2(x, y);
+}
+
+SDL_Color ParseColor(std::string const& str) {
+	auto parts = SplitString(str, ',');
+	int r = ParseInt(parts[0]);
+	int g = ParseInt(parts[1]);
+	int b = ParseInt(parts[2]);
+	int a = parts.size() > 3 ? ParseInt(parts[3]) : 0xff;
+	return { r, g, b, a };
+}

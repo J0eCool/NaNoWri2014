@@ -8,16 +8,6 @@
 Renderer::Renderer() : _color({ 0xff, 0xff, 0xff, 0xff }) {
 }
 
-void Renderer::Load(std::vector<std::string> const& args) {
-	int r = ParseInt(args[0]);
-	int g = ParseInt(args[1]);
-	int b = ParseInt(args[2]);
-	int a = ParseInt(args[3]);
-
-	_color = { r, g, b, a, };
-}
-
-
 void Renderer::Start() {
 	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
 	_renderer = config->renderer;

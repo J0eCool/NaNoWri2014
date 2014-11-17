@@ -12,12 +12,8 @@ private:
 	float _t = 0.0f;
 
 public:
-	void Load(std::vector<std::string> const& args) override {
-		float speed = ParseFloat(args[0]);
-		float color = ParseFloat(args[1]);
-		_speed = speed;
-		_color = color;
-	}
+	//$$_speed:Float|_color:Float
+	void Load(std::vector<std::string> const& args) override;
 
 	void Update(float dt) override {
 		SpriteRenderer *renderer = GetComponent<SpriteRenderer>();
