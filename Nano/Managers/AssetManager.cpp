@@ -107,7 +107,7 @@ Sprite AssetManager::LoadSprite(String spriteName, SDL_Renderer *renderer) {
 }
 
 template <typename T, typename C, typename F>
-void unloadItem(T item, C container, F freeCall) {
+void unloadItem(T item, C& container, F freeCall) {
 	for (auto it = container.begin(); it != container.end(); ++it) {
 		if (it->second == item) {
 			container.erase(it);

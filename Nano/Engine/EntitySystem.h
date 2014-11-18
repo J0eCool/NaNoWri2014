@@ -12,7 +12,7 @@ class EntitySystem {
 private:
 	Vector<Entity *> _entities;
 	Vector<Entity *> _entitiesToAdd;
-	Vector<Entity *> _entitiesToRemove;
+	Set<Entity *> _entitiesToRemove;
 	EntityConfig *_config;
 
 public:

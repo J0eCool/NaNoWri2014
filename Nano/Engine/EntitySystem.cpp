@@ -7,13 +7,17 @@
 EntitySystem::EntitySystem(EntityConfig *config) : _config(config) {
 }
 
-EntitySystem::~EntitySystem() {
-	auto entityLists = { _entities, _entitiesToAdd, _entitiesToRemove };
-	for (auto list : entityLists) {
-		for (auto ent : list) {
-			delete ent;
-		}
+template <typename T>
+void deleteAll(T const& collection) {
+	for (auto item : collection) {
+		delete item;
 	}
+}
+
+EntitySystem::~EntitySystem() {
+	deleteAll(_entities);
+	deleteAll(_entitiesToAdd);
+	deleteAll(_entitiesToRemove);
 }
 
 void EntitySystem::AddEntity(Entity *entity) {
@@ -21,11 +25,11 @@ void EntitySystem::AddEntity(Entity *entity) {
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
-	_entitiesToRemove.push_back(entity);
+	_entitiesToRemove.insert(entity);
 }
 
 bool EntitySystem::WillRemove(Entity *entity) const {
-	return std::find(_entitiesToRemove.begin(), _entitiesToRemove.end(), entity) != _entitiesToRemove.end();
+	return _entitiesToRemove.find(entity) != _entitiesToRemove.end();
 }
 
 EntityConfig* EntitySystem::GetConfig() const {
