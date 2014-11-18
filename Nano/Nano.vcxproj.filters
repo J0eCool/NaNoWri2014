@@ -108,6 +108,9 @@
     <ClInclude Include="Components\Player\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Enemy\EnemyHealth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -180,6 +183,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Player\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Enemy\EnemyHealth.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

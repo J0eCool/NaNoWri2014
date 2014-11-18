@@ -5,6 +5,7 @@
 #include <Nano/Components/Components.h>
 
 ComponentType GetComponentType(const std::type_info *type) {
+	if (type == &typeid(EnemyHealth)) { return CT_EnemyHealth; }
 	if (type == &typeid(Collider)) { return CT_Collider; }
 	if (type == &typeid(Rigidbody)) { return CT_Rigidbody; }
 	if (type == &typeid(Bullet)) { return CT_Bullet; }
@@ -20,6 +21,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 }
 
 ComponentType GetComponentType(std::string name) {
+	if (name == "EnemyHealth") { return CT_EnemyHealth; }
 	if (name == "Collider") { return CT_Collider; }
 	if (name == "Rigidbody") { return CT_Rigidbody; }
 	if (name == "Bullet") { return CT_Bullet; }
@@ -35,6 +37,7 @@ ComponentType GetComponentType(std::string name) {
 }
 
 Component* CreateComponentWithName(std::string name) {
+	if (name == "EnemyHealth") { return new EnemyHealth; }
 	if (name == "Collider") { return new Collider; }
 	if (name == "Rigidbody") { return new Rigidbody; }
 	if (name == "Bullet") { return new Bullet; }

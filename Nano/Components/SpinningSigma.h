@@ -23,10 +23,4 @@ public:
 		int c = lerp(sin(_t) / 2 + 0.5f, 0x00, 0xff);
 		sprite->color = { 0xff, c, 0xff, 0xff };
 	}
-
-	void HandleMessage(std::string const& message, void *data) override {
-		if (message == "BulletHit") {
-			GetEntitySystem()->RemoveEntity(_entity);
-		}
-	}
 };

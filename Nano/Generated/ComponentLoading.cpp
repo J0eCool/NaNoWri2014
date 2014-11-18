@@ -1,6 +1,11 @@
 #include <Nano/Components/Components.h>
 #include <Nano/Engine/Engine.h>
 
+void EnemyHealth::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "maxHealth") { _maxHealth = ParseInt(val); }
+	else { Log("ERROR: EnemyHealth: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Collider::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "layerMask") { _layerMask = ParseInt(val); }
 	else { Log("ERROR: Collider: Invalid argument: Key=", key, ", Val=", val); }

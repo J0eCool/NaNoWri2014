@@ -113,6 +113,8 @@ Sigma
 	SpinningSigma
 		speed: 150.0
 		color: 6.0
+	EnemyHealth
+		maxHealth: 2
 	Collider
 		layerMask: 0x02
 
@@ -125,6 +127,8 @@ Sigma
 	SpinningSigma
 		speed: 50.0
 		color: 6.0
+	EnemyHealth
+		maxHealth: 2
 	Collider
 		layerMask: 0x02
 
@@ -137,5 +141,7 @@ Sigma
 	SpinningSigma
 		speed: -50.0
 		color: 6.0
+	EnemyHealth
+		maxHealth: 2
 	Collider
 		layerMask: 0x02
