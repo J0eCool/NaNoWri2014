@@ -2,7 +2,9 @@
 
 #include "Collider.h"
 
-Rigidbody::Rigidbody() : _penetrationResistance(100.0f), _xPoints(1), _yPoints(1) {
+const float Rigidbody::kGravity = 2500.0f;
+
+Rigidbody::Rigidbody() : _xPoints(1), _yPoints(1) {
 }
 
 struct RayPointData {
@@ -51,6 +53,13 @@ void Rigidbody::Update(float dt) {
 				v.y = absMin(v.y, dist * sign1(v.y));
 			}
 		}
+	}
+
+	if (_collidedDirs & CD_Vertical) {
+		vel.y = 0.0f;
+	}
+	if (!(_collidedDirs & CD_Down)) {
+		vel.y += kGravity * dt;
 	}
 
 	transform->pos += v;

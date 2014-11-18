@@ -1,5 +1,7 @@
 #include "Vec2.h"
 
+#include "Math.h"
+
 #include <math.h>
 #include <sstream>
 #include <assert.h>
@@ -16,6 +18,14 @@ Vec2::Vec2(std::initializer_list<float> dims) {
 
 Vec2 Vec2::MakeUnit(float radians) {
 	return Vec2(cos(radians), sin(radians));
+}
+
+Vec2 Vec2::RandUnit() {
+	return Vec2::MakeUnit(randFloat(0.0f, 2.0f * PI));
+}
+
+Vec2 Vec2::Rand(Vec2 const& lo, Vec2 const& hi) {
+	return Vec2(randFloat(lo.x, hi.x), randFloat(lo.y, hi.y));
 }
 
 float Vec2::LengthSquared() const {

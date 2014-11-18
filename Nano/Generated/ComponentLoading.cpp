@@ -6,6 +6,11 @@ void EnemyHealth::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: EnemyHealth: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void EnemySpawner::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "spawnLimit") { _spawnLimit = ParseInt(val); }
+	else { Log("ERROR: EnemySpawner: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Collider::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "layerMask") { _layerMask = ParseInt(val); }
 	else { Log("ERROR: Collider: Invalid argument: Key=", key, ", Val=", val); }

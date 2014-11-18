@@ -14,6 +14,8 @@ public:
 	Vec2(std::initializer_list<float> dims);
 
 	static Vec2 MakeUnit(float radians);
+	static Vec2 RandUnit();
+	static Vec2 Rand(Vec2 const& lo, Vec2 const& hi);
 
 	float Length() const;
 	float LengthSquared() const;

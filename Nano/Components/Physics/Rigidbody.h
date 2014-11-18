@@ -15,12 +15,13 @@ enum CollisionDirection {
 
 class Rigidbody : public Component {
 private:
-	float _penetrationResistance;
 	int _xPoints;
 	int _yPoints;
 	CollisionDirection _collidedDirs;
 
 public:
+	const static float kGravity;
+
 	Vec2 vel;
 	Rigidbody();
 

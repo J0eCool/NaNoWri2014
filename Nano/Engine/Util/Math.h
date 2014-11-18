@@ -2,6 +2,8 @@
 
 #include <math.h>
 
+const float PI = 3.14159265f;
+
 float clamp(float val, float lo, float hi);
 float clamp01(float val);
 
@@ -48,3 +50,6 @@ int sign1(T n) {
 	return 1;
 }
 
+int randInt(int lo, int hi);
+float randFloat();
+float randFloat(float lo, float hi);

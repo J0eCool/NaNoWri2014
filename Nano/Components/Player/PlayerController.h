@@ -13,8 +13,6 @@ private:
 	bool _isHoldingJump = false;
 	int _facingDir = 1;
 
-	const float kGravity = 2500.0f;
-
 public:
 	PlayerController();
 	//$$_speed:Float|_jumpHeight:Float|_shotOffset:Vec2

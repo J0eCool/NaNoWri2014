@@ -145,3 +145,10 @@ Sigma
 		maxHealth: 2
 	Collider
 		layerMask: 0x02
+
+Spawner
+	Transform
+		pos: 800,80
+		size: 600,40
+	EnemySpawner
+		spawnLimit: 2

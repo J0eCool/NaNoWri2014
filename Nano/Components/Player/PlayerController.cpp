@@ -20,18 +20,11 @@ void PlayerController::Update(float dt) {
 
 	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
 	float gDir = 1.0f;
-	if (collided & CD_Up) {
-		vel.y = 0.0f;
-	}
 	if (collided & CD_Down) {
-		vel.y = 0.0f;
 		if (input->IsDown(IT_Jump)) {
-			vel.y = -gDir * sqrt(2.0f * _jumpHeight * kGravity);
+			vel.y = -gDir * sqrt(2.0f * _jumpHeight * Rigidbody::kGravity);
 			_isHoldingJump = true;
 		}
-	}
-	else {
-		vel.y += gDir * kGravity * dt;
 	}
 	if (_isHoldingJump && !input->IsHeld(IT_Jump)) {
 		_isHoldingJump = false;
@@ -46,7 +39,7 @@ void PlayerController::Update(float dt) {
 		Entity *bullet = new Entity("Bullet");
 		bullet->AddComponent(CT_Collider, (new Collider())->SetArg("layerMask", "0x2"));
 		bullet->AddComponent(CT_Bullet, new Bullet());
-		bullet->AddComponent(CT_Renderer, (new SpriteRenderer())->SetArg("spriteName", "Bullet"));
+		bullet->AddComponent(CT_SpriteRenderer, (new SpriteRenderer())->SetArg("spriteName", "Bullet"));
 		bullet->AddComponent(CT_Transform, new Transform());
 		auto offset = _shotOffset;
 		offset.x *= _facingDir;
