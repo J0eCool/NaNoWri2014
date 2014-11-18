@@ -1,14 +1,14 @@
 #pragma once
 
-#include <string>
 #include <sstream>
 #include <iostream>
 
 #include <Windows.h>
-
 #ifdef SendMessage
 #undef SendMessage
 #endif
+
+#include "Containers.h"
 
 inline void Log() {
 	std::cout << std::endl;
@@ -16,7 +16,7 @@ inline void Log() {
 }
 
 template <typename ... Ts>
-inline void Log(std::string const& str, Ts ... rest) {
+inline void Log(String const& str, Ts ... rest) {
 	std::cout << str;
 	OutputDebugString(str.c_str());
 	Log(rest...);

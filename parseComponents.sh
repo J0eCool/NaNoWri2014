@@ -15,7 +15,7 @@ outFile="$outPath/ComponentEnums.h"
 
 echo '#pragma once' > $outFile
 echo '' >> $outFile
-echo '#include <string>' >> $outFile
+echo '#include <Nano/Engine/Util/Util.h>' >> $outFile
 echo '#include <typeinfo>' >> $outFile
 echo '' >> $outFile
 echo 'enum ComponentType {' >> $outFile
@@ -26,8 +26,8 @@ echo '' >> $outFile
 echo 'class Component;' >> $outFile
 echo '' >> $outFile
 echo 'ComponentType GetComponentType(const std::type_info *type);' >> $outFile
-echo 'ComponentType GetComponentType(std::string name);' >> $outFile
-echo 'Component* CreateComponentWithName(std::string name);' >> $outFile
+echo 'ComponentType GetComponentType(String name);' >> $outFile
+echo 'Component* CreateComponentWithName(String name);' >> $outFile
 
 
 
@@ -35,8 +35,7 @@ outFile="$outPath/ComponentEnums.cpp"
 
 echo '#include "ComponentEnums.h"' > $outFile
 echo '' >> $outFile
-echo '#include <string>' >> $outFile
-echo '#include <map>' >> $outFile
+echo '#include <Nano/Engine/Util/Util.h>' >> $outFile
 echo '#include <Nano/Components/Components.h>' >> $outFile
 echo '' >> $outFile
 echo 'ComponentType GetComponentType(const std::type_info *type) {' >> $outFile
@@ -44,12 +43,12 @@ echo 'ComponentType GetComponentType(const std::type_info *type) {' >> $outFile
 echo '	return CT_INVALID;' >> $outFile
 echo '}' >> $outFile
 echo '' >> $outFile
-echo 'ComponentType GetComponentType(std::string name) {' >> $outFile
+echo 'ComponentType GetComponentType(String name) {' >> $outFile
 	echo "$componentTypes" | xargs -I %% echo '	if (name == "%%") { return CT_%%; }' >> $outFile
 echo '	return CT_INVALID;' >> $outFile
 echo '}' >> $outFile
 echo '' >> $outFile
-echo 'Component* CreateComponentWithName(std::string name) {' >> $outFile
+echo 'Component* CreateComponentWithName(String name) {' >> $outFile
 	echo "$componentTypes" | xargs -I %% echo '	if (name == "%%") { return new %%; }' >> $outFile
 echo '	return nullptr;' >> $outFile
 echo '}' >> $outFile

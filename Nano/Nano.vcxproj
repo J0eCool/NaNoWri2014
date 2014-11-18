@@ -92,6 +92,7 @@
     <ClInclude Include="Components\Physics\Rigidbody.h" />
     <ClInclude Include="Components\Rendering\Rendering.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
+    <ClInclude Include="Engine\Util\Containers.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
     <ClInclude Include="Generated\ComponentEnums.h" />
     <ClInclude Include="Managers\ManagerManager.h" />

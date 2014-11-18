@@ -1,7 +1,6 @@
 #include "ComponentEnums.h"
 
-#include <string>
-#include <map>
+#include <Nano/Engine/Util/Util.h>
 #include <Nano/Components/Components.h>
 
 ComponentType GetComponentType(const std::type_info *type) {
@@ -20,7 +19,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 	return CT_INVALID;
 }
 
-ComponentType GetComponentType(std::string name) {
+ComponentType GetComponentType(String name) {
 	if (name == "EnemyHealth") { return CT_EnemyHealth; }
 	if (name == "Collider") { return CT_Collider; }
 	if (name == "Rigidbody") { return CT_Rigidbody; }
@@ -36,7 +35,7 @@ ComponentType GetComponentType(std::string name) {
 	return CT_INVALID;
 }
 
-Component* CreateComponentWithName(std::string name) {
+Component* CreateComponentWithName(String name) {
 	if (name == "EnemyHealth") { return new EnemyHealth; }
 	if (name == "Collider") { return new Collider; }
 	if (name == "Rigidbody") { return new Rigidbody; }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include <Nano/Engine/Util/Util.h>
 #include <typeinfo>
 
 enum ComponentType {
@@ -22,5 +22,5 @@ enum ComponentType {
 class Component;
 
 ComponentType GetComponentType(const std::type_info *type);
-ComponentType GetComponentType(std::string name);
-Component* CreateComponentWithName(std::string name);
+ComponentType GetComponentType(String name);
+Component* CreateComponentWithName(String name);

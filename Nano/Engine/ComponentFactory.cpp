@@ -9,7 +9,7 @@
 #include <fstream>
 #include <sstream>
 
-Component* CreateComponentFromStringArray(std::vector<std::string> parts) {
+Component* CreateComponentFromStringArray(Vector<String> parts) {
 	Component* cmp = CreateComponentWithName(parts[0]);
 	//if (!cmp) {
 	//	Log("Component of type ", parts[0], " does not exist!");
@@ -20,18 +20,18 @@ Component* CreateComponentFromStringArray(std::vector<std::string> parts) {
 	return cmp;
 }
 
-Component* CreateComponentFromString(std::string string) {
+Component* CreateComponentFromString(String string) {
 	auto parts = SplitString(string);
 	return CreateComponentFromStringArray(parts);
 }
 
-void AddStringComponentToEntity(Entity *entity, std::string str) {
+void AddStringComponentToEntity(Entity *entity, String str) {
 	auto parts = SplitString(str);
 	Component *cmp = CreateComponentFromStringArray(parts);
 	entity->AddComponent(GetComponentType(parts[0]), cmp);
 }
 
-Entity* CreateEntityFromString(std::string string) {
+Entity* CreateEntityFromString(String string) {
 	auto parts = SplitString(string, '\n');
 	Entity *entity = new Entity(parts[0]);
 	parts.erase(parts.begin());
@@ -41,9 +41,9 @@ Entity* CreateEntityFromString(std::string string) {
 	return entity;
 }
 
-void AddEntitiesFromFile(EntitySystem& system, std::string filename) {
+void AddEntitiesFromFile(EntitySystem& system, String filename) {
 	std::ifstream file(filename.c_str());
-	std::string line;
+	String line;
 	Entity *entity = nullptr;
 	Component *component = nullptr;
 	ComponentType componentType = CT_INVALID;

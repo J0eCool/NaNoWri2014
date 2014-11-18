@@ -74,7 +74,7 @@ float Vec2::Cross(Vec2 const& other) const {
 	return x * other.y - y * other.x;
 }
 
-std::string Vec2::ToString() const {
+String Vec2::ToString() const {
 	std::stringstream sstr;
 	sstr << "(" << x << ", " << y << ")";
 	return sstr.str();

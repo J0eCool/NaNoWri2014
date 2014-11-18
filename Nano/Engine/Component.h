@@ -1,7 +1,6 @@
 #pragma once
 
-#include <vector>
-#include <string>
+#include "Util/Util.h"
 
 class Entity;
 class EntitySystem;
@@ -16,11 +15,11 @@ protected:
 	virtual float priority() { return 0.0f; }
 
 public:
-	Component* SetArg(std::string const& key, std::string const& val) {
+	Component* SetArg(String const& key, String const& val) {
 		LoadArg(key, val);
 		return this;
 	}
-	virtual void LoadArg(std::string const& key, std::string const& val) { }
+	virtual void LoadArg(String const& key, String const& val) { }
 
 	// Called when Entity is added to EntitySystem; all components are loaded, other entities not necessarily
 	virtual void Init() { }
@@ -34,7 +33,7 @@ public:
 	// Called every frame; rendering is done here
 	virtual void Draw() { }
 
-	virtual void HandleMessage(std::string const& message, void *data) { }
+	virtual void HandleMessage(String const& message, void *data) { }
 
 	template <typename T>
 	T* GetComponent() {

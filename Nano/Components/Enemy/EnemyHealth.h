@@ -9,8 +9,8 @@ private:
 
 public:
 	//$$_maxHealth:Int
-	void LoadArg(std::string const& key, std::string const& val) override;
+	void LoadArg(String const& key, String const& val) override;
 
 	void Start() override;
-	void HandleMessage(std::string const& message, void *data) override;
+	void HandleMessage(String const& message, void *data) override;
 };

@@ -11,7 +11,7 @@ public:
 	Vec2 size;
 
 	//$$pos:Vec2|size:Vec2
-	void LoadArg(std::string const& key, std::string const& val) override;
+	void LoadArg(String const& key, String const& val) override;
 
 	Vec2 GetCenter() const;
 	SDL_Rect GetRect() const;

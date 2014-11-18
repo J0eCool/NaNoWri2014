@@ -3,7 +3,7 @@
 #include "Component.h"
 #include "Transform.h"
 
-Entity::Entity(std::string name) : _name(name) {
+Entity::Entity(String name) : _name(name) {
 }
 
 Entity::~Entity() {
@@ -51,7 +51,7 @@ void Entity::Draw() {
 	}
 }
 
-void Entity::SendMessage(std::string const& message, void *data) {
+void Entity::SendMessage(String const& message, void *data) {
 	for (auto kv : _components) {
 		kv.second->HandleMessage(message, data);
 	}

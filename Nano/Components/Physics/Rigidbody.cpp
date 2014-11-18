@@ -15,7 +15,7 @@ void Rigidbody::Update(float dt) {
 	Transform *transform = _entity->GetTransform();
 	Vec2 v = vel * dt;
 
-	std::vector<RayPointData> rays;
+	Vector<RayPointData> rays;
 	float eps = 0.01f;
 	for (int i = 0; i < _xPoints + 2; i++) {
 		float x = transform->pos.x + eps + (transform->size.x - 2 * eps) * i / (_xPoints + 1);

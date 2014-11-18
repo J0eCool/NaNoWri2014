@@ -1,6 +1,7 @@
 #pragma once
 
-#include <string>
+#include "Util/Util.h"
+
 #include <vector>
 
 class Entity;
@@ -9,9 +10,9 @@ class EntityConfig {
 
 class EntitySystem {
 private:
-	std::vector<Entity *> _entities;
-	std::vector<Entity *> _entitiesToAdd;
-	std::vector<Entity *> _entitiesToRemove;
+	Vector<Entity *> _entities;
+	Vector<Entity *> _entitiesToAdd;
+	Vector<Entity *> _entitiesToRemove;
 	EntityConfig *_config;
 
 public:
@@ -23,8 +24,8 @@ public:
 	bool WillRemove(Entity *entity) const;
 
 	EntityConfig* GetConfig() const;
-	std::vector<Entity *> const& GetEntities() const;
-	Entity* FindEntity(std::string name) const;
+	Vector<Entity *> const& GetEntities() const;
+	Entity* FindEntity(String name) const;
 
 	void Update(float dt);
 	void Draw();

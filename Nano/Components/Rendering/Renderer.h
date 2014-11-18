@@ -15,7 +15,7 @@ private:
 public:
 	Renderer();
 	//$$_color:Color
-	void LoadArg(std::string const& key, std::string const& val) override;
+	void LoadArg(String const& key, String const& val) override;
 
 	void Start() override;
 	void Draw() override;

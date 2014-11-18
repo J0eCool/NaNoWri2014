@@ -5,11 +5,11 @@
 #include <Nano/Engine/Engine.h>
 
 // TODO: asset build step to copy assets into a sensible location
-std::string AssetManager::getFullImageFilename(std::string imageName) {
+String AssetManager::getFullImageFilename(String imageName) {
 	return "../Assets/Textures/" + imageName + ".png";
 }
 
-std::string AssetManager::getFullFontFilename(std::string fontName) {
+String AssetManager::getFullFontFilename(String fontName) {
 	return "../Assets/Fonts/" + fontName + ".ttf";
 }
 
@@ -33,9 +33,9 @@ void AssetManager::Deinit() {
 	}
 }
 
-SDL_Surface* AssetManager::LoadSurface(std::string imageName) {
+SDL_Surface* AssetManager::LoadSurface(String imageName) {
 	if (!_loadedSurfaces[imageName]) {
-		std::string filename = getFullImageFilename(imageName);
+		String filename = getFullImageFilename(imageName);
 		SDL_Surface *loadedSurface = IMG_Load(filename.c_str());
 		if (!loadedSurface) {
 			Log("Image could not be loaded! Filename: \"", filename, "\" SDL_Error: ", SDL_GetError());
@@ -55,7 +55,7 @@ SDL_Texture* AssetManager::ConvertSurface(SDL_Surface *surface, SDL_Renderer *re
 	return texture;
 }
 
-SDL_Texture* AssetManager::LoadTexture(std::string imageName, SDL_Renderer *renderer) {
+SDL_Texture* AssetManager::LoadTexture(String imageName, SDL_Renderer *renderer) {
 	if (!_loadedTextures[imageName]) {
 		bool shouldUnload = _loadedSurfaces[imageName] == nullptr;
 		SDL_Surface *surface = LoadSurface(imageName);
@@ -76,16 +76,16 @@ SDL_Texture* AssetManager::LoadTexture(std::string imageName, SDL_Renderer *rend
 	return _loadedTextures[imageName];
 }
 
-TTF_Font* AssetManager::LoadFont(std::string fontName, int fontSize) {
+TTF_Font* AssetManager::LoadFont(String fontName, int fontSize) {
 	auto key = std::make_pair(fontName, fontSize);
 	if (!_loadedFonts[key]) {
-		std::string filename = getFullFontFilename(fontName);
+		String filename = getFullFontFilename(fontName);
 		_loadedFonts[key] = TTF_OpenFont(filename.c_str(), fontSize);
 	}
 	return _loadedFonts[key];
 }
 
-Sprite AssetManager::LoadSprite(std::string spriteName, SDL_Renderer *renderer) {
+Sprite AssetManager::LoadSprite(String spriteName, SDL_Renderer *renderer) {
 	if (!_loadedSprites[spriteName]) {
 		bool shouldUnload = _loadedSurfaces[spriteName] == nullptr;
 		SDL_Surface *surface = LoadSurface(spriteName);

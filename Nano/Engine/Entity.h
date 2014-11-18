@@ -12,13 +12,13 @@ class Transform;
 
 class Entity {
 private:
-	std::map<ComponentType, Component *> _components;
+	Dict<ComponentType, Component *> _components;
 	EntitySystem *_entitySystem;
-	std::string _name;
+	String _name;
 	bool _hasStarted = false;
 
 public:
-	Entity(std::string name);
+	Entity(String name);
 	~Entity();
 
 	Component* AddComponent(ComponentType type, Component* component);
@@ -44,7 +44,7 @@ public:
 	void Update(float dt);
 	void Draw();
 
-	void SendMessage(std::string const& message, void *data = nullptr);
+	void SendMessage(String const& message, void *data = nullptr);
 
 	friend EntitySystem;
 };

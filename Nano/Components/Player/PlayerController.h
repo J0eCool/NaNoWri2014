@@ -18,7 +18,7 @@ private:
 public:
 	PlayerController();
 	//$$_speed:Float|_jumpHeight:Float|_shotOffset:Vec2
-	void LoadArg(std::string const& key, std::string const& val) override;
+	void LoadArg(String const& key, String const& val) override;
 
 	void Update(float dt) override;
 };

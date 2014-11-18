@@ -1,6 +1,7 @@
 #pragma once
 
-#include <string>
+#include "Containers.h"
+
 #include <initializer_list>
 
 class Vec2 {
@@ -32,7 +33,7 @@ public:
 	float Dot(Vec2 const& other) const;
 	float Cross(Vec2 const& other) const;
 
-	std::string ToString() const;
+	String ToString() const;
 };
 
 Vec2 operator*(float s, Vec2 const& v);

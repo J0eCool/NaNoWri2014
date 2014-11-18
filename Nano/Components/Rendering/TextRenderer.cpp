@@ -42,7 +42,7 @@ void TextRenderer::Draw() {
 	SDL_RenderCopy(_renderer, _texture, nullptr, &rect);
 }
 
-void TextRenderer::SetText(std::string text) {
+void TextRenderer::SetText(String text) {
 	if (_text != text) {
 		_isDirty = true;
 		_text = text;

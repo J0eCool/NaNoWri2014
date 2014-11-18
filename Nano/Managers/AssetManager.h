@@ -4,30 +4,29 @@
 
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <map>
-#include <string>
 
+#include <Nano/Engine/Util/Util.h>
 #include <Nano/Sprite.h>
 
 class AssetManager : public Singleton<AssetManager> {
 private:
-	std::map<std::string, SDL_Surface*> _loadedSurfaces;
-	std::map<std::string, SDL_Texture*> _loadedTextures;
-	std::map<std::string, Sprite*> _loadedSprites;
-	std::map<std::pair<std::string, int>, TTF_Font*> _loadedFonts;
+	Dict<String, SDL_Surface*> _loadedSurfaces;
+	Dict<String, SDL_Texture*> _loadedTextures;
+	Dict<String, Sprite*> _loadedSprites;
+	Dict<Pair<String, int>, TTF_Font*> _loadedFonts;
 
-	std::string getFullImageFilename(std::string imageName);
-	std::string getFullFontFilename(std::string fontName);
+	String getFullImageFilename(String imageName);
+	String getFullFontFilename(String fontName);
 
 public:
 	void Init();
 	void Deinit();
 
-	SDL_Surface* LoadSurface(std::string imageName);
+	SDL_Surface* LoadSurface(String imageName);
 	SDL_Texture* ConvertSurface(SDL_Surface *surface, SDL_Renderer *renderer);
-	SDL_Texture* LoadTexture(std::string imageName, SDL_Renderer *renderer);
-	TTF_Font *LoadFont(std::string fontName, int fontSize);
-	Sprite LoadSprite(std::string spriteName, SDL_Renderer *renderer);
+	SDL_Texture* LoadTexture(String imageName, SDL_Renderer *renderer);
+	TTF_Font *LoadFont(String fontName, int fontSize);
+	Sprite LoadSprite(String spriteName, SDL_Renderer *renderer);
 
 	void UnloadSurface(SDL_Surface *surface);
 	void UnloadTexture(SDL_Texture *texture);

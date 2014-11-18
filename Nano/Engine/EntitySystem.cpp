@@ -32,11 +32,11 @@ EntityConfig* EntitySystem::GetConfig() const {
 	return _config;
 }
 
-std::vector<Entity *> const& EntitySystem::GetEntities() const {
+Vector<Entity *> const& EntitySystem::GetEntities() const {
 	return _entities;
 }
 
-Entity* EntitySystem::FindEntity(std::string name) const {
+Entity* EntitySystem::FindEntity(String name) const {
 	for (auto entity : _entities) {
 		if (entity->_name == name) {
 			return entity;

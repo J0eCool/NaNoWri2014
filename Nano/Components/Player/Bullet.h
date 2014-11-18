@@ -8,7 +8,7 @@ private:
 
 public:
 	//$$_vel:Vec2
-	void LoadArg(std::string const& key, std::string const& val) override;
+	void LoadArg(String const& key, String const& val) override;
 
 	void Update(float dt) override;
 

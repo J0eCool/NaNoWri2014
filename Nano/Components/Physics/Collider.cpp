@@ -45,7 +45,7 @@ void Collider::Update(float dt) {
 	}
 }
 
-std::vector<Entity *> const& Collider::GetCollidedEntities() const {
+Vector<Entity *> const& Collider::GetCollidedEntities() const {
 	return _collidedThisFrame;
 }
 
