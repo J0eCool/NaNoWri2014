@@ -19,6 +19,7 @@ public:
 	//$$_spriteName:String
 	void LoadArg(String const& key, String const& val) override;
 
+	void Init() override;
 	void Start() override;
 	void Draw() override;
 

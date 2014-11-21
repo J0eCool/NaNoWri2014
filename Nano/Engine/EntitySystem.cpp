@@ -22,6 +22,8 @@ EntitySystem::~EntitySystem() {
 
 void EntitySystem::AddEntity(Entity *entity) {
 	_entitiesToAdd.push_back(entity);
+	entity->_entitySystem = this;
+	entity->Init();
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
@@ -61,8 +63,6 @@ void EntitySystem::Update(float dt) {
 	// Add queued entities
 	for (auto entity : _entitiesToAdd) {
 		_entities.push_back(entity);
-		entity->_entitySystem = this;
-		entity->Init();
 	}
 	_entitiesToAdd.clear();
 
@@ -70,7 +70,6 @@ void EntitySystem::Update(float dt) {
 	for (auto entity : _entities) {
 		if (!entity->_hasStarted) {
 			entity->Start();
-			entity->_hasStarted = true;
 		}
 		entity->Update(dt);
 	}

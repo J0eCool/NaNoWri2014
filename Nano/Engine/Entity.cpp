@@ -38,6 +38,7 @@ void Entity::Start() {
 	for (auto kv : _components) {
 		kv.second->Start();
 	}
+	_hasStarted = true;
 }
 
 void Entity::Update(float dt) {

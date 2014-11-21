@@ -5,7 +5,7 @@
 
 #include "Camera.h"
 
-void SpriteRenderer::Start() {
+void SpriteRenderer::Init() {
 	auto config = static_cast<NanoEntityConfig*>(_entity->GetEntitySystem()->GetConfig());
 	_sprite = AssetManager::GetInstance()->LoadSprite(_spriteName, config->renderer);
 
@@ -16,7 +16,9 @@ void SpriteRenderer::Start() {
 		transform->size.x = (float)spriteRect.w;
 		transform->size.y = (float)spriteRect.h;
 	}
+}
 
+void SpriteRenderer::Start() {
 	_camera = _entity->GetEntitySystem()->FindEntity("Camera")->GetComponent<Camera>();
 }
 

@@ -11,6 +11,7 @@ enum InputType {
 	IT_Right,
 	IT_Jump,
 	IT_Shoot,
+	IT_Special,
 
 	IT_COUNT // must be last
 };

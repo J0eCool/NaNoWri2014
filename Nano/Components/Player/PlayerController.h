@@ -4,6 +4,8 @@
 
 #include <Nano/Engine/Engine.h>
 
+#include "Bullet.h"
+
 class PlayerController : public Component {
 private:
 	float _speed;
@@ -12,6 +14,9 @@ private:
 
 	bool _isHoldingJump = false;
 	int _facingDir = 1;
+
+	Bullet::Container _normalShots;
+	Bullet::Container _specialShots;
 
 public:
 	PlayerController();

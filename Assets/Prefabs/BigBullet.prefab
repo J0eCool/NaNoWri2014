@@ -1,0 +1,9 @@
+Collider
+	layerMask: 0x2
+Bullet
+	speed: 700
+	damage: 3
+Transform
+	size: 39,33
+SpriteRenderer
+	spriteName: BigBullet

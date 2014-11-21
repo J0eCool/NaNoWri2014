@@ -17,7 +17,8 @@ void Collider::LoadArg(std::string const& key, std::string const& val) {
 }
 
 void Bullet::LoadArg(std::string const& key, std::string const& val) {
-	if (key == "vel") { _vel = ParseVec2(val); }
+	if (key == "speed") { _speed = ParseFloat(val); }
+	else if (key == "damage") { _damage = ParseInt(val); }
 	else { Log("ERROR: Bullet: Invalid argument: Key=", key, ", Val=", val); }
 }
 

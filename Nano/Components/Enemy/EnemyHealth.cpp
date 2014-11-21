@@ -8,7 +8,8 @@ void EnemyHealth::Start() {
 
 void EnemyHealth::HandleMessage(String const& message, void *data) {
 	if (message == "BulletHit") {
-		_health -= 1;
+		int damage = *(int *)data;
+		_health -= damage;
 		if (_health <= 0) {
 			if (_spawner) {
 				_spawner->HandleDespawn(_entity);

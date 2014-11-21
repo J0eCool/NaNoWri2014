@@ -1,6 +1,8 @@
 Collider
 	layerMask: 0x2
 Bullet
+	speed: 600
+	damage: 1
 Transform
 	size: 24,12
 SpriteRenderer
