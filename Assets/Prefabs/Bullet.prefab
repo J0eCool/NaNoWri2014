@@ -1,0 +1,7 @@
+Collider
+	layerMask: 0x2
+Bullet
+Transform
+	size: 24,12
+SpriteRenderer
+	spriteName: Bullet

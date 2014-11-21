@@ -21,7 +21,7 @@ public:
 	Entity(String name);
 	~Entity();
 
-	Component* AddComponent(ComponentType type, Component* component);
+	Component* AddComponent(Component* component);
 
 	template <typename T>
 	T* GetComponent() {

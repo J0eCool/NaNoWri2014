@@ -2,11 +2,16 @@
 
 #include "Util/Util.h"
 
+#include <Nano/Generated/ComponentEnums.h>
+
 class Entity;
 class EntitySystem;
 class Transform;
 
 class Component {
+private:
+	ComponentType _type;
+
 protected:
 	Entity *_entity;
 
@@ -44,4 +49,5 @@ public:
 	EntitySystem* GetEntitySystem();
 
 	friend Entity;
+	friend Component* ParseComponent(Vector<String>& lines);
 };

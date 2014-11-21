@@ -12,7 +12,8 @@ Entity::~Entity() {
 	}
 }
 
-Component* Entity::AddComponent(ComponentType type, Component* component) {
+Component* Entity::AddComponent(Component* component) {
+	auto type = component->_type;
 	if (!_components[type]) {
 		component->_entity = this;
 		_components[type] = component;

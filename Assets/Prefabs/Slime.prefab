@@ -1,0 +1,9 @@
+Collider
+	layerMask: 0x2
+Rigidbody
+EnemyHealth
+	maxHealth: 2
+Transform
+	size: 65,120
+SpriteRenderer
+	spriteName: Slime

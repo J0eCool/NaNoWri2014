@@ -35,12 +35,8 @@ void PlayerController::Update(float dt) {
 	rigidbody->vel = vel;
 
 	if (input->IsDown(IT_Shoot)) {
-		Vec2 bulletSize(24.0f, 12.0f);
-		Entity *bullet = new Entity("Bullet");
-		bullet->AddComponent(CT_Collider, (new Collider())->SetArg("layerMask", "0x2"));
-		bullet->AddComponent(CT_Bullet, new Bullet());
-		bullet->AddComponent(CT_SpriteRenderer, (new SpriteRenderer())->SetArg("spriteName", "Bullet"));
-		bullet->AddComponent(CT_Transform, new Transform());
+		Entity* bullet = LoadPrefabFromFile("../Assets/Prefabs/Bullet.prefab");
+		Vec2 bulletSize = bullet->GetTransform()->size; (24.0f, 12.0f);
 		auto offset = _shotOffset;
 		offset.x *= _facingDir;
 		offset -= bulletSize / 2.0f;
