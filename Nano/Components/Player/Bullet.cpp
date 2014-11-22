@@ -2,6 +2,12 @@
 
 #include <Nano/Components/Physics/Physics.h>
 
+void Bullet::Deinit() {
+	if (_container) {
+		_container->_bullets.erase(this);
+	}
+}
+
 void Bullet::Update(float dt) {
 	Transform *transform = GetTransform();
 	transform->pos += _vel * dt;
@@ -18,9 +24,6 @@ void Bullet::Update(float dt) {
 		}
 		if (shouldRemove) {
 			GetEntitySystem()->RemoveEntity(_entity);
-			if (_container) {
-				_container->_bullets.erase(this);
-			}
 		}
 	}
 }
@@ -34,6 +37,12 @@ void Bullet::setContainer(Container *container) {
 }
 
 Bullet::Container::Container(int maxSize) : _maxSize(maxSize) {
+}
+
+Bullet::Container::~Container() {
+	for (auto bullet : _bullets) {
+		bullet->setContainer(nullptr);
+	}
 }
 
 bool Bullet::Container::IsFull() const {

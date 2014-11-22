@@ -11,6 +11,7 @@ public:
 
 	public:
 		Container(int maxSize);
+		~Container();
 
 		bool IsFull() const;
 		void AddBullet(Bullet *bullet);
@@ -27,6 +28,8 @@ private:
 	void setContainer(Container *container);
 
 public:
+	void Deinit() override;
+
 	//$$_speed:Float|_damage:Int
 	void LoadArg(String const& key, String const& val) override;
 

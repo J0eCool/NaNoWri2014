@@ -20,6 +20,8 @@ protected:
 	virtual float priority() { return 0.0f; }
 
 public:
+	virtual ~Component() { }
+
 	Component* SetArg(String const& key, String const& val) {
 		LoadArg(key, val);
 		return this;
@@ -28,6 +30,9 @@ public:
 
 	// Called when Entity is added to EntitySystem; all components are loaded, other entities not necessarily
 	virtual void Init() { }
+
+	// Called when Entity is removed from EntitySystem
+	virtual void Deinit() { }
 
 	// Called before first Update call; can access other entites safely
 	virtual void Start() { }

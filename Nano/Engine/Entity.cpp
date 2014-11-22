@@ -7,8 +7,11 @@ Entity::Entity(String name) : _name(name) {
 }
 
 Entity::~Entity() {
-	for (auto it = _components.begin(); it != _components.end(); ++it) {
-		delete it->second;
+	for (auto kv : _components) {
+		kv.second->Deinit();
+	}
+	for (auto kv : _components) {
+		delete kv.second;
 	}
 }
 
