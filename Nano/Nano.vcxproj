@@ -93,6 +93,7 @@
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Components\Physics\Rigidbody.h" />
     <ClInclude Include="Components\Rendering\Rendering.h" />
+    <ClInclude Include="Components\Tilemap.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\Containers.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
@@ -128,6 +129,7 @@
     <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Physics\Rigidbody.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
+    <ClCompile Include="Components\Tilemap.cpp" />
     <ClCompile Include="Engine\Component.cpp" />
     <ClCompile Include="Engine\ComponentFactory.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />

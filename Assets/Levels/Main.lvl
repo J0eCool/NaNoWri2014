@@ -12,77 +12,10 @@ Camera
 		upBound: 0
 		downBound: 600
 
-Ground
+Map
 	Transform
-		pos: -1000,550
-		size: 2800,50
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-
-Ceiling
-	Transform
-		pos: -1000,0
-		size: 2800,20
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-
-WallLeft
-	Transform
-		pos: -1000,0
-		size: 50,550
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-
-WallRight
-	Transform
-		pos: 1750,0
-		size: 50,550
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-
-PlatLo
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-	Transform
-		pos: 400,410
-		size: 160,48
-
-PlatLoColumn
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-	Transform
-		pos: 456,458
-		size: 48,92
-
-PlatMid
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-	Transform
-		pos: 150,290
-		size: 160,48
-
-PlatHi
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-	Transform
-		pos: 540,190
-		size: 160,48
-
-PlatHigher
-	Renderer
-		color: 0x80,0xa0,0x80
-	Collider
-	Transform
-		pos: 740,110
-		size: 160,48
+	Tilemap
+		file: MainLevel.tilemap
 
 Player
 	PlayerController

@@ -7,3 +7,4 @@
 
 #include "Components.h"
 #include "RemoveWhenOffscreen.h"
+#include "Tilemap.h"

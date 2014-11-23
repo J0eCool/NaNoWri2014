@@ -60,6 +60,11 @@ void TextRenderer::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: TextRenderer: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void Tilemap::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "file") { _file = ParseString(val); }
+	else { Log("ERROR: Tilemap: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Transform::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "pos") { pos = ParseVec2(val); }
 	else if (key == "size") { size = ParseVec2(val); }

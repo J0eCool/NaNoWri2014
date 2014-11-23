@@ -17,6 +17,7 @@ enum ComponentType {
 	CT_Renderer,
 	CT_SpriteRenderer,
 	CT_TextRenderer,
+	CT_Tilemap,
 	CT_Transform,
 };
 

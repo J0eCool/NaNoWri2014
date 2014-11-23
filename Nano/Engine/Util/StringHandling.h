@@ -17,3 +17,5 @@ float ParseFloat(String const& str);
 String ParseString(String const& str);
 Vec2 ParseVec2(String const& str);
 SDL_Color ParseColor(String const& str);
+
+Vector<String> ReadLinesFromFile(String const& filename);

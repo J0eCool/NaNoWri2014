@@ -6,9 +6,6 @@
 #include "Entity.h"
 #include "EntitySystem.h"
 
-#include <fstream>
-#include <sstream>
-
 Vector<Vector<String>> SplitLinesOnTabs(Vector<String> const& rawLines, int tabCount) {
 	Vector<Vector<String>> groups;
 	Vector<String> currentGroup;
@@ -54,18 +51,6 @@ Entity* ParseEntity(Vector<String>& lines) {
 	String name = Trim(lines[0]);
 	lines.erase(lines.begin());
 	return ParseEntity(name, lines, 1);
-}
-
-Vector<String> ReadLinesFromFile(String const& filename) {
-	std::ifstream file(filename.c_str());
-	String line;
-	Vector<String> lines;
-	while (std::getline(file, line)) {
-		if (line != "") {
-			lines.push_back(line);
-		}
-	}
-	return lines;
 }
 
 Entity* LoadPrefabFromFile(String const& filename) {

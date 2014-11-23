@@ -16,6 +16,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(Renderer)) { return CT_Renderer; }
 	if (type == &typeid(SpriteRenderer)) { return CT_SpriteRenderer; }
 	if (type == &typeid(TextRenderer)) { return CT_TextRenderer; }
+	if (type == &typeid(Tilemap)) { return CT_Tilemap; }
 	if (type == &typeid(Transform)) { return CT_Transform; }
 	return CT_INVALID;
 }
@@ -33,6 +34,7 @@ ComponentType GetComponentType(String name) {
 	if (name == "Renderer") { return CT_Renderer; }
 	if (name == "SpriteRenderer") { return CT_SpriteRenderer; }
 	if (name == "TextRenderer") { return CT_TextRenderer; }
+	if (name == "Tilemap") { return CT_Tilemap; }
 	if (name == "Transform") { return CT_Transform; }
 	return CT_INVALID;
 }
@@ -50,6 +52,7 @@ Component* CreateComponentWithName(String name) {
 	if (name == "Renderer") { return new Renderer; }
 	if (name == "SpriteRenderer") { return new SpriteRenderer; }
 	if (name == "TextRenderer") { return new TextRenderer; }
+	if (name == "Tilemap") { return new Tilemap; }
 	if (name == "Transform") { return new Transform; }
 	return nullptr;
 }

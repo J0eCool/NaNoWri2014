@@ -1,5 +1,7 @@
 #include "StringHandling.h"
 
+#include <fstream>
+
 Vector<String> SplitString(String const& string, char delim) {
 	Vector<String> list;
 	String str = "";
@@ -85,3 +87,16 @@ SDL_Color ParseColor(String const& str) {
 	int a = parts.size() > 3 ? ParseInt(parts[3]) : 0xff;
 	return { r, g, b, a };
 }
+
+Vector<String> ReadLinesFromFile(String const& filename) {
+	std::ifstream file(filename.c_str());
+	String line;
+	Vector<String> lines;
+	while (std::getline(file, line)) {
+		if (line != "") {
+			lines.push_back(line);
+		}
+	}
+	return lines;
+}
+
