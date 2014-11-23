@@ -1,5 +1,5 @@
 Collider
-	layerMask: 0x2
+	layerMask: 0x4
 Rigidbody
 EnemyHealth
 	maxHealth: 2

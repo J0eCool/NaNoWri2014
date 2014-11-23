@@ -91,8 +91,9 @@ Player
 		pos: 120,100
 		size: 60,60
 	Collider
-		layerMask: 0x01
+		layerMask: 0x2
 	Rigidbody
+		layerMask: 0x1
 	SpriteRenderer
 		spriteName: Player
 
@@ -104,51 +105,9 @@ PlayerPosText
 		pos: 50,50
 		size: 0,0
 
-Sigma
-	SpriteRenderer
-		spriteName: Sigma
-	Transform
-		pos: 720,30
-		size: 50,50
-	SpinningSigma
-		speed: 150.0
-		color: 6.0
-	EnemyHealth
-		maxHealth: 2
-	Collider
-		layerMask: 0x02
-
-Sigma
-	SpriteRenderer
-		spriteName: Sigma
-	Transform
-		pos: 520,30
-		size: 50,50
-	SpinningSigma
-		speed: 50.0
-		color: 6.0
-	EnemyHealth
-		maxHealth: 2
-	Collider
-		layerMask: 0x02
-
-Sigma
-	SpriteRenderer
-		spriteName: Sigma_alpha
-	Transform
-		pos: 620,80
-		size: 70,30
-	SpinningSigma
-		speed: -50.0
-		color: 6.0
-	EnemyHealth
-		maxHealth: 2
-	Collider
-		layerMask: 0x02
-
 Spawner
 	Transform
-		pos: 800,80
+		pos: 800,280
 		size: 600,40
 	EnemySpawner
 		spawnLimit: 2

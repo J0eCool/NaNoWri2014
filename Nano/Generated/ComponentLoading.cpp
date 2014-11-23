@@ -16,6 +16,11 @@ void Collider::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: Collider: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void Rigidbody::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "layerMask") { _layerMask = ParseInt(val); }
+	else { Log("ERROR: Rigidbody: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Bullet::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "speed") { _speed = ParseFloat(val); }
 	else if (key == "damage") { _damage = ParseInt(val); }
@@ -52,12 +57,6 @@ void TextRenderer::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "fontName") { _fontName = ParseString(val); }
 	else if (key == "fontSize") { _fontSize = ParseInt(val); }
 	else { Log("ERROR: TextRenderer: Invalid argument: Key=", key, ", Val=", val); }
-}
-
-void SpinningSigma::LoadArg(std::string const& key, std::string const& val) {
-	if (key == "speed") { _speed = ParseFloat(val); }
-	else if (key == "color") { _color = ParseFloat(val); }
-	else { Log("ERROR: SpinningSigma: Invalid argument: Key=", key, ", Val=", val); }
 }
 
 void Transform::LoadArg(std::string const& key, std::string const& val) {

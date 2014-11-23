@@ -18,9 +18,13 @@ private:
 	int _xPoints;
 	int _yPoints;
 	CollisionDirection _collidedDirs;
+	int _layerMask;
 
 public:
 	const static float kGravity;
+
+	//$$_layerMask:Int
+	void LoadArg(String const& key, String const& val) override;
 
 	Vec2 vel;
 	Rigidbody();

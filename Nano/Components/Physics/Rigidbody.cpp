@@ -4,7 +4,7 @@
 
 const float Rigidbody::kGravity = 2500.0f;
 
-Rigidbody::Rigidbody() : _xPoints(1), _yPoints(1) {
+Rigidbody::Rigidbody() : _xPoints(1), _yPoints(1), _layerMask(Collider::kDefaultLayerMask) {
 }
 
 struct RayPointData {
@@ -44,7 +44,7 @@ void Rigidbody::Update(float dt) {
 	frame++;
 	for (auto r : rays) {
 		float dist = FLT_MAX;
-		if (collider->Raycast(r.pos, r.pos + r.dir, &dist)) {
+		if (collider->Raycast(r.pos, r.pos + r.dir, &dist, _layerMask)) {
 			_collidedDirs = (CollisionDirection)(_collidedDirs | r.colDir);
 			if (r.colDir & CD_Horizontal) {
 				v.x = absMin(v.x, dist * sign1(v.x));

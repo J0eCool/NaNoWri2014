@@ -6,4 +6,4 @@
 #include "Rendering/Rendering.h"
 
 #include "Components.h"
-#include "SpinningSigma.h"
+#include "RemoveWhenOffscreen.h"

@@ -12,11 +12,11 @@ enum ComponentType {
 	CT_Bullet,
 	CT_CameraFollow,
 	CT_PlayerController,
+	CT_RemoveWhenOffscreen,
 	CT_Camera,
 	CT_Renderer,
 	CT_SpriteRenderer,
 	CT_TextRenderer,
-	CT_SpinningSigma,
 	CT_Transform,
 };
 

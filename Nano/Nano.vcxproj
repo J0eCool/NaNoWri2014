@@ -87,6 +87,7 @@
     <ClInclude Include="Components\Enemy\EnemySpawner.h" />
     <ClInclude Include="Components\Player\Bullet.h" />
     <ClInclude Include="Components\Player\CameraFollow.h" />
+    <ClInclude Include="Components\RemoveWhenOffscreen.h" />
     <ClInclude Include="Components\Rendering\Camera.h" />
     <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
@@ -100,7 +101,6 @@
     <ClInclude Include="NanoEntityConfig.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Components\Rendering\SpriteRenderer.h" />
-    <ClInclude Include="Components\SpinningSigma.h" />
     <ClInclude Include="Engine\Component.h" />
     <ClInclude Include="Components\Rendering\Renderer.h" />
     <ClInclude Include="Engine\Transform.h" />
@@ -123,6 +123,7 @@
     <ClCompile Include="Components\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Components\Player\Bullet.cpp" />
     <ClCompile Include="Components\Player\CameraFollow.cpp" />
+    <ClCompile Include="Components\RemoveWhenOffscreen.cpp" />
     <ClCompile Include="Components\Rendering\Camera.cpp" />
     <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Physics\Rigidbody.cpp" />

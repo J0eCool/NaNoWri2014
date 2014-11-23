@@ -12,6 +12,8 @@ protected:
 	bool collides(Collider *other);
 
 public:
+	const static int kDefaultLayerMask = 0x1;
+
 	Collider();
 	//$$_layerMask:Int
 	void LoadArg(String const& key, String const& val) override;
@@ -19,7 +21,7 @@ public:
 	void Update(float dt) override;
 
 	Vector<Entity *> const& GetCollidedEntities() const;
-	bool LayersIntersect(Collider *other) const;
-	bool Raycast(Vec2 const& start, Vec2 const& end, float *outDist) const;
+	bool LayersIntersect(Collider *other, int layerMask = -1) const;
+	bool Raycast(Vec2 const& start, Vec2 const& end, float *outDist, int layerMask = -1) const;
 	bool IsPointInside(Vec2 point) const;
 };

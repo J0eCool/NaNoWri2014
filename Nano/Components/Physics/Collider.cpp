@@ -1,6 +1,6 @@
 #include "Collider.h"
 
-Collider::Collider() : _layerMask(0xffff) {
+Collider::Collider() : _layerMask(kDefaultLayerMask) {
 }
 
 bool Collider::collides(Collider *other) {
@@ -64,17 +64,20 @@ bool lineIntersects(Vec2 const& a1, Vec2 const& a2,
 	return false;
 }
 
-bool Collider::LayersIntersect(Collider *other) const {
-	return (other->_layerMask & _layerMask) != 0;
+bool Collider::LayersIntersect(Collider *other, int layerMask) const {
+	if (layerMask == -1) {
+		layerMask = _layerMask;
+	}
+	return (other->_layerMask & layerMask) != 0;
 }
 
-bool Collider::Raycast(Vec2 const& start, Vec2 const& end, float *outDist) const {
+bool Collider::Raycast(Vec2 const& start, Vec2 const& end, float *outDist, int layerMask) const {
 	bool collided = false;
 	float dist = FLT_MAX;
 	auto entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
-		if (col && entity != _entity && LayersIntersect(col)) {
+		if (col && entity != _entity && LayersIntersect(col, layerMask)) {
 			if (col->IsPointInside(start)) {
 				if (outDist) {
 					*outDist = 0.0f;
