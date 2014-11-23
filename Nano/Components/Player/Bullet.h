@@ -20,6 +20,7 @@ public:
 	};
 
 private:
+	int _layerMask;
 	float _speed;
 	int _damage;
 	Vec2 _vel;
@@ -30,7 +31,7 @@ private:
 public:
 	void Deinit() override;
 
-	//$$_speed:Float|_damage:Int
+	//$$_layerMask:Int|_speed:Float|_damage:Int
 	void LoadArg(String const& key, String const& val) override;
 
 	void Update(float dt) override;

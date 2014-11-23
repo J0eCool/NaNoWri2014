@@ -40,12 +40,12 @@ void Collider::Update(float dt) {
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
 		if (entity != _entity && col && LayersIntersect(col) && collides(col)) {
-			_collidedThisFrame.push_back(entity);
+			_collidedThisFrame.insert(entity);
 		}
 	}
 }
 
-Vector<Entity *> const& Collider::GetCollidedEntities() const {
+Set<Entity *> const& Collider::GetCollidedEntities() const {
 	return _collidedThisFrame;
 }
 

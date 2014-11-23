@@ -1,6 +1,8 @@
 Collider
-	layerMask: 0x5
+	layerMask: 0xd
+RemoveWhenOffscreen
 Bullet
+	layerMask: 0x5
 	speed: 600
 	damage: 1
 Transform

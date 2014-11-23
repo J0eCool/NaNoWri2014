@@ -1,8 +1,10 @@
 Camera
 	Camera
+	Collider
+		layerMask: 0x8
 	Transform
 		pos: 0,0
-		size: 0,0
+		size: 800,600
 	CameraFollow
 		followName: Player
 		leftBound: -1000

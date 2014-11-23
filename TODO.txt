@@ -1,8 +1,3 @@
 TO DO:
-	- Cleanup non-string initialization from Entities and Components
-	- Give Entities names, add GetEntityWithName to EntitySystem
-	- Load Entities from file
 	- Auto-run parseComponents.sh from VS build
-	- Autogenerate folder header files
 	- Animations
-	- EntitySystem as sea of components

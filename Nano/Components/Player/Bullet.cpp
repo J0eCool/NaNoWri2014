@@ -17,7 +17,8 @@ void Bullet::Update(float dt) {
 	if (collided.size() > 0) {
 		bool shouldRemove = false;
 		for (auto ent : collided) {
-			if (!ent->GetComponent<Bullet>()) {
+			auto oCol = ent->GetComponent<Collider>();
+			if (!ent->GetComponent<Bullet>() && collider->LayersIntersect(oCol, _layerMask)) {
 				ent->SendMessage("BulletHit", &_damage);
 				shouldRemove = true;
 			}
