@@ -11,13 +11,14 @@ class Transform;
 class Component {
 private:
 	ComponentType _type;
+	bool _hasStarted = false;
 
 protected:
 	Entity *_entity;
 
 	// TODO: restructure EntitySystem to use a "sea of components",
 	// so component priority can actually work
-	virtual float priority() { return 0.0f; }
+	virtual float priority() const { return 0.0f; }
 
 public:
 	virtual ~Component() { }
@@ -54,5 +55,6 @@ public:
 	EntitySystem* GetEntitySystem();
 
 	friend Entity;
+	friend EntitySystem;
 	friend Component* ParseComponent(Vector<String>& lines);
 };

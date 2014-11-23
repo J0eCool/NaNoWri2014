@@ -15,7 +15,6 @@ private:
 	Dict<ComponentType, Component *> _components;
 	EntitySystem *_entitySystem;
 	String _name;
-	bool _hasStarted = false;
 
 public:
 	Entity(String name);
@@ -40,8 +39,6 @@ public:
 	}
 
 	void Init();
-	void Start();
-	void Update(float dt);
 	void Draw();
 
 	void SendMessage(String const& message, void *data = nullptr);

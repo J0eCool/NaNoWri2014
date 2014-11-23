@@ -1,5 +1,6 @@
 #include "EntitySystem.h"
 
+#include "Component.h"
 #include "Entity.h"
 
 #include <algorithm>
@@ -21,7 +22,7 @@ EntitySystem::~EntitySystem() {
 }
 
 void EntitySystem::AddEntity(Entity *entity) {
-	_entitiesToAdd.push_back(entity);
+	_entitiesToAdd.insert(entity);
 	entity->_entitySystem = this;
 	entity->Init();
 }
@@ -38,7 +39,7 @@ EntityConfig* EntitySystem::GetConfig() const {
 	return _config;
 }
 
-Vector<Entity *> const& EntitySystem::GetEntities() const {
+Set<Entity *> const& EntitySystem::GetEntities() const {
 	return _entities;
 }
 
@@ -62,30 +63,38 @@ struct ShouldRemPred {
 void EntitySystem::Update(float dt) {
 	// Add queued entities
 	for (auto entity : _entitiesToAdd) {
-		_entities.push_back(entity);
+		_entities.insert(entity);
+		for (auto kv : entity->_components) {
+			_components[kv.second->priority()].insert(kv.second);
+		}
 	}
 	_entitiesToAdd.clear();
 
 	// Update entities
-	for (auto entity : _entities) {
-		if (!entity->_hasStarted) {
-			entity->Start();
+	for (auto kv : _components) {
+		for (auto component : kv.second) {
+			if (!component->_hasStarted) {
+				component->Start();
+				component->_hasStarted = true;
+			}
+			component->Update(dt);
 		}
-		entity->Update(dt);
 	}
 
 	// Remove queued entities
 	for (auto entity : _entitiesToRemove) {
+		for (auto kv : entity->_components) {
+			_components[kv.second->priority()].erase(kv.second);
+		}
+		_entities.erase(entity);
 		delete entity;
-	}
-	auto newEnd = std::remove_if(_entities.begin(), _entities.end(), ShouldRemPred(this));
-	if (newEnd != _entities.end()) {
-		_entities.erase(newEnd, _entities.end());
 	}
 	_entitiesToRemove.clear();
 }
 void EntitySystem::Draw() {
-	for (auto entity : _entities) {
-		entity->Draw();
+	for (auto kv : _components) {
+		for (auto component : kv.second) {
+			component->Draw();
+		}
 	}
 }

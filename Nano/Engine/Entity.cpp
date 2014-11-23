@@ -37,19 +37,6 @@ void Entity::Init() {
 	}
 }
 
-void Entity::Start() {
-	for (auto kv : _components) {
-		kv.second->Start();
-	}
-	_hasStarted = true;
-}
-
-void Entity::Update(float dt) {
-	for (auto it = _components.begin(); it != _components.end(); ++it) {
-		it->second->Update(dt);
-	}
-}
-
 void Entity::Draw() {
 	for (auto it = _components.begin(); it != _components.end(); ++it) {
 		it->second->Draw();

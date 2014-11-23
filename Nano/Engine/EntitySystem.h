@@ -5,14 +5,17 @@
 #include <vector>
 
 class Entity;
+class Component;
+
 class EntityConfig {
 };
 
 class EntitySystem {
 private:
-	Vector<Entity *> _entities;
-	Vector<Entity *> _entitiesToAdd;
+	Set<Entity *> _entities;
+	Set<Entity *> _entitiesToAdd;
 	Set<Entity *> _entitiesToRemove;
+	Dict<float, Set<Component *>> _components;
 	EntityConfig *_config;
 
 public:
@@ -24,7 +27,7 @@ public:
 	bool WillRemove(Entity *entity) const;
 
 	EntityConfig* GetConfig() const;
-	Vector<Entity *> const& GetEntities() const;
+	Set<Entity *> const& GetEntities() const;
 	Entity* FindEntity(String name) const;
 
 	void Update(float dt);
