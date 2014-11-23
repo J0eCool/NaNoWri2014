@@ -8,9 +8,6 @@ Entity::Entity(String name) : _name(name) {
 
 Entity::~Entity() {
 	for (auto kv : _components) {
-		kv.second->Deinit();
-	}
-	for (auto kv : _components) {
 		delete kv.second;
 	}
 }
@@ -22,25 +19,16 @@ Component* Entity::AddComponent(Component* component) {
 		_components[type] = component;
 	}
 	else {
-		Log("Error: Adding component with type=", (int)type, " that already exists!");
+		LogError("Entity (", _name, "): Adding component with type=", (int)type, " that already exists!");
+	}
+	if (_entitySystem) {
+		LogError("Entity (", _name, "): Adding component with type=", (int)type, " on entity that was already added to an entity system! TODO: make that not an error");
 	}
 	return _components[type];
 }
 
 Transform* Entity::GetTransform() {
 	return GetComponent<Transform>();
-}
-
-void Entity::Init() {
-	for (auto kv : _components) {
-		kv.second->Init();
-	}
-}
-
-void Entity::Draw() {
-	for (auto it = _components.begin(); it != _components.end(); ++it) {
-		it->second->Draw();
-	}
 }
 
 void Entity::SendMessage(String const& message, void *data) {

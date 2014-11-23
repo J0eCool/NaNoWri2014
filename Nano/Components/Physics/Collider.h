@@ -8,7 +8,7 @@ private:
 	int _layerMask;
 
 protected:
-	float priority() { return 10.0f; }
+	float priority() const override { return -10.0f; }
 	bool collides(Collider *other);
 
 public:

@@ -38,9 +38,6 @@ public:
 		return _entitySystem;
 	}
 
-	void Init();
-	void Draw();
-
 	void SendMessage(String const& message, void *data = nullptr);
 
 	friend EntitySystem;

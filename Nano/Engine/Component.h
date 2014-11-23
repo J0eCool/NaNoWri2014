@@ -16,8 +16,7 @@ private:
 protected:
 	Entity *_entity;
 
-	// TODO: restructure EntitySystem to use a "sea of components",
-	// so component priority can actually work
+	// Dictates order of Update calls; lower values have higher priority
 	virtual float priority() const { return 0.0f; }
 
 public:

@@ -5,9 +5,6 @@
 
 #include <algorithm>
 
-EntitySystem::EntitySystem(EntityConfig *config) : _config(config) {
-}
-
 template <typename T>
 void deleteAll(T const& collection) {
 	for (auto item : collection) {
@@ -15,7 +12,23 @@ void deleteAll(T const& collection) {
 	}
 }
 
+template <typename T, typename F>
+inline void forAllComponents(T const& components, F func) {
+	for (auto kv : components) {
+		for (auto c : kv.second) {
+			func(c);
+		}
+	}
+}
+
+EntitySystem::EntitySystem(EntityConfig *config) : _config(config) {
+}
+
 EntitySystem::~EntitySystem() {
+	forAllComponents(_components, [](Component *component){
+		component->Deinit();
+	});
+
 	deleteAll(_entities);
 	deleteAll(_entitiesToAdd);
 	deleteAll(_entitiesToRemove);
@@ -24,7 +37,9 @@ EntitySystem::~EntitySystem() {
 void EntitySystem::AddEntity(Entity *entity) {
 	_entitiesToAdd.insert(entity);
 	entity->_entitySystem = this;
-	entity->Init();
+	for (auto kv : entity->_components) {
+		kv.second->Init();
+	}
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
@@ -71,30 +86,28 @@ void EntitySystem::Update(float dt) {
 	_entitiesToAdd.clear();
 
 	// Update entities
-	for (auto kv : _components) {
-		for (auto component : kv.second) {
-			if (!component->_hasStarted) {
-				component->Start();
-				component->_hasStarted = true;
-			}
-			component->Update(dt);
+	forAllComponents(_components, [dt](Component *component) {
+		if (!component->_hasStarted) {
+			component->Start();
+			component->_hasStarted = true;
 		}
-	}
+		component->Update(dt);
+	});
 
 	// Remove queued entities
 	for (auto entity : _entitiesToRemove) {
 		for (auto kv : entity->_components) {
 			_components[kv.second->priority()].erase(kv.second);
+			kv.second->Deinit();
 		}
 		_entities.erase(entity);
 		delete entity;
 	}
 	_entitiesToRemove.clear();
 }
+
 void EntitySystem::Draw() {
-	for (auto kv : _components) {
-		for (auto component : kv.second) {
-			component->Draw();
-		}
-	}
+	forAllComponents(_components, [](Component *component) {
+		component->Draw();
+	});
 }

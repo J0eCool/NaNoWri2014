@@ -31,3 +31,8 @@ inline void Log(T item, Ts ... rest) {
 	OutputDebugString(sstr.str().c_str());
 	Log(rest...);
 }
+
+template <typename ... Ts>
+inline void LogError(Ts ... rest) {
+	Log("ERROR: ", rest...);
+}
