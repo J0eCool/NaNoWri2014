@@ -37,9 +37,9 @@ EntitySystem::~EntitySystem() {
 void EntitySystem::AddEntity(Entity *entity) {
 	_entitiesToAdd.insert(entity);
 	entity->_entitySystem = this;
-	for (auto kv : entity->_components) {
-		kv.second->Init();
-	}
+	entity->forAllComponents([](Component* cmp) {
+		cmp->Init();
+	});
 }
 
 void EntitySystem::RemoveEntity(Entity *entity) {
@@ -79,9 +79,9 @@ void EntitySystem::Update(float dt) {
 	// Add queued entities
 	for (auto entity : _entitiesToAdd) {
 		_entities.insert(entity);
-		for (auto kv : entity->_components) {
-			_components[kv.second->priority()].insert(kv.second);
-		}
+		entity->forAllComponents([this](Component* cmp) {
+			_components[cmp->priority()].insert(cmp);
+		});
 	}
 	_entitiesToAdd.clear();
 
@@ -96,10 +96,10 @@ void EntitySystem::Update(float dt) {
 
 	// Remove queued entities
 	for (auto entity : _entitiesToRemove) {
-		for (auto kv : entity->_components) {
-			_components[kv.second->priority()].erase(kv.second);
-			kv.second->Deinit();
-		}
+		entity->forAllComponents([this](Component* cmp) {
+			_components[cmp->priority()].erase(cmp);
+			cmp->Deinit();
+		});
 		_entities.erase(entity);
 		delete entity;
 	}

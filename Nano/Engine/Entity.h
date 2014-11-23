@@ -1,6 +1,7 @@
 #pragma once
 
-#include <map>
+#include "Util/Util.h"
+
 #include <initializer_list>
 #include <typeinfo>
 
@@ -12,9 +13,18 @@ class Transform;
 
 class Entity {
 private:
-	Dict<ComponentType, Component *> _components;
+	Vector<Component *> _components;
 	EntitySystem *_entitySystem;
 	String _name;
+
+	template <typename F>
+	inline void forAllComponents(F func) {
+		for (auto cmp : _components) {
+			if (cmp) {
+				func(cmp);
+			}
+		}
+	}
 
 public:
 	Entity(String name);
@@ -23,13 +33,9 @@ public:
 	Component* AddComponent(Component* component);
 
 	template <typename T>
-	T* GetComponent() {
+	inline T* GetComponent() {
 		ComponentType type = GetComponentType(&typeid(T));
-		auto it = _components.find(type);
-		if (it != _components.end()) {
-			return static_cast<T*>(it->second);
-		}
-		return nullptr;
+		return static_cast<T*>(_components[type]);
 	}
 
 	Transform* GetTransform();

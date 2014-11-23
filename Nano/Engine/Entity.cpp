@@ -3,13 +3,13 @@
 #include "Component.h"
 #include "Transform.h"
 
-Entity::Entity(String name) : _name(name) {
+Entity::Entity(String name) : _name(name), _components(CT_COUNT) {
 }
 
 Entity::~Entity() {
-	for (auto kv : _components) {
-		delete kv.second;
-	}
+	forAllComponents([](Component* cmp) {
+		delete cmp;
+	});
 }
 
 Component* Entity::AddComponent(Component* component) {
@@ -32,7 +32,7 @@ Transform* Entity::GetTransform() {
 }
 
 void Entity::SendMessage(String const& message, void *data) {
-	for (auto kv : _components) {
-		kv.second->HandleMessage(message, data);
-	}
+	forAllComponents([&message, &data](Component* cmp) {
+		cmp->HandleMessage(message, data);
+	});
 }

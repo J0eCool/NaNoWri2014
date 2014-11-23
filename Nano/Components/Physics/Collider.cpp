@@ -36,7 +36,7 @@ bool Collider::collides(Collider *other) {
 void Collider::Update(float dt) {
 	_collidedThisFrame.clear();
 
-	auto entities = _entity->GetEntitySystem()->GetEntities();
+	auto &entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
 		if (entity != _entity && col && LayersIntersect(col) && collides(col)) {
@@ -74,7 +74,7 @@ bool Collider::LayersIntersect(Collider *other, int layerMask) const {
 bool Collider::Raycast(Vec2 const& start, Vec2 const& end, float *outDist, int layerMask) const {
 	bool collided = false;
 	float dist = FLT_MAX;
-	auto entities = _entity->GetEntitySystem()->GetEntities();
+	auto &entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
 		if (col && entity != _entity && LayersIntersect(col, layerMask)) {

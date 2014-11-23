@@ -19,6 +19,7 @@ enum ComponentType {
 	CT_TextRenderer,
 	CT_Tilemap,
 	CT_Transform,
+	CT_COUNT,
 };
 
 class Component;

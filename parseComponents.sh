@@ -21,6 +21,7 @@ echo '' >> $outFile
 echo 'enum ComponentType {' >> $outFile
 echo '	CT_INVALID,' >> $outFile
 	echo "$componentTypes" | xargs -I %% echo '	CT_%%,' >> $outFile
+echo '	CT_COUNT,' >> $outFile
 echo '};' >> $outFile
 echo '' >> $outFile
 echo 'class Component;' >> $outFile
