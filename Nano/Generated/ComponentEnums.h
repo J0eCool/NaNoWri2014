@@ -27,3 +27,4 @@ class Component;
 ComponentType GetComponentType(const std::type_info *type);
 ComponentType GetComponentType(String name);
 Component* CreateComponentWithName(String name);
+Component* CloneComponentWithType(Component* base, ComponentType type);

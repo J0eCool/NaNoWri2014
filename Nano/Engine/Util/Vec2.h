@@ -34,7 +34,10 @@ public:
 
 	float Dot(Vec2 const& other) const;
 	float Cross(Vec2 const& other) const;
+
 	Vec2 Mult(Vec2 const& other) const;
+	Vec2 Min(Vec2 const& other) const;
+	Vec2 Max(Vec2 const& other) const;
 
 	String ToString() const;
 };

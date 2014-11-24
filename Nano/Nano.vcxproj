@@ -96,6 +96,7 @@
     <ClInclude Include="Components\Tilemap.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
     <ClInclude Include="Engine\Util\Containers.h" />
+    <ClInclude Include="Engine\Util\Rect.h" />
     <ClInclude Include="Engine\Util\StringHandling.h" />
     <ClInclude Include="Generated\ComponentEnums.h" />
     <ClInclude Include="Managers\ManagerManager.h" />
@@ -132,6 +133,7 @@
     <ClCompile Include="Components\Tilemap.cpp" />
     <ClCompile Include="Engine\Component.cpp" />
     <ClCompile Include="Engine\ComponentFactory.cpp" />
+    <ClCompile Include="Engine\Util\Rect.cpp" />
     <ClCompile Include="Engine\Util\StringHandling.cpp" />
     <ClCompile Include="Generated\ComponentEnums.cpp" />
     <ClCompile Include="Generated\ComponentLoading.cpp" />

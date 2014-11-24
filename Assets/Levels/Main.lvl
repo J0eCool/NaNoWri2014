@@ -7,10 +7,7 @@ Camera
 		size: 800,600
 	CameraFollow
 		followName: Player
-		leftBound: -1000
-		rightBound: 1800
-		upBound: 0
-		downBound: 600
+		boundsName: Map
 
 Map
 	Transform

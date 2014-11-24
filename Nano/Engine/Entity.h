@@ -28,6 +28,7 @@ private:
 
 public:
 	Entity(String name);
+	Entity(Entity const& other);
 	~Entity();
 
 	Component* AddComponent(Component* component);

@@ -30,10 +30,7 @@ void Bullet::LoadArg(std::string const& key, std::string const& val) {
 
 void CameraFollow::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "followName") { _followName = ParseString(val); }
-	else if (key == "leftBound") { _leftBound = ParseFloat(val); }
-	else if (key == "rightBound") { _rightBound = ParseFloat(val); }
-	else if (key == "upBound") { _upBound = ParseFloat(val); }
-	else if (key == "downBound") { _downBound = ParseFloat(val); }
+	else if (key == "boundsName") { _boundsName = ParseString(val); }
 	else { Log("ERROR: CameraFollow: Invalid argument: Key=", key, ", Val=", val); }
 }
 

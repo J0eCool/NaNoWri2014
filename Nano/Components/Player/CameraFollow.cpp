@@ -1,17 +1,20 @@
 #include "CameraFollow.h"
 
 #include <Nano/Constants.h>
+#include <Nano/Components/Tilemap.h>
 
 const static Vec2 kHalfScreen((float)kScreenWidth / 2.0f, (float)kScreenHeight / 2.0f);
 
 void CameraFollow::Start() {
 	_followTransform = GetEntitySystem()->FindEntity(_followName)->GetTransform();
+	_boundsTilemap = GetEntitySystem()->FindEntity(_boundsName)->GetComponent<Tilemap>();
 }
 
 void CameraFollow::Update(float dt) {
 	Transform *transform = GetTransform();
+	Rect bounds = _boundsTilemap->GetBounds();
 	transform->pos = _followTransform->pos - kHalfScreen;
-	transform->pos.x = clamp(transform->pos.x, _leftBound, _rightBound - kScreenWidth);
-	transform->pos.y = clamp(transform->pos.y, _upBound, _downBound - kScreenHeight);
+	transform->pos.x = (float)(int)clamp(transform->pos.x, bounds.x, bounds.x + bounds.w - kScreenWidth);
+	transform->pos.y = (float)(int)clamp(transform->pos.y, bounds.y, bounds.y + bounds.h - kScreenHeight);
 }
 

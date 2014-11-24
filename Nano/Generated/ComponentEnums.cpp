@@ -56,3 +56,22 @@ Component* CreateComponentWithName(String name) {
 	if (name == "Transform") { return new Transform; }
 	return nullptr;
 }
+
+Component* CloneComponentWithType(Component* base, ComponentType type) {
+	Component *cmp = nullptr;
+	if (type == CT_EnemyHealth) { cmp = new EnemyHealth; memcpy(cmp, base, sizeof(EnemyHealth)); }
+	if (type == CT_EnemySpawner) { cmp = new EnemySpawner; memcpy(cmp, base, sizeof(EnemySpawner)); }
+	if (type == CT_Collider) { cmp = new Collider; memcpy(cmp, base, sizeof(Collider)); }
+	if (type == CT_Rigidbody) { cmp = new Rigidbody; memcpy(cmp, base, sizeof(Rigidbody)); }
+	if (type == CT_Bullet) { cmp = new Bullet; memcpy(cmp, base, sizeof(Bullet)); }
+	if (type == CT_CameraFollow) { cmp = new CameraFollow; memcpy(cmp, base, sizeof(CameraFollow)); }
+	if (type == CT_PlayerController) { cmp = new PlayerController; memcpy(cmp, base, sizeof(PlayerController)); }
+	if (type == CT_RemoveWhenOffscreen) { cmp = new RemoveWhenOffscreen; memcpy(cmp, base, sizeof(RemoveWhenOffscreen)); }
+	if (type == CT_Camera) { cmp = new Camera; memcpy(cmp, base, sizeof(Camera)); }
+	if (type == CT_Renderer) { cmp = new Renderer; memcpy(cmp, base, sizeof(Renderer)); }
+	if (type == CT_SpriteRenderer) { cmp = new SpriteRenderer; memcpy(cmp, base, sizeof(SpriteRenderer)); }
+	if (type == CT_TextRenderer) { cmp = new TextRenderer; memcpy(cmp, base, sizeof(TextRenderer)); }
+	if (type == CT_Tilemap) { cmp = new Tilemap; memcpy(cmp, base, sizeof(Tilemap)); }
+	if (type == CT_Transform) { cmp = new Transform; memcpy(cmp, base, sizeof(Transform)); }
+	return cmp;
+}

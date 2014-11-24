@@ -1,9 +1,26 @@
 #include "Entity.h"
 
+#include "EntitySystem.h"
 #include "Component.h"
 #include "Transform.h"
 
 Entity::Entity(String name) : _name(name), _components(CT_COUNT) {
+}
+
+Entity::Entity(Entity const& other) : Entity(other._name) {
+	for (auto oCmp : other._components) {
+		if (oCmp) {
+			auto cmp = oCmp->Clone();
+			_components[cmp->_type] = cmp;
+			cmp->_entity = this;
+		}
+	}
+	//for (unsigned i = 0; i < other._components.size(); ++i) {
+	//	_components[i] = other._components[i]->Clone();
+	//}
+	if (other._entitySystem) {
+		other._entitySystem->AddEntity(this);
+	}
 }
 
 Entity::~Entity() {

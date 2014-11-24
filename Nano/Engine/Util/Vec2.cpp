@@ -83,8 +83,15 @@ float Vec2::Dot(Vec2 const& other) const {
 float Vec2::Cross(Vec2 const& other) const {
 	return x * other.y - y * other.x;
 }
+
 Vec2 Vec2::Mult(Vec2 const& other) const {
 	return Vec2(x * other.x, y * other.y);
+}
+Vec2 Vec2::Min(Vec2 const& other) const {
+	return Vec2(min(x, other.x), min(y, other.y));
+}
+Vec2 Vec2::Max(Vec2 const& other) const {
+	return Vec2(max(x, other.x), max(y, other.y));
 }
 
 String Vec2::ToString() const {

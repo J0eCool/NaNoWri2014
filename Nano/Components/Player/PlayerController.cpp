@@ -63,7 +63,8 @@ void PlayerController::Update(float dt) {
 	GetComponent<SpriteRenderer>()->GetSprite()->horizFlip = _facingDir < 0;
 
 	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
+	Entity* cam = _entity->GetEntitySystem()->FindEntity("Camera");
 	if (text) {
-		text->GetComponent<TextRenderer>()->SetText(transform->pos.ToString());
+		text->GetComponent<TextRenderer>()->SetText(cam->GetTransform()->pos.ToString());
 	}
 }

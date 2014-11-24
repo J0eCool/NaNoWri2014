@@ -22,6 +22,10 @@ protected:
 public:
 	virtual ~Component() { }
 
+	Component* Clone() {
+		return CloneComponentWithType(this, _type);
+	}
+
 	Component* SetArg(String const& key, String const& val) {
 		LoadArg(key, val);
 		return this;

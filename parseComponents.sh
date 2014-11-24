@@ -29,6 +29,7 @@ echo '' >> $outFile
 echo 'ComponentType GetComponentType(const std::type_info *type);' >> $outFile
 echo 'ComponentType GetComponentType(String name);' >> $outFile
 echo 'Component* CreateComponentWithName(String name);' >> $outFile
+echo 'Component* CloneComponentWithType(Component* base, ComponentType type);' >> $outFile
 
 
 
@@ -52,4 +53,10 @@ echo '' >> $outFile
 echo 'Component* CreateComponentWithName(String name) {' >> $outFile
 	echo "$componentTypes" | xargs -I %% echo '	if (name == "%%") { return new %%; }' >> $outFile
 echo '	return nullptr;' >> $outFile
+echo '}' >> $outFile
+echo '' >> $outFile
+echo 'Component* CloneComponentWithType(Component* base, ComponentType type) {' >> $outFile
+echo '	Component *cmp = nullptr;' >> $outFile
+	echo "$componentTypes" | xargs -I %% echo '	if (type == CT_%%) { cmp = new %%; memcpy(cmp, base, sizeof(%%)); }' >> $outFile
+echo '	return cmp;' >> $outFile
 echo '}' >> $outFile
