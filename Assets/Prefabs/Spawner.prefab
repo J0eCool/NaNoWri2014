@@ -1,0 +1,8 @@
+Collider
+	layerMask: 0x8
+RemoveWhenOffscreen
+	remove: false
+EnemySpawner
+	spawnName: Slime
+Transform
+	size: 65,120

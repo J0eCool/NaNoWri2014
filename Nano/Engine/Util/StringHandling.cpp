@@ -56,6 +56,13 @@ String Trim(String const& str, String const& trimChars) {
 	return TrimLeft(TrimRight(str, trimChars), trimChars);
 }
 
+bool ParseBool(String const& str) {
+	if (str == "true") {
+		return true;
+	}
+	return false;
+}
+
 int ParseInt(String const& str) {
 	// Parse int as hex if string starts with "0x"
 	if (str.length() > 2 && str[0] == '0' && str[1] == 'x') {

@@ -9,21 +9,32 @@ void Tilemap::Start() {
 	Vec2 tileSize = tilePrefab->GetTransform()->size;
 
 	for (unsigned y = 0; y < lines.size(); ++y) {
+		Vec2 offset(0.0f, y * tileSize.y);
 		for (unsigned x = 0; x < lines[y].length(); ++x) {
+			offset.x = x * tileSize.x;
+			Vec2 pos = transform->pos + offset;
 			auto c = lines[y][x];
 			if (c == '#') {
 				Entity *tile = new Entity(*tilePrefab);
 				Transform *tTrans = tile->GetTransform();
-				Vec2 offset = tileSize.Mult({ (float)x, (float)y });
-				tTrans->pos = transform->pos + offset;
+				tTrans->pos = pos;
 				GetEntitySystem()->AddEntity(tile);
 
 				topLeft = topLeft.Min(tTrans->pos);
 				botRight = botRight.Max(tTrans->pos + tileSize);
 			}
 			else if (c == '@') {
-				//Entity *player = GetEntitySystem()->FindEntity("Player");
-				//player->GetTransform
+				Entity *player = GetEntitySystem()->FindEntity("Player");
+				Transform *pTrans = player->GetTransform();
+				pos.y += tileSize.y - pTrans->size.y;
+				pTrans->pos = pos;
+			}
+			else if (c == 'S') {
+				Entity *slime = LoadPrefabFromFile("../Assets/Prefabs/Spawner.prefab");
+				Transform *sTrans = slime->GetTransform();
+				pos.y += tileSize.y - sTrans->size.y;
+				sTrans->pos = pos;
+				GetEntitySystem()->AddEntity(slime);
 			}
 		}
 	}

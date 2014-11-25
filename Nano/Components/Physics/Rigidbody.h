@@ -20,6 +20,9 @@ private:
 	CollisionDirection _collidedDirs;
 	int _layerMask;
 
+protected:
+	float priority() const override { return -5.0f; }
+
 public:
 	const static float kGravity;
 

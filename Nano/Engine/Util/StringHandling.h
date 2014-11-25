@@ -12,6 +12,7 @@ String TrimRight(String const& str, String const& trimChars = " \t");
 String TrimLeft(String const& str, String const& trimChars = " \t");
 String Trim(String const& str, String const& trimChars = " \t");
 
+bool ParseBool(String const& str);
 int ParseInt(String const& str);
 float ParseFloat(String const& str);
 String ParseString(String const& str);

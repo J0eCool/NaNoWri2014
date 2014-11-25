@@ -36,10 +36,3 @@ PlayerPosText
 	Transform
 		pos: 50,50
 		size: 0,0
-
-Spawner
-	Transform
-		pos: 800,280
-		size: 600,40
-	EnemySpawner
-		spawnLimit: 2

@@ -4,13 +4,17 @@
 
 class EnemySpawner : public Component {
 private:
-	int _spawnLimit;
-	Vector<Entity*> _spawnedEntities;
+	String _spawnName;
 
-	void SpawnEnemy();
+	Entity *_spawnedEntity;
+	bool _wasOffscreen;
+
+	void spawnEnemy();
 
 public:
-	//$$_spawnLimit:Int
+	EnemySpawner();
+
+	//$$_spawnName:String
 	void LoadArg(String const& key, String const& val) override;
 	void Update(float dt) override;
 

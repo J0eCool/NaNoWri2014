@@ -1,6 +1,7 @@
 Collider
-	layerMask: 0x4
+	layerMask: 0xc
 Rigidbody
+RemoveWhenOffscreen
 EnemyHealth
 	maxHealth: 2
 Transform

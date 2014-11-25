@@ -7,7 +7,7 @@ void EnemyHealth::LoadArg(std::string const& key, std::string const& val) {
 }
 
 void EnemySpawner::LoadArg(std::string const& key, std::string const& val) {
-	if (key == "spawnLimit") { _spawnLimit = ParseInt(val); }
+	if (key == "spawnName") { _spawnName = ParseString(val); }
 	else { Log("ERROR: EnemySpawner: Invalid argument: Key=", key, ", Val=", val); }
 }
 
@@ -39,6 +39,11 @@ void PlayerController::LoadArg(std::string const& key, std::string const& val) {
 	else if (key == "jumpHeight") { _jumpHeight = ParseFloat(val); }
 	else if (key == "shotOffset") { _shotOffset = ParseVec2(val); }
 	else { Log("ERROR: PlayerController: Invalid argument: Key=", key, ", Val=", val); }
+}
+
+void RemoveWhenOffscreen::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "remove") { _remove = ParseBool(val); }
+	else { Log("ERROR: RemoveWhenOffscreen: Invalid argument: Key=", key, ", Val=", val); }
 }
 
 void Renderer::LoadArg(std::string const& key, std::string const& val) {

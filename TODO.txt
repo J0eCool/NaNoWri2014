@@ -1,3 +1,8 @@
 TO DO:
 	- Auto-run parseComponents.sh from VS build
 	- Animations
+
+December todo:
+	- non-bullshit STL containers, performance-wise
+		A: undefine iterator debug stuff that honestly who cares
+		B: implement my own dang containers jeez
