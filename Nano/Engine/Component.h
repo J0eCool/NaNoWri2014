@@ -10,8 +10,8 @@ class Transform;
 
 class Component {
 private:
-	ComponentType _type;
 	bool _hasStarted = false;
+	ComponentType _type;
 
 protected:
 	Entity *_entity;
@@ -22,9 +22,7 @@ protected:
 public:
 	virtual ~Component() { }
 
-	Component* Clone() {
-		return CloneComponentWithType(this, _type);
-	}
+	virtual Component* Clone() const;
 
 	Component* SetArg(String const& key, String const& val) {
 		LoadArg(key, val);

@@ -3,6 +3,13 @@
 Collider::Collider() : _layerMask(kDefaultLayerMask) {
 }
 
+Component* Collider::Clone() const {
+	auto cmp = new Collider();
+	cmp->_entity = _entity;
+	cmp->_layerMask = _layerMask;
+	return cmp;
+}
+
 bool Collider::collides(Collider *other) {
 	Transform *a = _entity->GetTransform();
 	Transform *b = other->_entity->GetTransform();

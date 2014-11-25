@@ -4,6 +4,10 @@
 #include "EntitySystem.h"
 #include "Transform.h"
 
+Component* Component::Clone() const {
+	return CloneComponentWithType(this, _type);
+}
+
 Transform* Component::GetTransform() {
 	return GetComponent<Transform>();
 }

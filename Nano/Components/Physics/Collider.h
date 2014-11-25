@@ -15,6 +15,7 @@ public:
 	const static int kDefaultLayerMask = 0x1;
 
 	Collider();
+	Component* Clone() const override;
 	//$$_layerMask:Int
 	void LoadArg(String const& key, String const& val) override;
 

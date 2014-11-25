@@ -4,20 +4,16 @@
 #include "Component.h"
 #include "Transform.h"
 
-Entity::Entity(String name) : _name(name), _components(CT_COUNT) {
+Entity::Entity(String name) : _name(name) {
 }
 
-Entity::Entity(Entity const& other) : Entity(other._name) {
-	for (auto oCmp : other._components) {
-		if (oCmp) {
-			auto cmp = oCmp->Clone();
+Entity::Entity(Entity& other) : Entity(other._name) {
+	other.forAllComponents([this](Component* oCmp) {
+		auto cmp = oCmp->Clone();
+			cmp->_type = oCmp->_type;
 			_components[cmp->_type] = cmp;
 			cmp->_entity = this;
-		}
-	}
-	//for (unsigned i = 0; i < other._components.size(); ++i) {
-	//	_components[i] = other._components[i]->Clone();
-	//}
+	});
 	if (other._entitySystem) {
 		other._entitySystem->AddEntity(this);
 	}

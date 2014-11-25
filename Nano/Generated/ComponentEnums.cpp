@@ -57,7 +57,7 @@ Component* CreateComponentWithName(String name) {
 	return nullptr;
 }
 
-Component* CloneComponentWithType(Component* base, ComponentType type) {
+Component* CloneComponentWithType(Component const* base, ComponentType type) {
 	Component *cmp = nullptr;
 	if (type == CT_EnemyHealth) { cmp = new EnemyHealth; memcpy(cmp, base, sizeof(EnemyHealth)); }
 	if (type == CT_EnemySpawner) { cmp = new EnemySpawner; memcpy(cmp, base, sizeof(EnemySpawner)); }

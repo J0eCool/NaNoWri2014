@@ -32,6 +32,7 @@ parseLoadArgs () {
 export -f parseLoadArgs
 
 outFile="Nano/Generated/ComponentLoading.cpp"
+echo "Wrote \"$outFile\""
 
 echo "#include <Nano/Components/Components.h>" > $outFile
 echo "#include <Nano/Engine/Engine.h>" >> $outFile

@@ -10,7 +10,7 @@ drs=$(find . -maxdepth 1 -type d -not -name \. | grep -o [^/]*$)
 echo "$drs" | xargs -I %% $script %% $script
 
 outFile=$1".h"
-echo "Writing \"$outFile\""
+echo "Wrote \"$outFile\""
 
 echo '#pragma once' > $outFile
 echo '' >> $outFile

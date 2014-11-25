@@ -13,7 +13,7 @@ class Transform;
 
 class Entity {
 private:
-	Vector<Component *> _components;
+	Component* _components[CT_COUNT];
 	EntitySystem *_entitySystem;
 	String _name;
 
@@ -28,7 +28,7 @@ private:
 
 public:
 	Entity(String name);
-	Entity(Entity const& other);
+	Entity(Entity& other);
 	~Entity();
 
 	Component* AddComponent(Component* component);
