@@ -11,8 +11,15 @@ void EnemySpawner::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: EnemySpawner: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void EnemyWander::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "speed") { _speed = ParseFloat(val); }
+	else if (key == "dir") { _dir = ParseInt(val); }
+	else { Log("ERROR: EnemyWander: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Collider::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "layerMask") { _layerMask = ParseInt(val); }
+	else if (key == "trigger") { _trigger = ParseBool(val); }
 	else { Log("ERROR: Collider: Invalid argument: Key=", key, ", Val=", val); }
 }
 

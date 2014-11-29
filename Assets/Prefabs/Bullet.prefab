@@ -1,5 +1,6 @@
 Collider
 	layerMask: 0xd
+	trigger: true
 RemoveWhenOffscreen
 Bullet
 	layerMask: 0x5

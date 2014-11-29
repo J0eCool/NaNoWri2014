@@ -123,6 +123,9 @@
     <ClInclude Include="Engine\Util\Rect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Enemy\EnemyWander.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -210,6 +213,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Util\Rect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Enemy\EnemyWander.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

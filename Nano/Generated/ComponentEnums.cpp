@@ -6,6 +6,7 @@
 ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(EnemyHealth)) { return CT_EnemyHealth; }
 	if (type == &typeid(EnemySpawner)) { return CT_EnemySpawner; }
+	if (type == &typeid(EnemyWander)) { return CT_EnemyWander; }
 	if (type == &typeid(Collider)) { return CT_Collider; }
 	if (type == &typeid(Rigidbody)) { return CT_Rigidbody; }
 	if (type == &typeid(Bullet)) { return CT_Bullet; }
@@ -24,6 +25,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 ComponentType GetComponentType(String name) {
 	if (name == "EnemyHealth") { return CT_EnemyHealth; }
 	if (name == "EnemySpawner") { return CT_EnemySpawner; }
+	if (name == "EnemyWander") { return CT_EnemyWander; }
 	if (name == "Collider") { return CT_Collider; }
 	if (name == "Rigidbody") { return CT_Rigidbody; }
 	if (name == "Bullet") { return CT_Bullet; }
@@ -42,6 +44,7 @@ ComponentType GetComponentType(String name) {
 Component* CreateComponentWithName(String name) {
 	if (name == "EnemyHealth") { return new EnemyHealth; }
 	if (name == "EnemySpawner") { return new EnemySpawner; }
+	if (name == "EnemyWander") { return new EnemyWander; }
 	if (name == "Collider") { return new Collider; }
 	if (name == "Rigidbody") { return new Rigidbody; }
 	if (name == "Bullet") { return new Bullet; }
@@ -61,6 +64,7 @@ Component* CloneComponentWithType(Component const* base, ComponentType type) {
 	Component *cmp = nullptr;
 	if (type == CT_EnemyHealth) { cmp = new EnemyHealth; memcpy(cmp, base, sizeof(EnemyHealth)); }
 	if (type == CT_EnemySpawner) { cmp = new EnemySpawner; memcpy(cmp, base, sizeof(EnemySpawner)); }
+	if (type == CT_EnemyWander) { cmp = new EnemyWander; memcpy(cmp, base, sizeof(EnemyWander)); }
 	if (type == CT_Collider) { cmp = new Collider; memcpy(cmp, base, sizeof(Collider)); }
 	if (type == CT_Rigidbody) { cmp = new Rigidbody; memcpy(cmp, base, sizeof(Rigidbody)); }
 	if (type == CT_Bullet) { cmp = new Bullet; memcpy(cmp, base, sizeof(Bullet)); }

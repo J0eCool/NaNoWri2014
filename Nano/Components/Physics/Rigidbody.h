@@ -8,6 +8,9 @@ enum CollisionDirection {
 	CD_Down = 1 << 2,
 	CD_Up = 1 << 3,
 
+	CD_DownLeftSide = 1 << 4,
+	CD_DownRightSide = 1 << 5,
+
 	CD_None = 0,
 	CD_Horizontal = CD_Left | CD_Right,
 	CD_Vertical = CD_Down | CD_Up,
@@ -34,5 +37,5 @@ public:
 
 	void Update(float dt) override;
 
-	CollisionDirection GetCollisionDirs() const;
+	bool IsColliding(CollisionDirection dir) const;
 };

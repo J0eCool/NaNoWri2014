@@ -1,6 +1,6 @@
 #include "Collider.h"
 
-Collider::Collider() : _layerMask(kDefaultLayerMask) {
+Collider::Collider() : _layerMask(kDefaultLayerMask), _trigger(false) {
 }
 
 Component* Collider::Clone() const {
@@ -84,7 +84,7 @@ bool Collider::Raycast(Vec2 const& start, Vec2 const& end, float *outDist, int l
 	auto &entities = _entity->GetEntitySystem()->GetEntities();
 	for (auto entity : entities) {
 		Collider *col = entity->GetComponent<Collider>();
-		if (col && entity != _entity && LayersIntersect(col, layerMask)) {
+		if (col && entity != _entity && LayersIntersect(col, layerMask) && !col->_trigger) {
 			if (col->IsPointInside(start)) {
 				if (outDist) {
 					*outDist = 0.0f;
@@ -120,4 +120,8 @@ bool Collider::IsPointInside(Vec2 point) const {
 	SDL_Rect r = transform->GetRect();
 	return point.x >= r.x && point.x <= r.x + r.w &&
 		point.y >= r.y && point.y <= r.y + r.h;
+}
+
+bool Collider::IsTrigger() const {
+	return _trigger;
 }

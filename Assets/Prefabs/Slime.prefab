@@ -5,6 +5,8 @@ RemoveWhenOffscreen
 EnemyHealth
 	maxHealth: 2
 Transform
-	size: 65,120
+	size: 65,80
 SpriteRenderer
 	spriteName: Slime
+EnemyWander
+	speed: 100

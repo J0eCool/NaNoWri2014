@@ -7,6 +7,7 @@ enum ComponentType {
 	CT_INVALID,
 	CT_EnemyHealth,
 	CT_EnemySpawner,
+	CT_EnemyWander,
 	CT_Collider,
 	CT_Rigidbody,
 	CT_Bullet,

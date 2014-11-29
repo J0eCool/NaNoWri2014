@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="Components\Enemy\EnemyHealth.h" />
     <ClInclude Include="Components\Enemy\EnemySpawner.h" />
+    <ClInclude Include="Components\Enemy\EnemyWander.h" />
     <ClInclude Include="Components\Player\Bullet.h" />
     <ClInclude Include="Components\Player\CameraFollow.h" />
     <ClInclude Include="Components\RemoveWhenOffscreen.h" />
@@ -123,6 +124,7 @@
   <ItemGroup>
     <ClCompile Include="Components\Enemy\EnemyHealth.cpp" />
     <ClCompile Include="Components\Enemy\EnemySpawner.cpp" />
+    <ClCompile Include="Components\Enemy\EnemyWander.cpp" />
     <ClCompile Include="Components\Player\Bullet.cpp" />
     <ClCompile Include="Components\Player\CameraFollow.cpp" />
     <ClCompile Include="Components\RemoveWhenOffscreen.cpp" />

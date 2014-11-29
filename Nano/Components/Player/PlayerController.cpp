@@ -18,9 +18,8 @@ void PlayerController::Update(float dt) {
 		_facingDir = sign(vel.x);
 	}
 
-	auto collided = GetComponent<Rigidbody>()->GetCollisionDirs();
 	float gDir = 1.0f;
-	if (collided & CD_Down) {
+	if (rigidbody->IsColliding(CD_Down)) {
 		if (input->IsDown(IT_Jump)) {
 			vel.y = -gDir * sqrt(2.0f * _jumpHeight * Rigidbody::kGravity);
 			_isHoldingJump = true;

@@ -25,7 +25,14 @@ void Rigidbody::Update(float dt) {
 			rays.push_back({ { x, transform->pos.y }, { 0.0f, v.y }, CD_Up });
 		}
 		if (v.y >= 0.0f) {
-			rays.push_back({ { x, transform->pos.y + transform->size.y }, { 0.0f, v.y }, CD_Down });
+			CollisionDirection dir = CD_Down;
+			if (i == 0) {
+				dir = (CollisionDirection)(dir | CD_DownLeftSide);
+			}
+			else if (i == _xPoints + 1) {
+				dir = (CollisionDirection)(dir | CD_DownRightSide);
+			}
+			rays.push_back({ { x, transform->pos.y + transform->size.y }, { 0.0f, v.y }, dir });
 		}
 	}
 	for (int i = 0; i < _yPoints + 2; i++) {
@@ -65,6 +72,6 @@ void Rigidbody::Update(float dt) {
 	transform->pos += v;
 }
 
-CollisionDirection Rigidbody::GetCollisionDirs() const {
-	return _collidedDirs;
+bool Rigidbody::IsColliding(CollisionDirection dir) const {
+	return (_collidedDirs & dir) != 0;
 }
