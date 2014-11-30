@@ -1,0 +1,14 @@
+Collider
+	layerMask: 0xc
+Rigidbody
+RemoveWhenOffscreen
+EnemyHealth
+	maxHealth: 2
+Transform
+	size: 55,65
+SpriteRenderer
+	spriteName: Eye
+EnemyJumping
+	speed: 215
+	jumpHeight: 165
+	jumpDelay: 0.6

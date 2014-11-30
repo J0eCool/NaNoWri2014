@@ -84,6 +84,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Components\Enemy\EnemyHealth.h" />
+    <ClInclude Include="Components\Enemy\EnemyJumping.h" />
     <ClInclude Include="Components\Enemy\EnemySpawner.h" />
     <ClInclude Include="Components\Enemy\EnemyWander.h" />
     <ClInclude Include="Components\Player\Bullet.h" />
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Components\Enemy\EnemyHealth.cpp" />
+    <ClCompile Include="Components\Enemy\EnemyJumping.cpp" />
     <ClCompile Include="Components\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="Components\Enemy\EnemyWander.cpp" />
     <ClCompile Include="Components\Player\Bullet.cpp" />

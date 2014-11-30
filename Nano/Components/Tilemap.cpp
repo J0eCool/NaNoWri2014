@@ -1,5 +1,7 @@
 #include "Tilemap.h"
 
+#include "Enemy/Enemy.h"
+
 void Tilemap::Start() {
 	auto lines = ReadLinesFromFile("../Assets/Tilemaps/" + _file);
 	Vec2 topLeft({ FLT_MAX, FLT_MAX });
@@ -34,6 +36,14 @@ void Tilemap::Start() {
 				Transform *sTrans = slime->GetTransform();
 				pos.y += tileSize.y - sTrans->size.y;
 				sTrans->pos = pos;
+				GetEntitySystem()->AddEntity(slime);
+			}
+			else if (c == 'E') {
+				Entity *slime = LoadPrefabFromFile("../Assets/Prefabs/Spawner.prefab");
+				Transform *sTrans = slime->GetTransform();
+				pos.y += tileSize.y - sTrans->size.y;
+				sTrans->pos = pos;
+				slime->GetComponent<EnemySpawner>()->LoadArg("spawnName", "Eye");
 				GetEntitySystem()->AddEntity(slime);
 			}
 		}

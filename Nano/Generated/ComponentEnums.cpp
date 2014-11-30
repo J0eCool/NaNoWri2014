@@ -5,6 +5,7 @@
 
 ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(EnemyHealth)) { return CT_EnemyHealth; }
+	if (type == &typeid(EnemyJumping)) { return CT_EnemyJumping; }
 	if (type == &typeid(EnemySpawner)) { return CT_EnemySpawner; }
 	if (type == &typeid(EnemyWander)) { return CT_EnemyWander; }
 	if (type == &typeid(Collider)) { return CT_Collider; }
@@ -24,6 +25,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 
 ComponentType GetComponentType(String name) {
 	if (name == "EnemyHealth") { return CT_EnemyHealth; }
+	if (name == "EnemyJumping") { return CT_EnemyJumping; }
 	if (name == "EnemySpawner") { return CT_EnemySpawner; }
 	if (name == "EnemyWander") { return CT_EnemyWander; }
 	if (name == "Collider") { return CT_Collider; }
@@ -43,6 +45,7 @@ ComponentType GetComponentType(String name) {
 
 Component* CreateComponentWithName(String name) {
 	if (name == "EnemyHealth") { return new EnemyHealth; }
+	if (name == "EnemyJumping") { return new EnemyJumping; }
 	if (name == "EnemySpawner") { return new EnemySpawner; }
 	if (name == "EnemyWander") { return new EnemyWander; }
 	if (name == "Collider") { return new Collider; }
@@ -63,6 +66,7 @@ Component* CreateComponentWithName(String name) {
 Component* CloneComponentWithType(Component const* base, ComponentType type) {
 	Component *cmp = nullptr;
 	if (type == CT_EnemyHealth) { cmp = new EnemyHealth; memcpy(cmp, base, sizeof(EnemyHealth)); }
+	if (type == CT_EnemyJumping) { cmp = new EnemyJumping; memcpy(cmp, base, sizeof(EnemyJumping)); }
 	if (type == CT_EnemySpawner) { cmp = new EnemySpawner; memcpy(cmp, base, sizeof(EnemySpawner)); }
 	if (type == CT_EnemyWander) { cmp = new EnemyWander; memcpy(cmp, base, sizeof(EnemyWander)); }
 	if (type == CT_Collider) { cmp = new Collider; memcpy(cmp, base, sizeof(Collider)); }

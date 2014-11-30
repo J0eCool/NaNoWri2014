@@ -6,6 +6,14 @@ void EnemyHealth::LoadArg(std::string const& key, std::string const& val) {
 	else { Log("ERROR: EnemyHealth: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void EnemyJumping::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "jumpHeight") { _jumpHeight = ParseFloat(val); }
+	else if (key == "speed") { _speed = ParseFloat(val); }
+	else if (key == "jumpDelay") { _jumpDelay = ParseFloat(val); }
+	else if (key == "dir") { _dir = ParseInt(val); }
+	else { Log("ERROR: EnemyJumping: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void EnemySpawner::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "spawnName") { _spawnName = ParseString(val); }
 	else { Log("ERROR: EnemySpawner: Invalid argument: Key=", key, ", Val=", val); }
