@@ -7,6 +7,8 @@ private:
 	String _file;
 	Rect _bounds;
 
+	void spawnEnemySpawner(Vec2 pos, String const& enemyName);
+
 public:
 	//$$_file:String
 	void LoadArg(String const& key, String const& val) override;

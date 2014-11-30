@@ -24,5 +24,7 @@ public:
 	SDL_Renderer* GetRenderer() const;
 	SDL_Rect GetRect() const;
 
+	void DrawAt(SDL_Rect const& rect) const;
+
 	friend AssetManager;
 };

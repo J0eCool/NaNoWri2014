@@ -14,7 +14,12 @@ void CameraFollow::Update(float dt) {
 	Transform *transform = GetTransform();
 	Rect bounds = _boundsTilemap->GetBounds();
 	transform->pos = _followTransform->pos - kHalfScreen;
-	transform->pos.x = (float)(int)clamp(transform->pos.x, bounds.x, bounds.x + bounds.w - kScreenWidth);
+	if (transform->pos.x > bounds.x + bounds.w - 1.5f * kScreenWidth) {
+		transform->pos.x = bounds.x + bounds.w - kScreenWidth;
+	}
+	else {
+		transform->pos.x = (float)(int)clamp(transform->pos.x, bounds.x, bounds.x + bounds.w - 2.0f * kScreenWidth);
+	}
 	transform->pos.y = (float)(int)clamp(transform->pos.y, bounds.y, bounds.y + bounds.h - kScreenHeight);
 }
 

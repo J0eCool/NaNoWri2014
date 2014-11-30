@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "Boss.h"
 #include "Enemy.h"
 #include "EnemyHealth.h"
 #include "EnemyJumping.h"

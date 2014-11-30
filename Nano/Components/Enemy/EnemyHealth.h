@@ -20,4 +20,7 @@ public:
 	void HandleMessage(String const& message, void *data) override;
 
 	void SetSpawner(EnemySpawner *spawner);
+
+	int GetHealth() const;
+	int GetMaxHealth() const;
 };

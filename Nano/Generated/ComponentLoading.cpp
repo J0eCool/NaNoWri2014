@@ -61,6 +61,11 @@ void RemoveWhenOffscreen::LoadArg(std::string const& key, std::string const& val
 	else { Log("ERROR: RemoveWhenOffscreen: Invalid argument: Key=", key, ", Val=", val); }
 }
 
+void HealthBar::LoadArg(std::string const& key, std::string const& val) {
+	if (key == "color") { _color = ParseColor(val); }
+	else { Log("ERROR: HealthBar: Invalid argument: Key=", key, ", Val=", val); }
+}
+
 void Renderer::LoadArg(std::string const& key, std::string const& val) {
 	if (key == "color") { _color = ParseColor(val); }
 	else { Log("ERROR: Renderer: Invalid argument: Key=", key, ", Val=", val); }

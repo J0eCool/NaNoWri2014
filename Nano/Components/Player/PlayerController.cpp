@@ -8,6 +8,14 @@
 PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f), _normalShots(3), _specialShots(1) {
 }
 
+void PlayerController::Start() {
+	auto curHealth = [this](){ return 12; };
+	auto poop = [this](){ static int frame = 0; frame++; return frame % 20; };
+	auto maxHealth = [this](){ return 20; };
+	GetEntitySystem()->FindEntity("PlayerHealthBar")->GetComponent<HealthBar>()->SetFunctions(curHealth, maxHealth);
+	GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(poop, maxHealth);
+}
+
 void PlayerController::Update(float dt) {
 	InputManager *input = InputManager::GetInstance();
 	Transform *transform = _entity->GetTransform();
@@ -60,10 +68,4 @@ void PlayerController::Update(float dt) {
 	}
 
 	GetComponent<SpriteRenderer>()->GetSprite()->horizFlip = _facingDir < 0;
-
-	Entity* text = _entity->GetEntitySystem()->FindEntity("PlayerPosText");
-	Entity* cam = _entity->GetEntitySystem()->FindEntity("Camera");
-	if (text) {
-		text->GetComponent<TextRenderer>()->SetText(cam->GetTransform()->pos.ToString());
-	}
 }

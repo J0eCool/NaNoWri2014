@@ -22,7 +22,6 @@ public:
 	PlayerController();
 	//$$_speed:Float|_jumpHeight:Float|_shotOffset:Vec2
 	void LoadArg(String const& key, String const& val) override;
-
+	void Start() override;
 	void Update(float dt) override;
 };
-

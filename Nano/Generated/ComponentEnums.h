@@ -5,6 +5,7 @@
 
 enum ComponentType {
 	CT_INVALID,
+	CT_Boss,
 	CT_EnemyHealth,
 	CT_EnemyJumping,
 	CT_EnemySpawner,
@@ -16,6 +17,7 @@ enum ComponentType {
 	CT_PlayerController,
 	CT_RemoveWhenOffscreen,
 	CT_Camera,
+	CT_HealthBar,
 	CT_Renderer,
 	CT_SpriteRenderer,
 	CT_TextRenderer,

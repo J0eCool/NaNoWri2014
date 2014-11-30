@@ -2,6 +2,15 @@
 
 #include "Enemy/Enemy.h"
 
+void Tilemap::spawnEnemySpawner(Vec2 pos, String const& enemyName) {
+	Entity *enemy = LoadPrefabFromFile("../Assets/Prefabs/Spawner.prefab");
+	Transform *trans = enemy->GetTransform();
+	pos.y -= trans->size.y;
+	trans->pos = pos;
+	enemy->GetComponent<EnemySpawner>()->LoadArg("spawnName", enemyName);
+	GetEntitySystem()->AddEntity(enemy);
+}
+
 void Tilemap::Start() {
 	auto lines = ReadLinesFromFile("../Assets/Tilemaps/" + _file);
 	Vec2 topLeft({ FLT_MAX, FLT_MAX });
@@ -32,19 +41,16 @@ void Tilemap::Start() {
 				pTrans->pos = pos;
 			}
 			else if (c == 'S') {
-				Entity *slime = LoadPrefabFromFile("../Assets/Prefabs/Spawner.prefab");
-				Transform *sTrans = slime->GetTransform();
-				pos.y += tileSize.y - sTrans->size.y;
-				sTrans->pos = pos;
-				GetEntitySystem()->AddEntity(slime);
+				pos.y += tileSize.y; 
+				spawnEnemySpawner(pos, "Slime");
 			}
 			else if (c == 'E') {
-				Entity *slime = LoadPrefabFromFile("../Assets/Prefabs/Spawner.prefab");
-				Transform *sTrans = slime->GetTransform();
-				pos.y += tileSize.y - sTrans->size.y;
-				sTrans->pos = pos;
-				slime->GetComponent<EnemySpawner>()->LoadArg("spawnName", "Eye");
-				GetEntitySystem()->AddEntity(slime);
+				pos.y += tileSize.y;
+				spawnEnemySpawner(pos, "Eye");
+			}
+			else if (c == 'B') {
+				pos.y += tileSize.y;
+				spawnEnemySpawner(pos, "Boss");
 			}
 		}
 	}

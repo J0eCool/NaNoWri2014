@@ -1,0 +1,15 @@
+Collider
+	layerMask: 0xc
+Rigidbody
+RemoveWhenOffscreen
+EnemyHealth
+	maxHealth: 40
+Transform
+	size: 75,75
+SpriteRenderer
+	spriteName: Boss
+EnemyJumping
+	speed: 215
+	jumpHeight: 165
+	jumpDelay: 0.6
+Boss

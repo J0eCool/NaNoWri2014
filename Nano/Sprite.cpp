@@ -22,3 +22,15 @@ SDL_Rect Sprite::GetRect() const {
 	return rect;
 }
 
+void Sprite::DrawAt(SDL_Rect const& rect) const {
+	SDL_SetTextureColorMod(_texture, color.r, color.g, color.b);
+	auto flip = SDL_FLIP_NONE;
+	if (horizFlip) {
+		flip = (SDL_RendererFlip)(flip | SDL_FLIP_HORIZONTAL);
+	}
+	if (vertFlip) {
+		flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
+	}
+	SDL_RenderCopyEx(_renderer, _texture, nullptr, &rect,
+		angle, nullptr, flip);
+}

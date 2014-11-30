@@ -4,6 +4,7 @@
 #include <Nano/Components/Components.h>
 
 ComponentType GetComponentType(const std::type_info *type) {
+	if (type == &typeid(Boss)) { return CT_Boss; }
 	if (type == &typeid(EnemyHealth)) { return CT_EnemyHealth; }
 	if (type == &typeid(EnemyJumping)) { return CT_EnemyJumping; }
 	if (type == &typeid(EnemySpawner)) { return CT_EnemySpawner; }
@@ -15,6 +16,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 	if (type == &typeid(PlayerController)) { return CT_PlayerController; }
 	if (type == &typeid(RemoveWhenOffscreen)) { return CT_RemoveWhenOffscreen; }
 	if (type == &typeid(Camera)) { return CT_Camera; }
+	if (type == &typeid(HealthBar)) { return CT_HealthBar; }
 	if (type == &typeid(Renderer)) { return CT_Renderer; }
 	if (type == &typeid(SpriteRenderer)) { return CT_SpriteRenderer; }
 	if (type == &typeid(TextRenderer)) { return CT_TextRenderer; }
@@ -24,6 +26,7 @@ ComponentType GetComponentType(const std::type_info *type) {
 }
 
 ComponentType GetComponentType(String name) {
+	if (name == "Boss") { return CT_Boss; }
 	if (name == "EnemyHealth") { return CT_EnemyHealth; }
 	if (name == "EnemyJumping") { return CT_EnemyJumping; }
 	if (name == "EnemySpawner") { return CT_EnemySpawner; }
@@ -35,6 +38,7 @@ ComponentType GetComponentType(String name) {
 	if (name == "PlayerController") { return CT_PlayerController; }
 	if (name == "RemoveWhenOffscreen") { return CT_RemoveWhenOffscreen; }
 	if (name == "Camera") { return CT_Camera; }
+	if (name == "HealthBar") { return CT_HealthBar; }
 	if (name == "Renderer") { return CT_Renderer; }
 	if (name == "SpriteRenderer") { return CT_SpriteRenderer; }
 	if (name == "TextRenderer") { return CT_TextRenderer; }
@@ -44,6 +48,7 @@ ComponentType GetComponentType(String name) {
 }
 
 Component* CreateComponentWithName(String name) {
+	if (name == "Boss") { return new Boss; }
 	if (name == "EnemyHealth") { return new EnemyHealth; }
 	if (name == "EnemyJumping") { return new EnemyJumping; }
 	if (name == "EnemySpawner") { return new EnemySpawner; }
@@ -55,6 +60,7 @@ Component* CreateComponentWithName(String name) {
 	if (name == "PlayerController") { return new PlayerController; }
 	if (name == "RemoveWhenOffscreen") { return new RemoveWhenOffscreen; }
 	if (name == "Camera") { return new Camera; }
+	if (name == "HealthBar") { return new HealthBar; }
 	if (name == "Renderer") { return new Renderer; }
 	if (name == "SpriteRenderer") { return new SpriteRenderer; }
 	if (name == "TextRenderer") { return new TextRenderer; }
@@ -65,6 +71,7 @@ Component* CreateComponentWithName(String name) {
 
 Component* CloneComponentWithType(Component const* base, ComponentType type) {
 	Component *cmp = nullptr;
+	if (type == CT_Boss) { cmp = new Boss; memcpy(cmp, base, sizeof(Boss)); }
 	if (type == CT_EnemyHealth) { cmp = new EnemyHealth; memcpy(cmp, base, sizeof(EnemyHealth)); }
 	if (type == CT_EnemyJumping) { cmp = new EnemyJumping; memcpy(cmp, base, sizeof(EnemyJumping)); }
 	if (type == CT_EnemySpawner) { cmp = new EnemySpawner; memcpy(cmp, base, sizeof(EnemySpawner)); }
@@ -76,6 +83,7 @@ Component* CloneComponentWithType(Component const* base, ComponentType type) {
 	if (type == CT_PlayerController) { cmp = new PlayerController; memcpy(cmp, base, sizeof(PlayerController)); }
 	if (type == CT_RemoveWhenOffscreen) { cmp = new RemoveWhenOffscreen; memcpy(cmp, base, sizeof(RemoveWhenOffscreen)); }
 	if (type == CT_Camera) { cmp = new Camera; memcpy(cmp, base, sizeof(Camera)); }
+	if (type == CT_HealthBar) { cmp = new HealthBar; memcpy(cmp, base, sizeof(HealthBar)); }
 	if (type == CT_Renderer) { cmp = new Renderer; memcpy(cmp, base, sizeof(Renderer)); }
 	if (type == CT_SpriteRenderer) { cmp = new SpriteRenderer; memcpy(cmp, base, sizeof(SpriteRenderer)); }
 	if (type == CT_TextRenderer) { cmp = new TextRenderer; memcpy(cmp, base, sizeof(TextRenderer)); }

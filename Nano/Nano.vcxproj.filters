@@ -129,6 +129,12 @@
     <ClInclude Include="Components\Enemy\EnemyJumping.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Rendering\HealthBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Enemy\Boss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -222,6 +228,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Components\Enemy\EnemyJumping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Rendering\HealthBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Enemy\Boss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,7 +17,7 @@ Map
 Player
 	PlayerController
 		speed: 350
-		jumpHeight: 180
+		jumpHeight: 220
 		shotOffset: 30,-10
 	Transform
 		pos: 120,100
@@ -29,10 +29,22 @@ Player
 	SpriteRenderer
 		spriteName: Player
 
-PlayerPosText
-	TextRenderer
-		fontName: arial
-		fontSize: 24
+PlayerHealthBar
 	Transform
-		pos: 50,50
-		size: 0,0
+		pos: 25,225
+		size: 30,30
+	HealthBar
+		color: 0xff,0xd0,0x10
+PlayerManaBar
+	Transform
+		pos: 55,225
+		size: 30,30
+	HealthBar
+		color: 0x10,0x10,0xff
+
+BossHealthBar
+	Transform
+		pos: 745,425
+		size: 30,30
+	HealthBar
+		color: 0xff,0x10,0x10

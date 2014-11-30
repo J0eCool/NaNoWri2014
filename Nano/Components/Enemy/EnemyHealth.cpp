@@ -25,3 +25,11 @@ void EnemyHealth::HandleMessage(String const& message, void *data) {
 void EnemyHealth::SetSpawner(EnemySpawner *spawner) {
 	_spawner = spawner;
 }
+
+int EnemyHealth::GetHealth() const {
+	return _health;
+}
+
+int EnemyHealth::GetMaxHealth() const {
+	return _maxHealth;
+}

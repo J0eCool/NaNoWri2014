@@ -83,6 +83,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Enemy\Boss.h" />
     <ClInclude Include="Components\Enemy\EnemyHealth.h" />
     <ClInclude Include="Components\Enemy\EnemyJumping.h" />
     <ClInclude Include="Components\Enemy\EnemySpawner.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="Components\Physics\Collider.h" />
     <ClInclude Include="Components\Components.h" />
     <ClInclude Include="Components\Physics\Rigidbody.h" />
+    <ClInclude Include="Components\Rendering\HealthBar.h" />
     <ClInclude Include="Components\Rendering\Rendering.h" />
     <ClInclude Include="Components\Tilemap.h" />
     <ClInclude Include="Engine\ComponentFactory.h" />
@@ -123,6 +125,7 @@
     <ClInclude Include="Components\Rendering\TextRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Components\Enemy\Boss.cpp" />
     <ClCompile Include="Components\Enemy\EnemyHealth.cpp" />
     <ClCompile Include="Components\Enemy\EnemyJumping.cpp" />
     <ClCompile Include="Components\Enemy\EnemySpawner.cpp" />
@@ -133,6 +136,7 @@
     <ClCompile Include="Components\Rendering\Camera.cpp" />
     <ClCompile Include="Components\Physics\Collider.cpp" />
     <ClCompile Include="Components\Physics\Rigidbody.cpp" />
+    <ClCompile Include="Components\Rendering\HealthBar.cpp" />
     <ClCompile Include="Components\Rendering\Renderer.cpp" />
     <ClCompile Include="Components\Tilemap.cpp" />
     <ClCompile Include="Engine\Component.cpp" />
