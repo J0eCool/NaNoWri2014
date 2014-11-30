@@ -30,7 +30,7 @@ inline T max(T a, T b) {
 template <typename T>
 inline T lerp(float t, T lo, T hi) {
 	float t_ = clamp01(t);
-	return (T)(lo + t_ * hi);
+	return (T)(lo + t_ * (hi - lo));
 }
 
 template <typename T>
