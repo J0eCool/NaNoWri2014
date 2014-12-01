@@ -5,14 +5,15 @@
 
 #include <Nano/Components/Components.h>
 
-PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f), _normalShots(3), _specialShots(1) {
+PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f), _normalShots(3),
+		_specialShots(1), _health(_maxHealth), _mana(_maxMana) {
 }
 
 void PlayerController::Start() {
-	auto curHealth = [this](){ return 12; };
-	auto maxHealth = [this](){ return 20; };
-	auto maxMana = [this](){ return 8; };
-	auto curMana = [this](){ return 6; };
+	auto curHealth = [this](){ return _health; };
+	auto maxHealth = [this](){ return _maxHealth; };
+	auto curMana = [this](){ return _mana; };
+	auto maxMana = [this](){ return _maxMana; };
 	GetEntitySystem()->FindEntity("PlayerHealthBar")->GetComponent<HealthBar>()->SetFunctions(curHealth, maxHealth);
 	GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(curMana, maxMana);
 }
@@ -69,4 +70,10 @@ void PlayerController::Update(float dt) {
 	}
 
 	GetComponent<SpriteRenderer>()->GetSprite()->horizFlip = _facingDir < 0;
+}
+
+void PlayerController::HandleMessage(String const& message, void* data) {
+	if (message == "BulletHit") {
+		_health -= *(int *)data;
+	}
 }

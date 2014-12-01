@@ -15,9 +15,13 @@ class Boss : public Component {
 private:
 	BossState _state;
 	int _dir;
+	Entity *_bulletPrefab;
+	Entity *_player;
 
 	float _timer;
 	int _counter;
+
+	BossState getNextState();
 
 public:
 	Boss();

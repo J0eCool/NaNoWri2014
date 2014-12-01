@@ -1,0 +1,12 @@
+Collider
+	layerMask: 0xa
+	trigger: true
+RemoveWhenOffscreen
+Bullet
+	layerMask: 0x2
+	speed: 300
+	damage: 1
+Transform
+	size: 24,24
+SpriteRenderer
+	spriteName: EnemyBullet

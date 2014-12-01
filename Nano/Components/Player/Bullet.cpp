@@ -30,7 +30,7 @@ void Bullet::Update(float dt) {
 }
 
 void Bullet::SetDir(Vec2 const& dir) {
-	_vel = dir * _speed;
+	_vel = dir.Unit() * _speed;
 }
 
 void Bullet::setContainer(Container *container) {

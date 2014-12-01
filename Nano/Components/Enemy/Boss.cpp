@@ -10,17 +10,21 @@ void Boss::Start() {
 	auto curHealth = [health](){ return health->GetHealth(); };
 	auto maxHealth = [health](){ return health->GetMaxHealth(); };
 	GetEntitySystem()->FindEntity("BossHealthBar")->GetComponent<HealthBar>()->SetFunctions(curHealth, maxHealth);
+	_player = GetEntitySystem()->FindEntity("Player");
+
+	_bulletPrefab = LoadPrefabFromFile("../Assets/Prefabs/EnemyBullet.prefab");
 }
 
 void Boss::Deinit() {
 	GetEntitySystem()->FindEntity("BossHealthBar")->GetComponent<HealthBar>()->SetFunctions(nullptr, nullptr);
+	delete _bulletPrefab;
 }
 
 void Boss::Update(float dt) {
 	auto renderer = GetComponent<SpriteRenderer>();
 	auto rigidbody = GetComponent<Rigidbody>();
 
-	const float kMoveWidth = 450.0f;
+	const float kMoveWidth = 550.0f;
 	const float kStartDelay = 0.75f;
 	const float kHopTime = 0.7f;
 	const float kHopDelay = 0.25f;
@@ -35,13 +39,13 @@ void Boss::Update(float dt) {
 	switch (_state) {
 	case BS_Start:
 		if (_timer > kStartDelay) {
-			newState = BS_Hop;
+			newState = getNextState();
 		}
 		break;
 	case BS_Hop:
 		if (rigidbody->IsColliding(CD_Down)) {
 			if (_counter >= kNumHops) {
-				newState = BS_Jump;
+				newState = getNextState();
 			}
 			else if (_timer > kHopDelay) {
 				float spd = kMoveWidth / (kHopTime * kNumHops);
@@ -66,16 +70,16 @@ void Boss::Update(float dt) {
 		}
 		else if (_counter == 1) {
 			float spd = _dir * kMoveWidth / kDashTime;
-			rigidbody->vel.x = lerp(_timer / kDashTime, 2.0f * spd, 0.0f);
+			rigidbody->vel.x = spd;
 			if (_timer > kDashTime) {
-				newState = BS_Hop;
+				newState = getNextState();
 			}
 		}
 		break;
 	case BS_Jump:
 		if (rigidbody->IsColliding(CD_Down)) {
 			if (_counter >= 1) {
-				newState = BS_Dash;
+				newState = getNextState();
 			}
 			else if (_timer > kJumpDelay) {
 				float spd = kMoveWidth / kJumpTime;
@@ -99,4 +103,24 @@ void Boss::Update(float dt) {
 	}
 
 	renderer->GetSprite()->horizFlip = _dir < 0;
+}
+
+BossState Boss::getNextState() {
+	Entity *bullet = new Entity(*_bulletPrefab);
+	Vec2 center = GetTransform()->GetCenter();
+	bullet->GetTransform()->pos = center;
+	bullet->GetComponent<Bullet>()->SetDir(_player->GetTransform()->GetCenter() - center - Vec2(0.0f, 8.0f));
+	GetEntitySystem()->AddEntity(bullet);
+
+	switch (_state) {
+	case BS_Start:
+	default:
+		return BS_Hop;
+	case BS_Hop:
+		return BS_Jump;
+	case BS_Jump:
+		return BS_Dash;
+	case BS_Dash:
+		return BS_Hop;
+	}
 }
