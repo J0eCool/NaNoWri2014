@@ -23,7 +23,7 @@ Player
 		pos: 120,100
 		size: 60,60
 	Collider
-		layerMask: 0x2
+		layerMask: 0x12
 	Rigidbody
 		layerMask: 0x1
 	SpriteRenderer
@@ -44,7 +44,7 @@ PlayerManaBar
 
 BossHealthBar
 	Transform
-		pos: 745,425
+		pos: 745,325
 		size: 30,30
 	HealthBar
 		color: 0xff,0x10,0x10

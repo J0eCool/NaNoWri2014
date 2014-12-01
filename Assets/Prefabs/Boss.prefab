@@ -1,9 +1,9 @@
 Collider
-	layerMask: 0xc
+	layerMask: 0x1c
 Rigidbody
 RemoveWhenOffscreen
 EnemyHealth
-	maxHealth: 40
+	maxHealth: 30
 Transform
 	size: 75,75
 SpriteRenderer

@@ -9,6 +9,9 @@ private:
 
 	void spawnEnemySpawner(Vec2 pos, String const& enemyName);
 
+protected:
+	float priority() const override { return -10.0f; }
+
 public:
 	//$$_file:String
 	void LoadArg(String const& key, String const& val) override;

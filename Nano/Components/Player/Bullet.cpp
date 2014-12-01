@@ -1,6 +1,7 @@
 #include "Bullet.h"
 
 #include <Nano/Components/Physics/Physics.h>
+#include "PlayerController.h"
 
 void Bullet::Deinit() {
 	if (_container) {
@@ -18,7 +19,9 @@ void Bullet::Update(float dt) {
 		bool shouldRemove = false;
 		for (auto ent : collided) {
 			auto oCol = ent->GetComponent<Collider>();
-			if (!ent->GetComponent<Bullet>() && collider->LayersIntersect(oCol, _layerMask)) {
+			auto player = ent->GetComponent<PlayerController>();
+			bool invinciblePlayer = player && player->IsInvincible();
+			if (!ent->GetComponent<Bullet>() && !invinciblePlayer && collider->LayersIntersect(oCol, _layerMask)) {
 				ent->SendMessage("BulletHit", &_damage);
 				shouldRemove = true;
 			}

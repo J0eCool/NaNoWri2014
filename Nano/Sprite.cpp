@@ -24,6 +24,7 @@ SDL_Rect Sprite::GetRect() const {
 
 void Sprite::DrawAt(SDL_Rect const& rect) const {
 	SDL_SetTextureColorMod(_texture, color.r, color.g, color.b);
+	SDL_SetTextureAlphaMod(_texture, color.a);
 	auto flip = SDL_FLIP_NONE;
 	if (horizFlip) {
 		flip = (SDL_RendererFlip)(flip | SDL_FLIP_HORIZONTAL);

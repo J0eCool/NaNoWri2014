@@ -16,12 +16,20 @@ private:
 	int _maxMana = 8;
 	int _health;
 	int _mana;
+	Vec2 _startPos;
 
 	bool _isHoldingJump = false;
 	int _facingDir = 1;
 
+	float _invinTimer = 0.0f;
+	float _invinMaxTime = 1.25f;
+	float _noControlTime = 0.35f;
+
 	Bullet::Container _normalShots;
 	Bullet::Container _specialShots;
+
+	void takeDamage(int damage);
+	bool canControl();
 
 public:
 	PlayerController();
@@ -30,4 +38,6 @@ public:
 	void Start() override;
 	void Update(float dt) override;
 	void HandleMessage(String const& message, void* data) override;
+
+	bool IsInvincible();
 };

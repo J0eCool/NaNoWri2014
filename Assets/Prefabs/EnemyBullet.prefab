@@ -1,11 +1,11 @@
 Collider
-	layerMask: 0xb
+	layerMask: 0xa
 	trigger: true
 RemoveWhenOffscreen
 Bullet
 	layerMask: 0x3
 	speed: 350
-	damage: 1
+	damage: 2
 Transform
 	size: 24,24
 SpriteRenderer
