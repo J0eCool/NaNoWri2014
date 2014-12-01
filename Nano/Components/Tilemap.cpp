@@ -17,6 +17,7 @@ void Tilemap::Start() {
 	Vec2 botRight({ -FLT_MAX, -FLT_MAX });
 	Transform *transform = GetTransform();
 	Entity *tilePrefab = LoadPrefabFromFile("../Assets/Prefabs/Tile.prefab");
+	Entity *falseTilePrefab = LoadPrefabFromFile("../Assets/Prefabs/FalseTile.prefab");
 	Vec2 tileSize = tilePrefab->GetTransform()->size;
 
 	for (unsigned y = 0; y < lines.size(); ++y) {
@@ -25,8 +26,8 @@ void Tilemap::Start() {
 			offset.x = x * tileSize.x;
 			Vec2 pos = transform->pos + offset;
 			auto c = lines[y][x];
-			if (c == '#') {
-				Entity *tile = new Entity(*tilePrefab);
+			if (c == '#' || c == '.') {
+				Entity *tile = new Entity(c == '#' ? *tilePrefab : *falseTilePrefab);
 				Transform *tTrans = tile->GetTransform();
 				tTrans->pos = pos;
 				GetEntitySystem()->AddEntity(tile);
