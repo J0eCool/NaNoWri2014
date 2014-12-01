@@ -18,7 +18,8 @@ void HealthBar::Draw() {
 
 	Transform *transform = _entity->GetTransform();
 	SDL_Rect rect = transform->GetRectWithOffset({ 0, 0 });
-	_endcap.color = _color;
+	SDL_Color color = _colorFunc ? _colorFunc() : _color;
+	_endcap.color = color;
 	_endcap.DrawAt(rect);
 
 	rect.h = rect.h * _segment.GetRect().h / _endcap.GetRect().h;
@@ -27,12 +28,13 @@ void HealthBar::Draw() {
 	SDL_Color black{ 0, 0, 0, 0xff };
 	for (int i = 0; i < maxCount; ++i) {
 		rect.y -= rect.h;
-		_segment.color = i < curCount ? _color : black;
+		_segment.color = i < curCount ? color : black;
 		_segment.DrawAt(rect);
 	}
 }
 
-void HealthBar::SetFunctions(HealthFunc cur, HealthFunc max) {
+void HealthBar::SetFunctions(HealthFunc cur, HealthFunc max, HealthColorFunc color) {
 	_curFunc = cur;
 	_maxFunc = max;
+	_colorFunc = color;
 }

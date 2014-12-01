@@ -13,7 +13,7 @@ private:
 	Vec2 _shotOffset;
 
 	int _maxHealth = 20;
-	int _maxMana = 8;
+	int _maxMana = 16;
 	int _health;
 	int _mana;
 	Vec2 _startPos;
@@ -24,6 +24,7 @@ private:
 	float _invinTimer = 0.0f;
 	float _invinMaxTime = 1.25f;
 	float _noControlTime = 0.35f;
+	float _manaRegenTimer = 0.0f;
 
 	Bullet::Container _normalShots;
 	Bullet::Container _specialShots;

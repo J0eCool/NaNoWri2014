@@ -14,9 +14,10 @@ void PlayerController::Start() {
 	auto curHealth = [this](){ return _health; };
 	auto maxHealth = [this](){ return _maxHealth; };
 	GetEntitySystem()->FindEntity("PlayerHealthBar")->GetComponent<HealthBar>()->SetFunctions(curHealth, maxHealth);
-	//auto curMana = [this](){ return _mana; };
-	//auto maxMana = [this](){ return _maxMana; };
-	//GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(curMana, maxMana);
+	auto curMana = [this](){ return _mana; };
+	auto maxMana = [this](){ return _maxMana; };
+	auto manaColor = [this](){ return _mana == _maxMana ? SDL_Color{ 0x20, 0xa0, 0xff, 0xff } : SDL_Color{ 0x10, 0x10, 0xff, 0xff }; };
+	GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(curMana, maxMana, manaColor);
 }
 
 void PlayerController::Update(float dt) {
@@ -46,9 +47,10 @@ void PlayerController::Update(float dt) {
 
 		String bulletFile;
 		Bullet::Container *container = nullptr;
-		if (input->IsDown(IT_Special)) {
+		if (_mana == _maxMana && input->IsDown(IT_Special)) {
 			bulletFile = "../Assets/Prefabs/BigBullet.prefab";
 			container = &_specialShots;
+			_mana = 0;
 		}
 		else if (input->IsDown(IT_Shoot)) {
 			bulletFile = "../Assets/Prefabs/Bullet.prefab";
@@ -69,6 +71,13 @@ void PlayerController::Update(float dt) {
 			bullet->GetComponent<SpriteRenderer>()->GetSprite()->horizFlip = _facingDir < 0;
 			container->AddBullet(bullet->GetComponent<Bullet>());
 		}
+	}
+
+	_manaRegenTimer += dt;
+	const float kTimeTillFullMana = 3.0f;
+	if (_manaRegenTimer > kTimeTillFullMana / _maxMana) {
+		_mana = min(_mana + 1, _maxMana);
+		_manaRegenTimer = 0.0f;
 	}
 
 	_invinTimer -= dt;

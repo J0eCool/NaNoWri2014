@@ -37,10 +37,9 @@ PlayerHealthBar
 		color: 0xff,0xd0,0x10
 PlayerManaBar
 	Transform
-		pos: 55,225
+		pos: 50,205
 		size: 30,30
 	HealthBar
-		color: 0x10,0x10,0xff
 
 BossHealthBar
 	Transform

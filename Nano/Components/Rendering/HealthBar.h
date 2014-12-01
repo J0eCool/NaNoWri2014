@@ -6,6 +6,7 @@
 #include <functional>
 
 typedef std::function<int()> HealthFunc;
+typedef std::function<SDL_Color()> HealthColorFunc;
 
 class HealthBar : public Component {
 private:
@@ -15,6 +16,7 @@ private:
 
 	HealthFunc _curFunc;
 	HealthFunc _maxFunc;
+	HealthColorFunc _colorFunc;
 
 protected:
 	float priority() const override { return 10.0f; }
@@ -25,5 +27,5 @@ public:
 	void Init() override;
 	void Draw() override;
 
-	void SetFunctions(HealthFunc cur, HealthFunc max);
+	void SetFunctions(HealthFunc cur, HealthFunc max, HealthColorFunc color = nullptr);
 };
