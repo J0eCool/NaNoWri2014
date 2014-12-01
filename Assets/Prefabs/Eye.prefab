@@ -1,5 +1,5 @@
 Collider
-	layerMask: 0xc
+	layerMask: 0x1c
 Rigidbody
 RemoveWhenOffscreen
 EnemyHealth
