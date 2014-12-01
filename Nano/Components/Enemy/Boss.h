@@ -20,6 +20,7 @@ private:
 
 	float _timer;
 	int _counter;
+	Queue<float> _shotTimes;
 
 	BossState getNextState();
 

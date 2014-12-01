@@ -1,10 +1,10 @@
 Collider
-	layerMask: 0xa
+	layerMask: 0xb
 	trigger: true
 RemoveWhenOffscreen
 Bullet
-	layerMask: 0x2
-	speed: 300
+	layerMask: 0x3
+	speed: 350
 	damage: 1
 Transform
 	size: 24,24

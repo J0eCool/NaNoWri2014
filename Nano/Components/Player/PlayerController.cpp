@@ -12,10 +12,10 @@ PlayerController::PlayerController() : _speed(350.0f), _jumpHeight(180.0f), _nor
 void PlayerController::Start() {
 	auto curHealth = [this](){ return _health; };
 	auto maxHealth = [this](){ return _maxHealth; };
-	auto curMana = [this](){ return _mana; };
-	auto maxMana = [this](){ return _maxMana; };
 	GetEntitySystem()->FindEntity("PlayerHealthBar")->GetComponent<HealthBar>()->SetFunctions(curHealth, maxHealth);
-	GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(curMana, maxMana);
+	//auto curMana = [this](){ return _mana; };
+	//auto maxMana = [this](){ return _maxMana; };
+	//GetEntitySystem()->FindEntity("PlayerManaBar")->GetComponent<HealthBar>()->SetFunctions(curMana, maxMana);
 }
 
 void PlayerController::Update(float dt) {
